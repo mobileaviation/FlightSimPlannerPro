@@ -21,7 +21,6 @@ public class TileProviderFormats {
 
     public enum chartBundleLayer {
         sec_4326,
-        sec,
         wac_4326,
         tac_4326,
         enrl_4326,
@@ -43,8 +42,6 @@ public class TileProviderFormats {
                     return "IFR Enroute High";
                 case enra_4326:
                     return "IFR Area";
-                case sec:
-                    return "Sectional Grid";
 
                 default:
                     return "";
@@ -61,7 +58,8 @@ public class TileProviderFormats {
             "&bbox=%f,%f,%f,%f" +
             "&width=256" +
             "&height=256" +
-            "&crs=EPSG:3857" +
+            //"&crs=EPSG:3857" +
+            "&crs=EPSG:4326" +
             "&format=image/png" +
             "&styles=";
 

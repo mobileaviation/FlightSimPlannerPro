@@ -25,27 +25,47 @@ public class MainActivity extends AppCompatActivity {
 				20,			//Max Level
 				2,			//zOrder
 				3,			//Number of simultaneous downloads
-				false,		//Use cache
+				true,		//Use cache
 				true		//No alpha
 				);
 
+        mapView.addInternetMap("Airspaces",
+                "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
+                "",
+                20,
+                5,
+                3,
+                true,
+                true);
 
-		TileFactory tileFactory = new TileFactory(mapView);
+        //http://wms.chartbundle.com/tms/1.0.0/sec/{$z}/{$x}/{$y}.png?origin=nw
 
+        mapView.addInternetMap("FAA Sectional",
+                "http://wms.chartbundle.com/tms/1.0.0/sec_4326/{z}/{x}/{y}.png",
+                "",
+                20,
+                6,
+                3,
+                false,
+                true);
+
+		TileFactory chartBundleFactory = new TileFactory(mapView);
 		WmsTileWorker chartBundleWorker = new WmsTileWorker(
 				TileProviderFormats.CHARTBUNDLE_FORMAT,
 				"",
 				TileProviderFormats.chartBundleLayer.sec_4326.toString());
 
-		tileFactory.addWorker(chartBundleWorker);
+        chartBundleFactory.addWorker(chartBundleWorker);
 
-        VirtualMapInfo mapInfo = new VirtualMapInfo();
-        mapInfo.name = "Chartbundle";
-        mapInfo.zOrder = 3;
-        mapInfo.maxLevel = 20;
-        mapInfo.isSphericalMercator = false;
-        mapInfo.setTileProvider(tileFactory);
-        mapView.addMapUsingMapInfo(mapInfo);
+        VirtualMapInfo chartBundlemapInfo = new VirtualMapInfo();
+        chartBundlemapInfo.name = "Chartbundle";
+        chartBundlemapInfo.zOrder = 3;
+        chartBundlemapInfo.maxLevel = 20;
+        chartBundlemapInfo.isSphericalMercator = false;
+        chartBundlemapInfo.setTileProvider(chartBundleFactory);
+        //mapView.addMapUsingMapInfo(chartBundlemapInfo);
+
+
 
     }
 }

@@ -2,6 +2,7 @@ package com.mobileaviationtools.flightsimplannerpro.TileWorkers;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +41,11 @@ public class WmsTileWorker extends TileWorker {
         s = s.replace("#LAYER#", m_layer);
         s = s.replace("#STYLE#", m_style);
 
+        Log.i("WmsTileWorker", s);
+
         request.image = new BitmapSimple(this.getBitmapFromURL(s));
         request.responseType = TileProviderResponse.kTileResponseRenderImage;
+        request.isOpaque = false;
     }
 
     public Bitmap getBitmapFromURL(String src) {
@@ -55,7 +59,7 @@ public class WmsTileWorker extends TileWorker {
             return myBitmap;
         } catch (IOException e) {
             // Log exception
-            return null;
+            return Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
         }
     }
 
