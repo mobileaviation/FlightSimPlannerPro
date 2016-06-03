@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c98615d14a93c9d8dcef79f089c516c54dc168b4">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2092a513a75d94a5227c68a85f26fd34469f1c85\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.2.1_8ef9316c120e62f4ccf4f639d9fed2512210d25d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="27bab989330e5c5df5acf6f297b86c5772d57126">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_66c471a28bb7567e25099e854acdab4cfaa833e3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.2.1_a56e9dd4c90bf7079c075061d78cff57c1577e98\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\libs\commons-io-2.4.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\2\commons-io-2.4_2fc3e6d22fb263031b06a5e8a98aa670af874a22\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.2.1_54617f20be32c237961f4be2db1f95edac41b5a6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.2.1_cb67b43614fd60d8b04710c6ce1201af24bb7a36\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\libs\altusmappingengine.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c210e2e05b92c08e94cabe35f5fa40ddfd0f790b">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\2\altusmappingengine_4eb73971481ea9a4413cc88ebf5d1384f1466377\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.2.1_4292218f8d4b610a67d11520aff16c8ddf02cd0e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.2.1_1503d82492921b19c9a8ccd966246e97b0a2cbba\classes.dex" />
+    </item>
+
+</items>
