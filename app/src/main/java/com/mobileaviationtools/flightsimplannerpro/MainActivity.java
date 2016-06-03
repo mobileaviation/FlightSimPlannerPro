@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //http://wms.chartbundle.com/tms/1.0.0/sec/{$z}/{$x}/{$y}.png?origin=nw
 
         mapView.addInternetMap("FAA Sectional",
-                "http://wms.chartbundle.com/tms/1.0.0/sec_4326/{z}/{x}/{y}.png",
+                "http://wms.chartbundle.com/tms/1.0.0/sec_3857/{z}/{x}/{y}.png?origin=nw",
                 "",
                 20,
                 6,
