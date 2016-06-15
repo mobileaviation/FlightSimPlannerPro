@@ -4,11 +4,19 @@
     tools:context="com.mobileaviationtools.flightsimplannerpro.MainActivity"
     android:background="#ffffff"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:orientation="vertical">
+
 
     <us.ba3.me.MapView
         android:id="@+id/mapView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/locationTest" />
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -60,8 +61,8 @@ public class WmsTileWorker extends TileWorker {
 
         Log.i("WmsTileWorker", "After round: Zoom: " + n + " X: " + x + " Y: " + y);
 
-        String u = "http://wms.chartbundle.com/tms/1.0.0/sec_3857/#Z#/#X#/#Y#.png?origin=nw";
-        //String u = "http://wms.chartbundle.com/tms/1.0.0/sec/#Z#/#X#/#Y#.png?origin=nw";
+        //String u = "http://wms.chartbundle.com/tms/1.0.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
+        String u = "http://wms.chartbundle.com/tms/v1.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
         u = u.replace("#Z#", zi.toString());
         u = u.replace("#X#", xi.toString());
         u = u.replace("#Y#", yi.toString());
@@ -69,7 +70,15 @@ public class WmsTileWorker extends TileWorker {
 
 
         try {
-            request.image = new BitmapSimple(this.getBitmapFromURL(u, s));
+
+            //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            Bitmap image = this.getBitmapFromURL(u, s);
+            //image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            //request.image = new BitmapSimple();
+            //request.image.width = 256;
+            //request.image.height = 256;
+            //request.image.imageData = stream.toByteArray();
+            request.image = new BitmapSimple(image);
 
             if (request.image == null)
                 request.image = new BitmapSimple(Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888));
@@ -89,22 +98,25 @@ public class WmsTileWorker extends TileWorker {
             connection.setDoInput(true);
             connection.connect();
             InputStream input = connection.getInputStream();
-            //Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
-            Canvas c = new Canvas(myBitmap);
-            Paint p = new Paint();
+            //BitmapFactory.Options options = new BitmapFactory.Options();
+            //options.inMutable = true;
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            //myBitmap.setHasAlpha(true);
+            //Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
+            //Canvas c = new Canvas(myBitmap);
+            //Paint p = new Paint();
 
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inMutable = true;
-            Bitmap downloadBitmap = BitmapFactory.decodeStream(input, null, options);
-            downloadBitmap.setHasAlpha(true);
-            //p.setAlpha(250);
-            c.drawBitmap(downloadBitmap, 0,0, p);
+            //BitmapFactory.Options options = new BitmapFactory.Options();
+            //options.inMutable = true;
+            //Bitmap downloadBitmap = BitmapFactory.decodeStream(input, null, options);
+            //downloadBitmap.setHasAlpha(true);
+            ////p.setAlpha(250);
+            //c.drawBitmap(downloadBitmap, 0,0, p);
 
-            Integer cc = myBitmap.getPixel(10,10);
+            //Integer cc = myBitmap.getPixel(10,10);
             //Log.i("WmsTileWorker", "Color: " + Integer.toHexString(cc));
 
-            myBitmap = setTransparentColor(0xFAFFFFFF, 0xFAFEFEFF, 0xFAFFFFFF, myBitmap);
+            //myBitmap = setTransparentColor(0xFAFFFFFF, 0xFAFEFEFF, 0xFAFFFFFF, myBitmap);
 
             return myBitmap;
         } catch (IOException e) {
