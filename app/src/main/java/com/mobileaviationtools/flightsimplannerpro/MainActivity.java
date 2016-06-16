@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspace;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirspacesDB;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
@@ -40,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
 				true,		//Use cache
 				true		//No alpha
 				);
-//
-//        mapView.addInternetMap("Airspaces",
-//                "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
-//                "",
-//                20,
-//                5,
-//                3,
-//                true,
-//                true);
+
+        mapView.addInternetMap("SkylinesAirspaces",
+                "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
+                "",
+                20,
+                5,
+                3,
+                true,
+                true);
 //
 //        //http://wms.chartbundle.com/tms/1.0.0/sec/{$z}/{$x}/{$y}.png?origin=nw
 //
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         VirtualMapInfo chartBundlemapInfo = new VirtualMapInfo();
         chartBundlemapInfo.name = "Chartbundle";
-        chartBundlemapInfo.zOrder = 3;
+        chartBundlemapInfo.zOrder = 7;
         chartBundlemapInfo.maxLevel = 20;
         chartBundlemapInfo.isSphericalMercator = false;
         chartBundlemapInfo.setTileProvider(chartBundleFactory);
@@ -104,17 +105,20 @@ public class MainActivity extends AppCompatActivity {
 
 		PolygonStyle polygonStyle = new PolygonStyle();
 		polygonStyle.outlineColor = Color.GREEN;
-		polygonStyle.outlineWidth = 3;
+		polygonStyle.outlineWidth = 1;
 		polygonStyle.strokeColor = Color.YELLOW;
-		polygonStyle.strokeWidth = 9;
+		polygonStyle.strokeWidth = 4;
+		polygonStyle.fillColor = Color.TRANSPARENT;
 
 		VectorMapInfo airspacesInfo = new VectorMapInfo();
 		airspacesInfo.name = "Airspaces";
-		airspacesInfo.zOrder = 5;
+		airspacesInfo.zOrder = 8;
 		airspacesInfo.maxLevel = 20;
 		mapView.addMapUsingMapInfo(airspacesInfo);
 
-		mapView.addPolygonToVectorMap("Airspaces", airspaces.get(airspaces.size()-1).getAirspaceB3aLocations(), polygonStyle);
+		for (Airspace airspace: airspaces) {
+			mapView.addPolygonToVectorMap("Airspaces", airspace.getAirspaceB3aLocations(), polygonStyle);
+		}
 
     }
 }

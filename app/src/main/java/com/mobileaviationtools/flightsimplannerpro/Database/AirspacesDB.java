@@ -34,7 +34,7 @@ public class AirspacesDB {
     {
         String[] selectionarg = new String[1];
         selectionarg[0] = "NL";
-        String sql = "SELECT * FROM tbl_airspaces WHERE country=?;";
+        String sql = "SELECT * FROM tbl_airspaces WHERE country=?;";// AND _id=6;";// (_id=7 OR _id=9 OR _id=6);";
         return this.database.rawQuery(sql, selectionarg);
     }
 
