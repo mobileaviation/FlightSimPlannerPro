@@ -1,12 +1,16 @@
 package com.mobileaviationtools.flightsimplannerpro;
 
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspace;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
@@ -21,11 +25,13 @@ import us.ba3.me.MapInfo;
 import us.ba3.me.MapType;
 import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
+import us.ba3.me.markers.MarkerInfo;
+import us.ba3.me.markers.MarkerMapDelegate;
 import us.ba3.me.styles.PolygonStyle;
 import us.ba3.me.virtualmaps.TileFactory;
 import us.ba3.me.virtualmaps.VirtualMapInfo;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +39,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Get the map view and add a map.
-        //final MapView mapView = (MapView)this.findViewById(R.id.mapView1);
+		//final MapView mapView = (MapView)this.findViewById(R.id.mapView1);
+        final MyMapView mapView;
+		mapView = new MyMapView(this);
+		mapView.setLayoutParams(new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.MATCH_PARENT
+		));
+		LinearLayout baseLayout = (LinearLayout)this.findViewById(R.id.baseLayout);
+		baseLayout.addView(mapView);
 
-		final MapView mapView = new MapView(this){
-			@Override
-			public  boolean onTouchEvent(MotionEvent event)
-			{
 
-				return false;
-			}
-		};
 
 		mapView.addInternetMap("MapQuest Aerial",
 				"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
@@ -97,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 		loc.latitude = 52.302;
 		mapView.setLocation3D(loc, 1);
 
+
 		DBFilesHelper.CopyDatabases(this.getApplicationContext());
 		AirspacesDB airspacesDB = new AirspacesDB(this);
 		airspacesDB.Open("airspaces.db");
@@ -120,10 +128,27 @@ public class MainActivity extends AppCompatActivity {
 			mapView.addPolygonToVectorMap("Airspaces", airspace.getAirspaceB3aLocations(), polygonStyle);
 		}
 
-		RouteTest routeTest = new RouteTest(this);
-		routeTest.placeRouteOnMap(mapView);
+		RouteTest routeTest = new RouteTest(this, mapView);
+		routeTest.placeRouteOnMap();
 
+//		mapView.setLongClickable(true);
+//		mapView.setOnLongClickListener(new View.OnLongClickListener() {
+//			@Override
+//			public boolean onLongClick(View v) {
+//				Log.i("Click", "Long click....");
+//				return false;
+//			}
+//		});
 
+//		mapView.setOnTouchListener(new View.OnTouchListener() {
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {
+//				Log.i("Touch", "Touch Event....");
+//				return false;
+//			}
+//		});
 
     }
+
+
 }

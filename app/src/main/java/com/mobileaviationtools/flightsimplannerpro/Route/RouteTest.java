@@ -5,30 +5,38 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.util.Log;
 
 import com.mobileaviationtools.flightsimplannerpro.R;
 
 import java.util.ArrayList;
 
+import us.ba3.me.ConvertPointCallback;
 import us.ba3.me.Location;
 import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
 import us.ba3.me.markers.DynamicMarker;
+import us.ba3.me.markers.DynamicMarkerMapDelegate;
 import us.ba3.me.markers.DynamicMarkerMapInfo;
+import us.ba3.me.markers.MarkerInfo;
+import us.ba3.me.markers.MarkerMapDelegate;
+import us.ba3.me.markers.MarkerMapInfo;
 import us.ba3.me.styles.LineStyle;
 
 /**
  * Created by Rob Verhoef on 17-6-2016.
  */
-public class RouteTest {
-    public RouteTest(Context context)
+public class RouteTest implements DynamicMarkerMapDelegate {
+    public RouteTest(Context context, MapView mapView)
     {
         this.context = context;
+        this.mapView = mapView;
     }
 
     private Context context;
+    private MapView mapView;
 
-    public void placeRouteOnMap(MapView mapView)
+    public void placeRouteOnMap()
     {
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
         vectorMapInfo.name = "route";
@@ -50,15 +58,17 @@ public class RouteTest {
         mapView.addLineToVectorMap("route", routePoints, lineStyle);
 
         //Add markers
-        this.addMarkers(mapView, routePoints);
+        this.addMarkers(routePoints);
 
     }
 
-    private void addMarkers(MapView mapView, Location[] routePoints)
+    private void addMarkers(Location[] routePoints)
     {
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
         mapInfo.name = "Markers";
         mapInfo.zOrder = 11;
+        mapInfo.hitTestingEnabled = true;
+        mapInfo.delegate = this;
         mapView.addMapUsingMapInfo(mapInfo);
 
         //Add a markers
@@ -75,6 +85,8 @@ public class RouteTest {
         endPoint.anchorPoint = new PointF(16,32);
         endPoint.location = routePoints[routePoints.length-1];
         mapView.addDynamicMarkerToMap("Markers", endPoint);
+
+        
     }
 
     private Bitmap getBitmapFromDrawable(Integer name)
@@ -100,4 +112,22 @@ public class RouteTest {
     }
 
 
+
+
+    @Override
+    public void tapOnMarker(String mapName, final String markerName, final PointF screenPoint, final PointF markerPoint) {
+
+        mapView.getLocationForPoint(new PointF(screenPoint.x, screenPoint.y), new ConvertPointCallback() {
+            @Override
+            public void convertComplete(Location location) {
+                Log.w("WorldVectorLabelsTest","Marker was tapped on" +
+                        " Name:" + markerName +
+                        " location:" + screenPoint.x + "," + screenPoint.y +
+                        " markerPoint:" + markerPoint.x + "," + markerPoint.y +
+                        " location:" + location.longitude + "," + location.latitude);
+            }
+        });
+
+
+    }
 }
