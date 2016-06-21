@@ -33,14 +33,8 @@ public class RouteTest implements DynamicMarkerMapDelegate {
         this.mapView = mapView;
         mapname = "Route";
 
-        routePoints = new ArrayList<Location>();
 
-        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
-        mapInfo.name = mapname;
-        mapInfo.zOrder = 11;
-        mapInfo.hitTestingEnabled = true;
-        mapInfo.delegate = this;
-        mapView.addMapUsingMapInfo(mapInfo);
+        routePoints = new ArrayList<Location>();
 
         createRoutePoints();
     }
@@ -54,8 +48,15 @@ public class RouteTest implements DynamicMarkerMapDelegate {
 
     public void placeInitialRouteOnMap()
     {
+        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
+        mapInfo.name = mapname+"markers";
+        mapInfo.zOrder = 11;
+        mapInfo.hitTestingEnabled = true;
+        mapInfo.delegate = this;
+        mapView.addMapUsingMapInfo(mapInfo);
+
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
-        vectorMapInfo.name = "route";
+        vectorMapInfo.name = mapname+"lines";;
         vectorMapInfo.zOrder = 10;
         vectorMapInfo.alpha = 0.75f;
         mapView.addMapUsingMapInfo(vectorMapInfo);
@@ -71,7 +72,7 @@ public class RouteTest implements DynamicMarkerMapDelegate {
         Location[] rp = routePoints.toArray(new Location[routePoints.size()]);
 
         //Add the line to the vector layer
-        mapView.addLineToVectorMap("route", rp, lineStyle);
+        mapView.addLineToVectorMap(mapname+"lines", rp, lineStyle);
 
         //Add markers
         this.placeMarkerOnRoute();
@@ -82,7 +83,8 @@ public class RouteTest implements DynamicMarkerMapDelegate {
     {
         routePoints.add(1, location);
         selectedLocation = routePoints.get(1);
-        mapView.removeMap("route", true);
+        mapView.removeMap(mapname+"markers", true);
+        mapView.removeMap(mapname+"lines", true);
         placeInitialRouteOnMap();
     }
 
@@ -96,7 +98,7 @@ public class RouteTest implements DynamicMarkerMapDelegate {
     {
         for (Integer i=0; i<routePoints.size(); i++)
         {
-            addMarker("Test" + i.toString(), routePoints.get(i), R.drawable.bluedot);
+            addMarker("Marker" + i.toString(), routePoints.get(i), R.drawable.bluedot);
         }
     }
 
@@ -105,9 +107,9 @@ public class RouteTest implements DynamicMarkerMapDelegate {
         DynamicMarker dynamicMarker = new DynamicMarker();
         dynamicMarker.name = name;
         dynamicMarker.setImage(getBitmapFromDrawable(drawable), false);
-        dynamicMarker.anchorPoint = new PointF(16,32);
+        dynamicMarker.anchorPoint = new PointF(16,16);
         dynamicMarker.location = location;
-        mapView.addDynamicMarkerToMap(mapname, dynamicMarker);
+        mapView.addDynamicMarkerToMap(mapname+"markers", dynamicMarker);
     }
 
 

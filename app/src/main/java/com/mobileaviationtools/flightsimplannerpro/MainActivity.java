@@ -112,22 +112,7 @@ public class MainActivity extends AppCompatActivity{
 		Airspaces airspaces = new Airspaces();
 		airspaces.readFromDatabase(airspacesDB.GetAirspaces("NL"));
 
-		PolygonStyle polygonStyle = new PolygonStyle();
-		polygonStyle.outlineColor = Color.GREEN;
-		polygonStyle.outlineWidth = 1;
-		polygonStyle.strokeColor = Color.YELLOW;
-		polygonStyle.strokeWidth = 4;
-		polygonStyle.fillColor = Color.TRANSPARENT;
-
-		VectorMapInfo airspacesInfo = new VectorMapInfo();
-		airspacesInfo.name = "Airspaces";
-		airspacesInfo.zOrder = 8;
-		airspacesInfo.maxLevel = 20;
-		mapView.addMapUsingMapInfo(airspacesInfo);
-
-		for (Airspace airspace: airspaces) {
-			mapView.addPolygonToVectorMap("Airspaces", airspace.getAirspaceB3aLocations(), polygonStyle);
-		}
+		airspaces.createAirspacesLayer(mapView);
 
 		RouteTest routeTest = new RouteTest(this, mapView);
 		routeTest.placeInitialRouteOnMap();
