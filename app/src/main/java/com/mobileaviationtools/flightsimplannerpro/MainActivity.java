@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity{
 		//final MapView mapView = (MapView)this.findViewById(R.id.mapView1);
         final MyMapView mapView;
 		mapView = new MyMapView(this);
+		mapView.Init(null);
 		mapView.setLayoutParams(new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT
@@ -129,24 +130,10 @@ public class MainActivity extends AppCompatActivity{
 		}
 
 		RouteTest routeTest = new RouteTest(this, mapView);
-		routeTest.placeRouteOnMap();
+		routeTest.placeInitialRouteOnMap();
+		mapView.Init(routeTest);
 
-//		mapView.setLongClickable(true);
-//		mapView.setOnLongClickListener(new View.OnLongClickListener() {
-//			@Override
-//			public boolean onLongClick(View v) {
-//				Log.i("Click", "Long click....");
-//				return false;
-//			}
-//		});
 
-//		mapView.setOnTouchListener(new View.OnTouchListener() {
-//			@Override
-//			public boolean onTouch(View v, MotionEvent event) {
-//				Log.i("Touch", "Touch Event....");
-//				return false;
-//			}
-//		});
 
     }
 

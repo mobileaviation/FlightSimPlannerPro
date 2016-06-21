@@ -31,12 +31,28 @@ public class RouteTest implements DynamicMarkerMapDelegate {
     {
         this.context = context;
         this.mapView = mapView;
+        mapname = "Route";
+
+        routePoints = new ArrayList<Location>();
+
+        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
+        mapInfo.name = mapname;
+        mapInfo.zOrder = 11;
+        mapInfo.hitTestingEnabled = true;
+        mapInfo.delegate = this;
+        mapView.addMapUsingMapInfo(mapInfo);
+
+        createRoutePoints();
     }
 
+
+    private final String mapname;
     private Context context;
     private MapView mapView;
 
-    public void placeRouteOnMap()
+    private ArrayList<Location> routePoints;
+
+    public void placeInitialRouteOnMap()
     {
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
         vectorMapInfo.name = "route";
@@ -52,52 +68,58 @@ public class RouteTest implements DynamicMarkerMapDelegate {
         lineStyle.strokeWidth = 9;
 
         //Get the route points
-        Location[] routePoints = createRoutePoints();
+        Location[] rp = routePoints.toArray(new Location[routePoints.size()]);
 
         //Add the line to the vector layer
-        mapView.addLineToVectorMap("route", routePoints, lineStyle);
+        mapView.addLineToVectorMap("route", rp, lineStyle);
 
         //Add markers
-        this.addMarkers(routePoints);
+        this.placeMarkerOnRoute();
 
     }
 
-    private void addMarkers(Location[] routePoints)
+    public void InsertNewPoint(Location location)
     {
-        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
-        mapInfo.name = "Markers";
-        mapInfo.zOrder = 11;
-        mapInfo.hitTestingEnabled = true;
-        mapInfo.delegate = this;
-        mapView.addMapUsingMapInfo(mapInfo);
-
-        //Add a markers
-        DynamicMarker startPoint = new DynamicMarker();
-        startPoint.name = "startPoint";
-        startPoint.setImage(getBitmapFromDrawable(R.drawable.greendot), false);
-        startPoint.anchorPoint = new PointF(16,32);
-        startPoint.location = routePoints[0];
-        mapView.addDynamicMarkerToMap("Markers", startPoint);
-
-        DynamicMarker endPoint = new DynamicMarker();
-        endPoint.name = "endPoint";
-        endPoint.setImage(getBitmapFromDrawable(R.drawable.bluedot), false);
-        endPoint.anchorPoint = new PointF(16,32);
-        endPoint.location = routePoints[routePoints.length-1];
-        mapView.addDynamicMarkerToMap("Markers", endPoint);
-
-        
+        routePoints.add(1, location);
+        selectedLocation = routePoints.get(1);
+        mapView.removeMap("route", true);
+        placeInitialRouteOnMap();
     }
+
+    private Location selectedLocation;
+    public void SelectedPoint(Location location)
+    {
+
+    }
+
+    private void placeMarkerOnRoute()
+    {
+        for (Integer i=0; i<routePoints.size(); i++)
+        {
+            addMarker("Test" + i.toString(), routePoints.get(i), R.drawable.bluedot);
+        }
+    }
+
+    private void addMarker(String name, Location location, Integer drawable)
+    {
+        DynamicMarker dynamicMarker = new DynamicMarker();
+        dynamicMarker.name = name;
+        dynamicMarker.setImage(getBitmapFromDrawable(drawable), false);
+        dynamicMarker.anchorPoint = new PointF(16,32);
+        dynamicMarker.location = location;
+        mapView.addDynamicMarkerToMap(mapname, dynamicMarker);
+    }
+
+
 
     private Bitmap getBitmapFromDrawable(Integer name)
     {
         return BitmapFactory.decodeResource(context.getResources(), name);
     }
 
-    private Location[] createRoutePoints(){
-        ArrayList<Location> locations = new ArrayList<Location>();
-        locations.add(new Location(52.472409,4.320374));
-        locations.add(new Location(52.7399285, 7.182312));
+    private void createRoutePoints(){
+        routePoints.add(new Location(52.472409,4.320374));
+        routePoints.add(new Location(52.7399285, 7.182312));
         //locations.add(new Location(35.77431930112859,-78.64204765649093));
         //locations.add(new Location(35.77567608136691,-78.64196220184964));
         //locations.add(new Location(35.77700395100487,-78.64187508617212));
@@ -107,8 +129,6 @@ public class RouteTest implements DynamicMarkerMapDelegate {
         //locations.add(new Location(35.7781182250745,-78.63659407693116));
         //locations.add(new Location(35.77684002315468,-78.63668612449102));
         //locations.add(new Location(35.77552738790911,-78.63672620342922));
-        Location[] locationArray = locations.toArray(new Location[locations.size()]);
-        return locationArray;
     }
 
 
