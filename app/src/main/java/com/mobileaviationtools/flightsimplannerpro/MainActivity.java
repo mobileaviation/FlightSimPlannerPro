@@ -52,41 +52,42 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-		mapView.addInternetMap("MapQuest Aerial",
-				"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
-				"", 		//Subdomains
-				20,			//Max Level
-				2,			//zOrder
-				3,			//Number of simultaneous downloads
-				true,		//Use cache
-				true		//No alpha
-				);
+//		mapView.addInternetMap("MapQuest Aerial",
+//				"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
+//				"", 		//Subdomains
+//				20,			//Max Level
+//				2,			//zOrder
+//				3,			//Number of simultaneous downloads
+//				true,		//Use cache
+//				true		//No alpha
+//				);
 
-        mapView.addInternetMap("SkylinesAirspaces",
-                "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
-                "",
-                20,
-                5,
-                3,
-                true,
-                true);
+//        mapView.addInternetMap("SkylinesAirspaces",
+//                "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
+//                "",
+//                20,
+//                5,
+//                3,
+//                true,
+//                true);
 //
 //        //http://wms.chartbundle.com/tms/1.0.0/sec/{$z}/{$x}/{$y}.png?origin=nw
 //
-//        mapView.addInternetMap("FAA Sectional",
-//                "http://wms.chartbundle.com/tms/1.0.0/sec_3857/{z}/{x}/{y}.png?origin=nw",
+//        mapView.addInternetMap("Mappy",
+//				"https://map1.mappy.net/map/1.0/slab/standard/256/{z}/{x}/{y}",
 //                "",
 //                20,
-//                6,
+//                2,
 //                3,
-//                false,
+//                true,
 //                true);
 
+		// ChartBundle FAA Sectionals
 		TileFactory chartBundleFactory = new TileFactory(mapView);
 		WmsTileWorker chartBundleWorker = new WmsTileWorker(
-				TileProviderFormats.CHARTBUNDLE_FORMAT,
+				TileProviderFormats.CHARTBUNDLE_XYZ_FORMAT,
 				"",
-				TileProviderFormats.chartBundleLayer.sec_4326.toString());
+				TileProviderFormats.chartBundleLayer.sec_3857.toString());
 
         chartBundleFactory.addWorker(chartBundleWorker);
 
@@ -95,8 +96,28 @@ public class MainActivity extends AppCompatActivity{
         chartBundlemapInfo.zOrder = 7;
         chartBundlemapInfo.maxLevel = 20;
         chartBundlemapInfo.isSphericalMercator = false;
+		chartBundlemapInfo.compressTextures = true;
         chartBundlemapInfo.setTileProvider(chartBundleFactory);
         //mapView.addMapUsingMapInfo(chartBundlemapInfo);
+
+
+		// Yandex maps
+		// The tiles do not lineup in lateral direction!!!!
+		TileFactory yandexFactory = new TileFactory(mapView);
+		WmsTileWorker yandexWorker = new WmsTileWorker(
+				TileProviderFormats.MAPPY_FORMAT,
+				"",
+				"");
+
+		yandexFactory.addWorker(yandexWorker);
+
+		VirtualMapInfo yandexmapInfo = new VirtualMapInfo();
+		yandexmapInfo.name = "Mappy";
+		yandexmapInfo.zOrder = 7;
+		yandexmapInfo.maxLevel = 20;
+		yandexmapInfo.isSphericalMercator = false;
+		yandexmapInfo.setTileProvider(yandexFactory);
+		mapView.addMapUsingMapInfo(yandexmapInfo);
 
 		// Primary location Netherlands
 		Location3D loc = new Location3D();

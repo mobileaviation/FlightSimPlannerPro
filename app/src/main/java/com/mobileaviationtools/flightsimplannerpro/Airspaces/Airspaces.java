@@ -38,9 +38,9 @@ public class Airspaces extends ArrayList<Airspace>  {
     {
         PolygonStyle polygonStyle = new PolygonStyle();
         polygonStyle.outlineColor = Color.GREEN;
-        polygonStyle.outlineWidth = 1;
+        polygonStyle.outlineWidth = 2;
         polygonStyle.strokeColor = Color.YELLOW;
-        polygonStyle.strokeWidth = 4;
+        polygonStyle.strokeWidth = 20;
         polygonStyle.fillColor = Color.TRANSPARENT;
 
         VectorMapInfo airspacesInfo = new VectorMapInfo();
@@ -50,6 +50,17 @@ public class Airspaces extends ArrayList<Airspace>  {
         mapView.addMapUsingMapInfo(airspacesInfo);
 
         for (Airspace airspace: this) {
+            //if (airspace.Category == AirspaceCategory.CTR)
+            //    polygonStyle.fillColor = Color.argb(100, 228, 161, 158);
+            //else polygonStyle.fillColor = Color.TRANSPARENT;
+
+            polygonStyle.outlineColor = airspace.Category.getOutlineColor();
+            polygonStyle.outlineWidth = airspace.Category.getOutlineWidth();
+            polygonStyle.strokeColor = airspace.Category.getStrokeColor();
+            polygonStyle.strokeWidth = airspace.Category.getStrokeWidth();
+            polygonStyle.fillColor = airspace.Category.getFillColor();
+
+
             mapView.addPolygonToVectorMap("Airspaces", airspace.getAirspaceB3aLocations(), polygonStyle);
         }
     }

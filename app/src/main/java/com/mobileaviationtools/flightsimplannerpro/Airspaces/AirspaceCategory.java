@@ -6,50 +6,67 @@ import android.graphics.Interpolator;
 /**
  * Created by Rob Verhoef on 15-6-2016.
  */
-public enum AirspaceCategory {
-    A (Color.BLACK,Color.BLUE,1),
-    AWY (Color.BLACK,Color.BLUE,1),
-    B (Color.BLACK,Color.BLUE,1),
-    C (Color.BLACK,Color.BLUE,1),
-    CTR (Color.BLACK,Color.BLUE,1),
-    D (Color.BLACK,Color.BLUE,1),
-    DANGER (Color.BLACK,Color.BLUE,1),
-    Q (Color.BLACK,Color.BLUE,1),
-    E (Color.BLACK,Color.BLUE,1),
-    F (Color.BLACK,Color.BLUE,1),
-    G (Color.BLACK,Color.BLUE,1),
-    GP (Color.BLACK,Color.BLUE,1),
-    GLIDING (Color.BLACK,Color.BLUE,1),
-    OTH (Color.BLACK,Color.BLUE,1),
-    RESTRICTED (Color.BLACK,Color.BLUE,1),
-    R (Color.BLACK,Color.BLUE,1),
-    TMA (Color.BLACK,Color.BLUE,1),
-    TMZ (Color.BLACK,Color.BLUE,1),
-    TSA (Color.BLACK,Color.BLUE,1),
-    WAVE (Color.BLACK,Color.BLUE,1),
-    W (Color.BLACK,Color.BLUE,1),
-    PROHIBITED (Color.BLACK,Color.BLUE,1),
-    P (Color.BLACK,Color.BLUE,1),
-    FIR (Color.BLACK,Color.BLUE,1),
-    UIR (Color.BLACK,Color.BLUE,1),
-    RMZ (Color.BLACK,Color.BLUE,1),
-    Z (Color.BLACK,Color.BLUE,1),
-    ZP (Color.BLACK,Color.BLUE,1),
-    UKN (Color.BLACK,Color.BLUE,1);
+//        polygonStyle.outlineColor = Color.GREEN;
+//        polygonStyle.outlineWidth = 2;
+//        polygonStyle.strokeColor = Color.YELLOW;
+//        polygonStyle.strokeWidth = 20;
+//        polygonStyle.fillColor = Color.TRANSPARENT;
 
-    private Integer lineColor;
+public enum AirspaceCategory {
+    // outlineColor, outlineWidth, strokeColor, strokeWidth, fillColor
+    A (Color.BLACK, 0, 0xAF000000,4, Color.TRANSPARENT),
+    AWY (Color.GREEN, 2, Color.YELLOW,5, Color.TRANSPARENT),
+    B (Color.BLACK, 0, 0xBF000000,3, Color.TRANSPARENT),
+    C (0xFFE4A19E, 2, 0x60E4A19E,5, Color.TRANSPARENT),
+    CTR (Color.BLACK, 0, 0xFFE4A19E ,15, 0x60E4A19E),
+    D (Color.BLACK, 0, 0xFFE4A19E ,5, 0x60E4A19),
+    DANGER (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
+    Q (Color.BLACK, 0, 0xFFC06E8E,5, 0x50C06E8E),
+    E (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
+    F (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
+    G (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
+    GP (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    GLIDING (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    OTH (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    RESTRICTED (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
+    R (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
+    TMA (Color.BLACK, 0, 0xFF7C6D92,5, Color.TRANSPARENT),
+    TMZ (Color.BLACK, 0, 0xFFC3819E,10, Color.TRANSPARENT),
+    TSA (Color.BLACK, 0, 0xFF7C6D92,5, Color.TRANSPARENT),
+    WAVE (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    W (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    PROHIBITED (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
+    P (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
+    FIR (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
+    UIR (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
+    RMZ (Color.BLACK, 0, 0xFFC06E8E,10, Color.TRANSPARENT),
+    Z (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    ZP (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
+    UKN (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT);
+
+    private Integer outlineColor;
+    private Integer outlineWidth;
+    private Integer strokeColor;
+    private Integer strokeWidth;
     private Integer fillColor;
-    private Integer lineSize;
-    AirspaceCategory(Integer lineColor, Integer fillColor, Integer lineSize)
+    AirspaceCategory(Integer outlineColor,
+                     Integer outlineWidth,
+                     Integer strokeColor,
+                     Integer strokeWidth,
+                     Integer fillColor)
     {
-        this.lineColor = lineColor;
+        this.outlineColor = outlineColor;
+        this.outlineWidth = outlineWidth;
+        this.strokeColor = strokeColor;
+        this.strokeWidth = strokeWidth;
         this.fillColor = fillColor;
-        this.lineSize = lineSize;
     }
 
-    public Integer getLineColor() {return lineColor;}
-    public Integer getfillColor() {return fillColor;}
-    public Integer getlineSize() {return lineSize;}
+    public Integer getOutlineColor(){return outlineColor;}
+    public Integer getOutlineWidth(){return outlineWidth;}
+    public Integer getFillColor() {return fillColor;}
+    public Integer getStrokeColor(){return strokeColor;}
+    public Integer getStrokeWidth(){return strokeWidth;}
 
     @Override
     public String toString() {

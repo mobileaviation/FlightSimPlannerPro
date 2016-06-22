@@ -37,16 +37,8 @@ public class WmsTileWorker extends TileWorker {
 
     @Override
     public void doWork(TileProviderRequest request){
-        String s = "";
-        s = String.format(Locale.US, m_url,
-                request.bounds.min.longitude,
-                request.bounds.min.latitude,
-                request.bounds.max.longitude,
-                request.bounds.max.latitude);
-        s = s.replace("#LAYER#", m_layer);
-        s = s.replace("#STYLE#", m_style);
 
-        Log.i("WmsTileWorker", s);
+        Log.i("WmsTileWorker", "URL: " + m_url);
 
         Double zd = (360/(request.bounds.max.longitude - request.bounds.min.longitude));
         Double z1 = Math.log(zd) / Math.log(2);
@@ -62,17 +54,22 @@ public class WmsTileWorker extends TileWorker {
         Log.i("WmsTileWorker", "After round: Zoom: " + n + " X: " + x + " Y: " + y);
 
         //String u = "http://wms.chartbundle.com/tms/1.0.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
-        String u = "http://wms.chartbundle.com/tms/v1.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
+        //String u = "http://wms.chartbundle.com/tms/v1.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
+
+        String u = m_url;
+
         u = u.replace("#Z#", zi.toString());
         u = u.replace("#X#", xi.toString());
         u = u.replace("#Y#", yi.toString());
+        u = u.replace("#LAYER#", m_layer);
+
         Log.i("WmsTileWorker", u);
 
 
         try {
 
             //ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            Bitmap image = this.getBitmapFromURL(u, s);
+            Bitmap image = this.getBitmapFromURL(u);
             //image.compress(Bitmap.CompressFormat.PNG, 100, stream);
             //request.image = new BitmapSimple();
             //request.image.width = 256;
@@ -91,7 +88,7 @@ public class WmsTileWorker extends TileWorker {
         request.isOpaque = false;
     }
 
-    public Bitmap getBitmapFromURL(String src, String wmsSrc) {
+    public Bitmap getBitmapFromURL(String src) {
         try {
             URL url = new URL(src);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

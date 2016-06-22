@@ -17,10 +17,13 @@ public class TileProviderFormats {
             "&format=image/png" +
             "&styles=";
 
+    public static final String CHARTBUNDLE_XYZ_FORMAT = "http://wms.chartbundle.com/tms/v1.0/#LAYER#/#Z#/#X#/#Y#.png?type=google";
+
     //http://wms.chartbundle.com/wms?service=WMS&version=1.1.1&request=GetCapabilities
 
     public enum chartBundleLayer {
         sec_4326,
+        sec_3857,
         wac_4326,
         tac_4326,
         enrl_4326,
@@ -31,6 +34,8 @@ public class TileProviderFormats {
         public String readable() {
             switch (this) {
                 case sec_4326:
+                    return "Sectional";
+                case sec_3857:
                     return "Sectional";
                 case wac_4326:
                     return "World Aeronautical";
@@ -48,6 +53,10 @@ public class TileProviderFormats {
             }
         }
     }
+
+    public static final String YANDEX_FORMAT = "https://vec03.maps.yandex.net/tiles?l=map&v=4.86.0&x=#X#&y=#Y#&z=#Z#&scale=1&lang=en_US";
+
+    public static final String MAPPY_FORMAT = "https://map1.mappy.net/map/1.0/slab/standard/256/#Z#/#X#/#Y#";
 
     public static final String SKYLINES_FORMAT = "https://maps.skylines.aero/mapserver/" +
             "?service=WMS" +
