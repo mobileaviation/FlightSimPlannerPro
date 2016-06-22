@@ -33,8 +33,8 @@ public class AirspacesDB {
     public Cursor GetAirspaces(String country)
     {
         String[] selectionarg = new String[1];
-        selectionarg[0] = "NL";
-        String sql = "SELECT * FROM tbl_airspaces WHERE country=? ORDER BY _id DESC;";// AND _id=6;";// (_id=7 OR _id=9 OR _id=6);";
+        selectionarg[0] = country;
+        String sql = "SELECT * FROM tbl_airspaces WHERE country=?;";// AND _id=6;";// (_id=7 OR _id=9 OR _id=6);";
         return this.database.rawQuery(sql, selectionarg);
     }
 

@@ -14,52 +14,55 @@ import android.graphics.Interpolator;
 
 public enum AirspaceCategory {
     // outlineColor, outlineWidth, strokeColor, strokeWidth, fillColor
-    A (Color.BLACK, 0, 0xAF000000,4, Color.TRANSPARENT),
-    AWY (Color.GREEN, 2, Color.YELLOW,5, Color.TRANSPARENT),
-    B (Color.BLACK, 0, 0xBF000000,3, Color.TRANSPARENT),
-    C (0xFFE4A19E, 2, 0x60E4A19E,5, Color.TRANSPARENT),
-    CTR (Color.BLACK, 0, 0xFFE4A19E ,15, 0x60E4A19E),
-    D (Color.BLACK, 0, 0xFFE4A19E ,5, 0x60E4A19),
-    DANGER (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
-    Q (Color.BLACK, 0, 0xFFC06E8E,5, 0x50C06E8E),
-    E (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
-    F (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
-    G (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
-    GP (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    GLIDING (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    OTH (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    RESTRICTED (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
-    R (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
-    TMA (Color.BLACK, 0, 0xFF7C6D92,5, Color.TRANSPARENT),
-    TMZ (Color.BLACK, 0, 0xFFC3819E,10, Color.TRANSPARENT),
-    TSA (Color.BLACK, 0, 0xFF7C6D92,5, Color.TRANSPARENT),
-    WAVE (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    W (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    PROHIBITED (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
-    P (Color.BLACK, 0, 0xFFFBA642,10, 0x30FBA642),
-    FIR (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
-    UIR (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT),
-    RMZ (Color.BLACK, 0, 0xFFC06E8E,10, Color.TRANSPARENT),
-    Z (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    ZP (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT),
-    UKN (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT);
+    A (Color.BLACK, 0, 0xAF000000,4, Color.TRANSPARENT, true),
+    AWY (Color.GREEN, 2, Color.YELLOW,5, Color.TRANSPARENT, false),
+    B (Color.BLACK, 0, 0xBF000000,3, Color.TRANSPARENT, true),
+    C (0xFFE4A19E, 1, 0x60E4A19E,3, Color.TRANSPARENT, true),
+    CTR (Color.BLACK, 0, 0xFFE4A19E ,5, 0x60E4A19E, true),
+    D (Color.BLACK, 0, 0xFFE4A19E ,5, 0x60E4A19, true),
+    DANGER (Color.BLACK, 0, 0xFFFBA642,3, 0x30FBA642, true),
+    Q (Color.BLACK, 0, 0xFFC06E8E,5, 0x50C06E8E, true),
+    E (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT, true),
+    F (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT, true),
+    G (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT, true),
+    GP (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false),
+    GLIDING (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false),
+    OTH (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false),
+    RESTRICTED (Color.BLACK, 0, 0xFFFBA642,3, 0x30FBA642, true),
+    R (Color.BLACK, 0, 0xFFFBA642,3, 0x30FBA642, true),
+    TMA (Color.BLACK, 0, 0xFF7C6D92,5, Color.TRANSPARENT, true),
+    TMZ (Color.BLACK, 0, 0xFFC3819E,7, Color.TRANSPARENT, true),
+    TSA (Color.BLACK, 0, 0xFF7C6D92,5, Color.TRANSPARENT, true),
+    WAVE (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, true),
+    W (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false),
+    PROHIBITED (Color.BLACK, 0, 0xFFFBA642,3, 0x30FBA642, true),
+    P (Color.BLACK, 0, 0xFFFBA642,3, 0x30FBA642, true),
+    FIR (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT, true),
+    UIR (Color.BLACK, 0, 0xAF000000,3, Color.TRANSPARENT, true),
+    RMZ (Color.BLACK, 0, 0xFFC06E8E,5, Color.TRANSPARENT, true),
+    Z (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false),
+    ZP (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false),
+    UKN (Color.BLACK, 0, Color.YELLOW,5, Color.TRANSPARENT, false);
 
     private Integer outlineColor;
     private Integer outlineWidth;
     private Integer strokeColor;
     private Integer strokeWidth;
     private Integer fillColor;
+    private Boolean visible;
     AirspaceCategory(Integer outlineColor,
                      Integer outlineWidth,
                      Integer strokeColor,
                      Integer strokeWidth,
-                     Integer fillColor)
+                     Integer fillColor,
+                     Boolean visible)
     {
         this.outlineColor = outlineColor;
         this.outlineWidth = outlineWidth;
         this.strokeColor = strokeColor;
         this.strokeWidth = strokeWidth;
         this.fillColor = fillColor;
+        this.visible = visible;
     }
 
     public Integer getOutlineColor(){return outlineColor;}
@@ -67,6 +70,7 @@ public enum AirspaceCategory {
     public Integer getFillColor() {return fillColor;}
     public Integer getStrokeColor(){return strokeColor;}
     public Integer getStrokeWidth(){return strokeWidth;}
+    public Boolean getVisible(){return visible;}
 
     @Override
     public String toString() {

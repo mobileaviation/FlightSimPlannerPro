@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspace;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirspacesDB;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteTest;
@@ -128,18 +129,40 @@ public class MainActivity extends AppCompatActivity{
 
 
 		DBFilesHelper.CopyDatabases(this.getApplicationContext());
-		AirspacesDB airspacesDB = new AirspacesDB(this);
-		airspacesDB.Open("airspaces.db");
-		Airspaces airspaces = new Airspaces();
-		airspaces.readFromDatabase(airspacesDB.GetAirspaces("NL"));
+//		AirspacesDB airspacesDB = new AirspacesDB(this);
+//		airspacesDB.Open("airspaces.db");
+//
+//		Airspaces airspacesNL = new Airspaces();
+//		airspacesNL.readFromDatabase(airspacesDB.GetAirspaces("NL"));
+//		airspacesNL.createAirspacesLayer(mapView, "NL");
+//		Airspaces airspacesBE = new Airspaces();
+//		airspacesBE.readFromDatabase(airspacesDB.GetAirspaces("BE"));
+//		airspacesBE.createAirspacesLayer(mapView, "BE");
+//		Airspaces airspacesDE = new Airspaces();
+//		airspacesDE.readFromDatabase(airspacesDB.GetAirspaces("DE"));
+//		airspacesDE.createAirspacesLayer(mapView, "DE");
 
-		airspaces.createAirspacesLayer(mapView);
+		LoadAirspacesAsync loadAirspacesAsyncNL = new LoadAirspacesAsync();
+		loadAirspacesAsyncNL.context = this;
+		loadAirspacesAsyncNL.country = "NL";
+		loadAirspacesAsyncNL.mapView = mapView;
+		loadAirspacesAsyncNL.execute();
+		LoadAirspacesAsync loadAirspacesAsyncBE = new LoadAirspacesAsync();
+		loadAirspacesAsyncBE.context = this;
+		loadAirspacesAsyncBE.country = "BE";
+		loadAirspacesAsyncBE.mapView = mapView;
+		loadAirspacesAsyncBE.execute();
+		LoadAirspacesAsync loadAirspacesAsyncDE = new LoadAirspacesAsync();
+		loadAirspacesAsyncDE.context = this;
+		loadAirspacesAsyncDE.country = "DE";
+		loadAirspacesAsyncDE.mapView = mapView;
+		loadAirspacesAsyncDE.execute();
 
 		RouteTest routeTest = new RouteTest(this, mapView);
 		routeTest.placeInitialRouteOnMap();
 		mapView.Init(routeTest);
 
-
+		Log.i("MainActivity", "OnCreate");
 
     }
 

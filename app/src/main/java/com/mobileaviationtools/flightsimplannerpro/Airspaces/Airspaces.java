@@ -34,17 +34,14 @@ public class Airspaces extends ArrayList<Airspace>  {
         }
     }
 
-    public void createAirspacesLayer(MapView mapView)
+    public void createAirspacesLayer(MapView mapView, String Name)
     {
+        String mapname = "Airspaces"+Name;
+
         PolygonStyle polygonStyle = new PolygonStyle();
-        polygonStyle.outlineColor = Color.GREEN;
-        polygonStyle.outlineWidth = 2;
-        polygonStyle.strokeColor = Color.YELLOW;
-        polygonStyle.strokeWidth = 20;
-        polygonStyle.fillColor = Color.TRANSPARENT;
 
         VectorMapInfo airspacesInfo = new VectorMapInfo();
-        airspacesInfo.name = "Airspaces";
+        airspacesInfo.name = mapname;
         airspacesInfo.zOrder = 8;
         airspacesInfo.maxLevel = 20;
         mapView.addMapUsingMapInfo(airspacesInfo);
@@ -54,14 +51,16 @@ public class Airspaces extends ArrayList<Airspace>  {
             //    polygonStyle.fillColor = Color.argb(100, 228, 161, 158);
             //else polygonStyle.fillColor = Color.TRANSPARENT;
 
-            polygonStyle.outlineColor = airspace.Category.getOutlineColor();
-            polygonStyle.outlineWidth = airspace.Category.getOutlineWidth();
-            polygonStyle.strokeColor = airspace.Category.getStrokeColor();
-            polygonStyle.strokeWidth = airspace.Category.getStrokeWidth();
-            polygonStyle.fillColor = airspace.Category.getFillColor();
+            if (airspace.Category.getVisible()) {
+                polygonStyle.outlineColor = airspace.Category.getOutlineColor();
+                polygonStyle.outlineWidth = airspace.Category.getOutlineWidth();
+                polygonStyle.strokeColor = airspace.Category.getStrokeColor();
+                polygonStyle.strokeWidth = airspace.Category.getStrokeWidth();
+                polygonStyle.fillColor = airspace.Category.getFillColor();
 
 
-            mapView.addPolygonToVectorMap("Airspaces", airspace.getAirspaceB3aLocations(), polygonStyle);
+                mapView.addPolygonToVectorMap(mapname, airspace.getAirspaceB3aLocations(), polygonStyle);
+            }
         }
     }
 }
