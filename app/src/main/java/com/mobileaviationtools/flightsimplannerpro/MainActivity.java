@@ -2,6 +2,7 @@ package com.mobileaviationtools.flightsimplannerpro;
 
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -21,8 +22,11 @@ import com.mobileaviationtools.flightsimplannerpro.Route.RouteTest;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
 
+import java.util.ArrayList;
+
 import us.ba3.me.Location3D;
 import us.ba3.me.MapInfo;
+import us.ba3.me.MapLoadingStrategy;
 import us.ba3.me.MapType;
 import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
@@ -34,7 +38,13 @@ import us.ba3.me.virtualmaps.VirtualMapInfo;
 
 public class MainActivity extends AppCompatActivity{
 
-    @Override
+	@Override
+	protected void onDestroy() {
+		Log.i("MainActivity", "OnDestroy");
+		super.onDestroy();
+	}
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -50,6 +60,8 @@ public class MainActivity extends AppCompatActivity{
 		));
 		LinearLayout baseLayout = (LinearLayout)this.findViewById(R.id.baseLayout);
 		baseLayout.addView(mapView);
+
+		mapView.setMultithreaded(true);
 
 
 
@@ -104,21 +116,22 @@ public class MainActivity extends AppCompatActivity{
 
 		// Yandex maps
 		// The tiles do not lineup in lateral direction!!!!
-		TileFactory yandexFactory = new TileFactory(mapView);
-		WmsTileWorker yandexWorker = new WmsTileWorker(
+		TileFactory mappyFactory = new TileFactory(mapView);
+		WmsTileWorker mappyWorker = new WmsTileWorker(
 				TileProviderFormats.MAPPY_FORMAT,
 				"",
 				"");
 
-		yandexFactory.addWorker(yandexWorker);
+		mappyFactory.addWorker(mappyWorker);
 
-		VirtualMapInfo yandexmapInfo = new VirtualMapInfo();
-		yandexmapInfo.name = "Mappy";
-		yandexmapInfo.zOrder = 7;
-		yandexmapInfo.maxLevel = 20;
-		yandexmapInfo.isSphericalMercator = false;
-		yandexmapInfo.setTileProvider(yandexFactory);
-		mapView.addMapUsingMapInfo(yandexmapInfo);
+		VirtualMapInfo mappymapInfo = new VirtualMapInfo();
+		mappymapInfo.name = "Mappy";
+		mappymapInfo.zOrder = 7;
+		mappymapInfo.maxLevel = 20;
+		mappymapInfo.isSphericalMercator = false;
+		mappymapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
+		mappymapInfo.setTileProvider(mappyFactory);
+		mapView.addMapUsingMapInfo(mappymapInfo);
 
 		// Primary location Netherlands
 		Location3D loc = new Location3D();
@@ -127,8 +140,7 @@ public class MainActivity extends AppCompatActivity{
 		loc.latitude = 52.302;
 		mapView.setLocation3D(loc, 1);
 
-
-		DBFilesHelper.CopyDatabases(this.getApplicationContext());
+		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
 //		AirspacesDB airspacesDB = new AirspacesDB(this);
 //		airspacesDB.Open("airspaces.db");
 //
@@ -142,21 +154,16 @@ public class MainActivity extends AppCompatActivity{
 //		airspacesDE.readFromDatabase(airspacesDB.GetAirspaces("DE"));
 //		airspacesDE.createAirspacesLayer(mapView, "DE");
 
-		LoadAirspacesAsync loadAirspacesAsyncNL = new LoadAirspacesAsync();
-		loadAirspacesAsyncNL.context = this;
-		loadAirspacesAsyncNL.country = "NL";
-		loadAirspacesAsyncNL.mapView = mapView;
-		loadAirspacesAsyncNL.execute();
-		LoadAirspacesAsync loadAirspacesAsyncBE = new LoadAirspacesAsync();
-		loadAirspacesAsyncBE.context = this;
-		loadAirspacesAsyncBE.country = "BE";
-		loadAirspacesAsyncBE.mapView = mapView;
-		loadAirspacesAsyncBE.execute();
-		LoadAirspacesAsync loadAirspacesAsyncDE = new LoadAirspacesAsync();
-		loadAirspacesAsyncDE.context = this;
-		loadAirspacesAsyncDE.country = "DE";
-		loadAirspacesAsyncDE.mapView = mapView;
-		loadAirspacesAsyncDE.execute();
+
+		for (String a: airspacedbFiles)
+		{
+			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
+			loadAirspacesAsync.context = this;
+			loadAirspacesAsync.databaseName = a;
+			loadAirspacesAsync.mapView = mapView;
+			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		}
+
 
 		RouteTest routeTest = new RouteTest(this, mapView);
 		routeTest.placeInitialRouteOnMap();

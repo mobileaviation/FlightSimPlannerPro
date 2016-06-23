@@ -12,14 +12,15 @@ import us.ba3.me.MapView;
  */
 public class LoadAirspacesAsync extends AsyncTask {
     public MapView mapView;
-    public String country;
+    public String databaseName;
     public Context context;
 
     @Override
     protected Object doInBackground(Object[] params) {
         AirspacesDB airspacesDB = new AirspacesDB(context);
-        airspacesDB.Open("airspaces.db");
+        airspacesDB.Open(databaseName);
         Airspaces airspaces = new Airspaces();
+        String country = databaseName.split("_")[0];
         airspaces.readFromDatabase(airspacesDB.GetAirspaces(country));
         airspaces.createAirspacesLayer(mapView, country);
         return null;

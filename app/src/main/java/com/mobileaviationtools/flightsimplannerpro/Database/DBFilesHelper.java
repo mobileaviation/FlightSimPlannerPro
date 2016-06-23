@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 /**
  * Created by Rob Verhoef on 15-6-2016.
@@ -24,16 +25,24 @@ public class DBFilesHelper {
         return p;
     }
 
-    public static void CopyDatabases(Context context)
+    public static ArrayList<String> CopyDatabases(Context context)
     {
+        ArrayList<String> databases = new ArrayList<>();
         String dest = DatabasePath(context);
         try {
-            CopyFromAssetsToStorage(context, "airspaces.db", dest + "airspaces.db");
-            Log.e("DatabaseFile", "airspaces.db copied to: " + dest);
+            String [] list = context.getAssets().list("");
+            for (String f : list) {
+                if (f.contains("airspaces")) {
+                    databases.add(f);
+                    CopyFromAssetsToStorage(context, f, dest + f);
+                    Log.e("DatabaseFile", f+ " copied to: " + dest);
+                }
+            }
         } catch (IOException e1) {
             Log.e("Filedir", "Error copying map files");
             e1.printStackTrace();
         }
+        return databases;
     }
 
     private static void CopyFromAssetsToStorage(Context context, String SourceFile, String DestinationFile) throws IOException {

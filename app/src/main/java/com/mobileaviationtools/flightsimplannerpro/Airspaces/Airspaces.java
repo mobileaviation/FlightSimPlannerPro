@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 import java.util.ArrayList;
 
+import us.ba3.me.MapType;
 import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
 import us.ba3.me.styles.PolygonStyle;
@@ -44,6 +45,8 @@ public class Airspaces extends ArrayList<Airspace>  {
         airspacesInfo.name = mapname;
         airspacesInfo.zOrder = 8;
         airspacesInfo.maxLevel = 20;
+        airspacesInfo.mapType = MapType.kMapTypeVirtualVector;
+
         mapView.addMapUsingMapInfo(airspacesInfo);
 
         for (Airspace airspace: this) {
