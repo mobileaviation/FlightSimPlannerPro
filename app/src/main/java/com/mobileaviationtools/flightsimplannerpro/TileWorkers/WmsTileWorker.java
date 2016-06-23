@@ -1,5 +1,6 @@
 package com.mobileaviationtools.flightsimplannerpro.TileWorkers;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +10,8 @@ import android.graphics.Path;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -24,16 +27,22 @@ import us.ba3.me.virtualmaps.TileWorker;
  * Created by Rob Verhoef on 1-6-2016.
  */
 public class WmsTileWorker extends TileWorker {
-    public WmsTileWorker(String Url, String Style, String Layer)
+    public WmsTileWorker(String Url, String Style, String Layer, String Mapname, String BaseCacheDir, Context context)
     {
         m_url = Url;
         m_style = Style;
         m_layer = Layer;
+        m_mapName = Mapname;
+        m_basePath = BaseCacheDir;
+        this.context = context;
     }
 
     private String m_url;
     private String m_style;
     private String m_layer;
+    private String m_mapName;
+    private String m_basePath;
+    private Context context;
 
     @Override
     public void doWork(TileProviderRequest request){
@@ -51,10 +60,7 @@ public class WmsTileWorker extends TileWorker {
         Long xi = Math.round(x);
         Long yi = Math.round(y-1);
 
-        Log.i("WmsTileWorker", "After round: Zoom: " + n + " X: " + x + " Y: " + y);
-
-        //String u = "http://wms.chartbundle.com/tms/1.0.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
-        //String u = "http://wms.chartbundle.com/tms/v1.0/sec_3857/#Z#/#X#/#Y#.png?type=google";
+        //Log.i("WmsTileWorker", "After round: Zoom: " + n + " X: " + x + " Y: " + y);
 
         String u = m_url;
 
@@ -63,13 +69,17 @@ public class WmsTileWorker extends TileWorker {
         u = u.replace("#Y#", yi.toString());
         u = u.replace("#LAYER#", m_layer);
 
-        Log.i("WmsTileWorker", u);
+        String cacheFilename = m_mapName + "-" +
+                zi.toString() + "-" +
+                xi.toString() + "-" +
+                yi.toString() + ".png";
 
+        Log.i("WmsTileWorker", u);
 
         try {
 
             //ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            Bitmap image = this.getBitmapFromURL(u);
+            Bitmap image = this.getBitmapFromURL(u, cacheFilename);
             //image.compress(Bitmap.CompressFormat.PNG, 100, stream);
             //request.image = new BitmapSimple();
             //request.image.width = 256;
@@ -88,32 +98,57 @@ public class WmsTileWorker extends TileWorker {
         request.isOpaque = false;
     }
 
-    public Bitmap getBitmapFromURL(String src) {
+    private void checkDirectory(String Path)
+    {
+        File p = new File(Path);
+        if (!p.exists()) p.mkdir();
+    }
+
+    public Bitmap getBitmapFromURL(String src, String cacheFilename) {
+        checkDirectory(m_basePath + m_mapName + "/");
+        String cacheFile = m_basePath + m_mapName + "/" + cacheFilename;
+
+        Bitmap myBitmap = null;
+
         try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            //BitmapFactory.Options options = new BitmapFactory.Options();
-            //options.inMutable = true;
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            //myBitmap.setHasAlpha(true);
-            //Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
-            //Canvas c = new Canvas(myBitmap);
-            //Paint p = new Paint();
+            File p = new File(cacheFile);
 
-            //BitmapFactory.Options options = new BitmapFactory.Options();
-            //options.inMutable = true;
-            //Bitmap downloadBitmap = BitmapFactory.decodeStream(input, null, options);
-            //downloadBitmap.setHasAlpha(true);
-            ////p.setAlpha(250);
-            //c.drawBitmap(downloadBitmap, 0,0, p);
+            if (p.exists()) {
+                Log.i("WMSTileWorker", "Found cache file: " + cacheFile);
+                myBitmap = BitmapFactory.decodeStream(context.openFileInput(cacheFile));
+            }
+            else {
+                Log.i("WMSTileWorker", "No cache file: " + cacheFile + " found");
 
-            //Integer cc = myBitmap.getPixel(10,10);
-            //Log.i("WmsTileWorker", "Color: " + Integer.toHexString(cc));
+                URL url = new URL(src);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                //BitmapFactory.Options options = new BitmapFactory.Options();
+                //options.inMutable = true;
+                myBitmap = BitmapFactory.decodeStream(input);
 
-            //myBitmap = setTransparentColor(0xFAFFFFFF, 0xFAFEFEFF, 0xFAFFFFFF, myBitmap);
+                FileOutputStream stream = new FileOutputStream(cacheFile);
+                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                stream.close();
+                //myBitmap.setHasAlpha(true);
+                //Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
+                //Canvas c = new Canvas(myBitmap);
+                //Paint p = new Paint();
+
+                //BitmapFactory.Options options = new BitmapFactory.Options();
+                //options.inMutable = true;
+                //Bitmap downloadBitmap = BitmapFactory.decodeStream(input, null, options);
+                //downloadBitmap.setHasAlpha(true);
+                ////p.setAlpha(250);
+                //c.drawBitmap(downloadBitmap, 0,0, p);
+
+                //Integer cc = myBitmap.getPixel(10,10);
+                //Log.i("WmsTileWorker", "Color: " + Integer.toHexString(cc));
+
+                //myBitmap = setTransparentColor(0xFAFFFFFF, 0xFAFEFEFF, 0xFAFFFFFF, myBitmap);
+            }
 
             return myBitmap;
         } catch (IOException e) {

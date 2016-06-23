@@ -63,75 +63,7 @@ public class MainActivity extends AppCompatActivity{
 
 		mapView.setMultithreaded(true);
 
-
-
-//		mapView.addInternetMap("MapQuest Aerial",
-//				"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
-//				"", 		//Subdomains
-//				20,			//Max Level
-//				2,			//zOrder
-//				3,			//Number of simultaneous downloads
-//				true,		//Use cache
-//				true		//No alpha
-//				);
-
-//        mapView.addInternetMap("SkylinesAirspaces",
-//                "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
-//                "",
-//                20,
-//                5,
-//                3,
-//                true,
-//                true);
-//
-//        //http://wms.chartbundle.com/tms/1.0.0/sec/{$z}/{$x}/{$y}.png?origin=nw
-//
-//        mapView.addInternetMap("Mappy",
-//				"https://map1.mappy.net/map/1.0/slab/standard/256/{z}/{x}/{y}",
-//                "",
-//                20,
-//                2,
-//                3,
-//                true,
-//                true);
-
-		// ChartBundle FAA Sectionals
-		TileFactory chartBundleFactory = new TileFactory(mapView);
-		WmsTileWorker chartBundleWorker = new WmsTileWorker(
-				TileProviderFormats.CHARTBUNDLE_XYZ_FORMAT,
-				"",
-				TileProviderFormats.chartBundleLayer.sec_3857.toString());
-
-        chartBundleFactory.addWorker(chartBundleWorker);
-
-        VirtualMapInfo chartBundlemapInfo = new VirtualMapInfo();
-        chartBundlemapInfo.name = "Chartbundle";
-        chartBundlemapInfo.zOrder = 7;
-        chartBundlemapInfo.maxLevel = 20;
-        chartBundlemapInfo.isSphericalMercator = false;
-		chartBundlemapInfo.compressTextures = true;
-        chartBundlemapInfo.setTileProvider(chartBundleFactory);
-        //mapView.addMapUsingMapInfo(chartBundlemapInfo);
-
-
-		// Yandex maps
-		// The tiles do not lineup in lateral direction!!!!
-		TileFactory mappyFactory = new TileFactory(mapView);
-		WmsTileWorker mappyWorker = new WmsTileWorker(
-				TileProviderFormats.MAPPY_FORMAT,
-				"",
-				"");
-
-		mappyFactory.addWorker(mappyWorker);
-
-		VirtualMapInfo mappymapInfo = new VirtualMapInfo();
-		mappymapInfo.name = "Mappy";
-		mappymapInfo.zOrder = 7;
-		mappymapInfo.maxLevel = 20;
-		mappymapInfo.isSphericalMercator = false;
-		mappymapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
-		mappymapInfo.setTileProvider(mappyFactory);
-		mapView.addMapUsingMapInfo(mappymapInfo);
+		mapView.AddMappyMap();
 
 		// Primary location Netherlands
 		Location3D loc = new Location3D();
@@ -141,19 +73,6 @@ public class MainActivity extends AppCompatActivity{
 		mapView.setLocation3D(loc, 1);
 
 		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
-//		AirspacesDB airspacesDB = new AirspacesDB(this);
-//		airspacesDB.Open("airspaces.db");
-//
-//		Airspaces airspacesNL = new Airspaces();
-//		airspacesNL.readFromDatabase(airspacesDB.GetAirspaces("NL"));
-//		airspacesNL.createAirspacesLayer(mapView, "NL");
-//		Airspaces airspacesBE = new Airspaces();
-//		airspacesBE.readFromDatabase(airspacesDB.GetAirspaces("BE"));
-//		airspacesBE.createAirspacesLayer(mapView, "BE");
-//		Airspaces airspacesDE = new Airspaces();
-//		airspacesDE.readFromDatabase(airspacesDB.GetAirspaces("DE"));
-//		airspacesDE.createAirspacesLayer(mapView, "DE");
-
 
 		for (String a: airspacedbFiles)
 		{

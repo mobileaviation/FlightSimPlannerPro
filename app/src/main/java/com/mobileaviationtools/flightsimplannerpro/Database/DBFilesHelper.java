@@ -18,8 +18,8 @@ public class DBFilesHelper {
 
     public static String DatabasePath(Context context)
     {
-        String p = context.getFilesDir().getPath() + File.pathSeparator
-                + "Databases" + File.pathSeparator;
+        String p = context.getFilesDir().getPath() + "/"
+                + "Databases" + "/";
         File f = new File(p);
         if (!f.exists()) f.mkdir();
         return p;
