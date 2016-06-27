@@ -11,12 +11,15 @@ import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import us.ba3.me.BitmapSimple;
 import us.ba3.me.virtualmaps.TileProviderRequest;
@@ -43,6 +46,8 @@ public class WmsTileWorker extends TileWorker {
     private String m_mapName;
     private String m_basePath;
     private Context context;
+
+    final private Long cacheTimeOut = Long.valueOf(14 * 24); // in hours
 
     @Override
     public void doWork(TileProviderRequest request){
@@ -77,14 +82,7 @@ public class WmsTileWorker extends TileWorker {
         Log.i("WmsTileWorker", u);
 
         try {
-
-            //ByteArrayOutputStream stream = new ByteArrayOutputStream();
             Bitmap image = this.getBitmapFromURL(u, cacheFilename);
-            //image.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            //request.image = new BitmapSimple();
-            //request.image.width = 256;
-            //request.image.height = 256;
-            //request.image.imageData = stream.toByteArray();
             request.image = new BitmapSimple(image);
 
             if (request.image == null)
@@ -104,6 +102,33 @@ public class WmsTileWorker extends TileWorker {
         if (!p.exists()) p.mkdir();
     }
 
+    private boolean checkCache(String cacheFile)
+    {
+        try{
+            File p = new File(cacheFile);
+            if (p.exists())
+            {
+                Log.i("WMSTileWorker", "Found cache file: " + cacheFile);
+                Date today = new Date();
+                long diff = TimeUnit.HOURS.convert(today.getTime() - p.lastModified(), TimeUnit.MILLISECONDS);
+
+                if (diff < cacheTimeOut)
+                    return true;
+                else
+                {
+                    p.delete();
+                    return false;
+                }
+            }
+            else
+                return false;
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+    }
+
     public Bitmap getBitmapFromURL(String src, String cacheFilename) {
         checkDirectory(m_basePath + m_mapName + "/");
         String cacheFile = m_basePath + m_mapName + "/" + cacheFilename;
@@ -111,27 +136,49 @@ public class WmsTileWorker extends TileWorker {
         Bitmap myBitmap = null;
 
         try {
-            File p = new File(cacheFile);
-
-            if (p.exists()) {
-                Log.i("WMSTileWorker", "Found cache file: " + cacheFile);
-                myBitmap = BitmapFactory.decodeStream(context.openFileInput(cacheFile));
+            if (checkCache(cacheFile))
+            {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                myBitmap = BitmapFactory.decodeFile(cacheFile, options);
             }
-            else {
+            else
+            {
                 Log.i("WMSTileWorker", "No cache file: " + cacheFile + " found");
-
                 URL url = new URL(src);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
                 InputStream input = connection.getInputStream();
-                //BitmapFactory.Options options = new BitmapFactory.Options();
-                //options.inMutable = true;
                 myBitmap = BitmapFactory.decodeStream(input);
-
                 FileOutputStream stream = new FileOutputStream(cacheFile);
                 myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 stream.close();
+            }
+
+            //File p = new File(cacheFile);
+
+
+
+//            if (p.exists()) {
+//                Log.i("WMSTileWorker", "Found cache file: " + cacheFile);
+//                myBitmap = BitmapFactory.decodeStream(context.openFileInput(cacheFile));
+//            }
+//            else {
+//                Log.i("WMSTileWorker", "No cache file: " + cacheFile + " found");
+//
+//                URL url = new URL(src);
+//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//                connection.setDoInput(true);
+//                connection.connect();
+//                InputStream input = connection.getInputStream();
+                //BitmapFactory.Options options = new BitmapFactory.Options();
+                //options.inMutable = true;
+//                myBitmap = BitmapFactory.decodeStream(input);
+
+//                FileOutputStream stream = new FileOutputStream(cacheFile);
+//                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                stream.close();
                 //myBitmap.setHasAlpha(true);
                 //Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
                 //Canvas c = new Canvas(myBitmap);
@@ -148,12 +195,12 @@ public class WmsTileWorker extends TileWorker {
                 //Log.i("WmsTileWorker", "Color: " + Integer.toHexString(cc));
 
                 //myBitmap = setTransparentColor(0xFAFFFFFF, 0xFAFEFEFF, 0xFAFFFFFF, myBitmap);
-            }
-
+//            }
+//
             return myBitmap;
         } catch (IOException e) {
             // Log exception
-            Log.e("", "Error downloading: " + src);
+            Log.e("", "Error (down)loading: " + src);
             //Log.e("", "Error downloading: " + wmsSrc);
             return Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
         }
