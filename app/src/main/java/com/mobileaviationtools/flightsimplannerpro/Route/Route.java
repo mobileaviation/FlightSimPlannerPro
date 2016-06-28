@@ -36,6 +36,7 @@ public class Route extends HashMap<String, Waypoint> {
     private String name;
     private MarkerHit markerHit;
     private Context context;
+    private Waypoint selectedWaypoint;
 
     private void removeRouteFromMap()
     {
@@ -65,7 +66,7 @@ public class Route extends HashMap<String, Waypoint> {
         lineStyle.outlineColor = Color.DKGRAY;
         lineStyle.outlineWidth = 2;
         lineStyle.strokeColor = Color.GREEN;
-        lineStyle.strokeWidth = 16;
+        lineStyle.strokeWidth = 10;
 
         Location[] waypoints = new Location[this.size()];
 
@@ -86,10 +87,38 @@ public class Route extends HashMap<String, Waypoint> {
         if (w != null)
         {
             Log.i("Route", "Waypoint selected: " + name);
-            //mapView.removeDynamicMarkerFromMap(this.name+"markers", w.name);
-            //addMarker(w, R.drawable.greendot);
-            mapView.hideDynamicMarker(this.name+"markers", w.name);
-            mapView.showDynamicMarker(this.name+"markers", w.name + "s");
+            resetSelectedWaypointMarker();
+            setSelectedwaypointMarker(w);
+        }
+    }
+
+    public void dragSelectedWaypoint(Location newLocation)
+    {
+        if (selectedWaypoint != null)
+        {
+            mapView.removeDynamicMarkerFromMap(this.name+"markers", selectedWaypoint.name);
+            mapView.removeDynamicMarkerFromMap(this.name+"markers", selectedWaypoint.name + "s");
+            selectedWaypoint.location = newLocation;
+            selectedWaypoint.name = newLocation.longitude + "," + newLocation.latitude;
+            addMarker(selectedWaypoint, R.drawable.bluedot);
+            setSelectedwaypointMarker(selectedWaypoint);
+        }
+    }
+
+    private void setSelectedwaypointMarker(Waypoint newSelectedwaypoint)
+    {
+        mapView.hideDynamicMarker(this.name+"markers", newSelectedwaypoint.name);
+        mapView.showDynamicMarker(this.name+"markers", newSelectedwaypoint.name + "s");
+        selectedWaypoint = newSelectedwaypoint;
+    }
+
+    private void resetSelectedWaypointMarker()
+    {
+        if (selectedWaypoint != null)
+        {
+            mapView.hideDynamicMarker(this.name+"markers", selectedWaypoint.name + "s");
+            mapView.showDynamicMarker(this.name+"markers", selectedWaypoint.name);
+            selectedWaypoint = null;
         }
     }
 
@@ -117,6 +146,8 @@ public class Route extends HashMap<String, Waypoint> {
 
     public void AddWaypoint(String name, Location location)
     {
+        Log.i("Route", "Adding waypoint: " + name);
+
         Waypoint waypoint = new Waypoint();
         waypoint.location = location;
         waypoint.name = name;

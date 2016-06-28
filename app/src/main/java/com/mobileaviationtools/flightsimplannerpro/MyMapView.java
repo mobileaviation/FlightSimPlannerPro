@@ -51,8 +51,10 @@ public class MyMapView extends MapView {
             case MotionEvent.ACTION_MOVE:
             {
                 //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
-                if (movingRoutePoint)
+                if (movingRoutePoint) {
                     // update the route with the new location..
+                    event.setAction(MotionEvent.ACTION_CANCEL);
+                }
                 break;
             }
             case MotionEvent.ACTION_UP:
@@ -70,7 +72,7 @@ public class MyMapView extends MapView {
             @Override
             public void convertComplete(Location loc) {
                 //Log.w("OnTouchEvent", "lon:" + loc.longitude + " lat:" + loc.latitude);
-
+                //route.dragSelectedWaypoint(loc);
                 addPointLocation = loc;
 
             }});
