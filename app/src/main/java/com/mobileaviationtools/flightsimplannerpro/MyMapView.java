@@ -5,11 +5,10 @@ import android.graphics.PointF;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import com.mobileaviationtools.flightsimplannerpro.Route.RouteTest;
+import com.mobileaviationtools.flightsimplannerpro.Route.Route;
+import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
-
-import java.io.File;
 
 import us.ba3.me.ConvertPointCallback;
 import us.ba3.me.Location;
@@ -26,14 +25,14 @@ public class MyMapView extends MapView {
         super(context);
     }
 
-    public void Init(RouteTest routeTest)
+    public void Init(Route route)
     {
-        this.routeTest = routeTest;
+        this.route = route;
         placingRoutePoint = false;
         movingRoutePoint = false;
     }
 
-    private RouteTest routeTest;
+    private Route route;
 
     private Boolean placingRoutePoint;
     private Boolean movingRoutePoint;
@@ -46,19 +45,19 @@ public class MyMapView extends MapView {
         {
             case MotionEvent.ACTION_DOWN:
             {
-                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_DOWN) event...");
+                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_DOWN) event...");
                 break;
             }
             case MotionEvent.ACTION_MOVE:
             {
-                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
+                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
                 if (movingRoutePoint)
                     // update the route with the new location..
                 break;
             }
             case MotionEvent.ACTION_UP:
             {
-                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
+                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
                 placingRoutePoint = false;
                 movingRoutePoint = false;
                 addPointLocation = null;
@@ -70,7 +69,7 @@ public class MyMapView extends MapView {
         super.getLocationForPoint(new PointF(event.getX(), event.getY()), new ConvertPointCallback(){
             @Override
             public void convertComplete(Location loc) {
-                Log.w("OnTouchEvent", "lon:" + loc.longitude + " lat:" + loc.latitude);
+                //Log.w("OnTouchEvent", "lon:" + loc.longitude + " lat:" + loc.latitude);
 
                 addPointLocation = loc;
 
@@ -102,10 +101,13 @@ public class MyMapView extends MapView {
                 addPointLocation = loc;
 
                 if (placingRoutePoint) {
+                    String name = loc.longitude + "," + loc.latitude;
+                    route.AddWaypoint(name, loc);
+
                     placingRoutePoint = false;
                     movingRoutePoint = true;
                     // insert the new point
-                    routeTest.InsertNewPoint(addPointLocation);
+
                 }
 
 

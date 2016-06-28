@@ -52,7 +52,7 @@ public class WmsTileWorker extends TileWorker {
     @Override
     public void doWork(TileProviderRequest request){
 
-        Log.i("WmsTileWorker", "URL: " + m_url);
+        //Log.i("WmsTileWorker", "URL: " + m_url);
 
         Double zd = (360/(request.bounds.max.longitude - request.bounds.min.longitude));
         Double z1 = Math.log(zd) / Math.log(2);
@@ -79,7 +79,7 @@ public class WmsTileWorker extends TileWorker {
                 xi.toString() + "-" +
                 yi.toString() + ".png";
 
-        Log.i("WmsTileWorker", u);
+        //Log.i("WmsTileWorker", u);
 
         try {
             Bitmap image = this.getBitmapFromURL(u, cacheFilename);
@@ -108,7 +108,6 @@ public class WmsTileWorker extends TileWorker {
             File p = new File(cacheFile);
             if (p.exists())
             {
-                Log.i("WMSTileWorker", "Found cache file: " + cacheFile);
                 Date today = new Date();
                 long diff = TimeUnit.HOURS.convert(today.getTime() - p.lastModified(), TimeUnit.MILLISECONDS);
 
@@ -138,6 +137,7 @@ public class WmsTileWorker extends TileWorker {
         try {
             if (checkCache(cacheFile))
             {
+                Log.i("WMSTileWorker", "Found cache file: " + cacheFile);
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                 myBitmap = BitmapFactory.decodeFile(cacheFile, options);
@@ -145,6 +145,7 @@ public class WmsTileWorker extends TileWorker {
             else
             {
                 Log.i("WMSTileWorker", "No cache file: " + cacheFile + " found");
+                Log.i("WMSTileWorker", "Load from URL: " + src);
                 URL url = new URL(src);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);

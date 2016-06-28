@@ -1,40 +1,18 @@
 package com.mobileaviationtools.flightsimplannerpro;
 
-import android.graphics.Color;
-import android.graphics.PointF;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
-import android.view.DragEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspace;
-import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
-import com.mobileaviationtools.flightsimplannerpro.Database.AirspacesDB;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
-import com.mobileaviationtools.flightsimplannerpro.Route.RouteTest;
-import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
-import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
+import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 
 import java.util.ArrayList;
 
 import us.ba3.me.Location3D;
-import us.ba3.me.MapInfo;
-import us.ba3.me.MapLoadingStrategy;
-import us.ba3.me.MapType;
-import us.ba3.me.MapView;
-import us.ba3.me.VectorMapInfo;
-import us.ba3.me.markers.MarkerInfo;
-import us.ba3.me.markers.MarkerMapDelegate;
-import us.ba3.me.styles.PolygonStyle;
-import us.ba3.me.virtualmaps.TileFactory;
-import us.ba3.me.virtualmaps.VirtualMapInfo;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -43,6 +21,8 @@ public class MainActivity extends AppCompatActivity{
 		Log.i("MainActivity", "OnDestroy");
 		super.onDestroy();
 	}
+
+	private Route route;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +64,8 @@ public class MainActivity extends AppCompatActivity{
 		}
 
 
-		RouteTest routeTest = new RouteTest(this, mapView);
-		routeTest.placeInitialRouteOnMap();
-		mapView.Init(routeTest);
+		route = new Route(mapView, "Route", this);
+		mapView.Init(route);
 
 		Log.i("MainActivity", "OnCreate");
 
