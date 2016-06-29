@@ -36,7 +36,6 @@ public class MyMapView extends MapView {
 
     private Boolean placingRoutePoint;
     private Boolean movingRoutePoint;
-    private Location addPointLocation;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -45,24 +44,25 @@ public class MyMapView extends MapView {
         {
             case MotionEvent.ACTION_DOWN:
             {
-                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_DOWN) event...");
+                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_DOWN) event...");
+                //route.UnSelectWaypoint();
                 break;
             }
             case MotionEvent.ACTION_MOVE:
             {
-                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
+                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
                 if (movingRoutePoint) {
                     // update the route with the new location..
-                    event.setAction(MotionEvent.ACTION_CANCEL);
+                    //event.setAction(MotionEvent.ACTION_CANCEL);
                 }
                 break;
             }
             case MotionEvent.ACTION_UP:
             {
-                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
+                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
+                route.UnSelectWaypoint();
                 placingRoutePoint = false;
                 movingRoutePoint = false;
-                addPointLocation = null;
                 break;
             }
 
@@ -72,8 +72,8 @@ public class MyMapView extends MapView {
             @Override
             public void convertComplete(Location loc) {
                 //Log.w("OnTouchEvent", "lon:" + loc.longitude + " lat:" + loc.latitude);
-                //route.dragSelectedWaypoint(loc);
-                addPointLocation = loc;
+                if (movingRoutePoint)
+                    route.dragSelectedWaypoint(loc);
 
             }});
         return super.onTouchEvent(event);
@@ -90,7 +90,14 @@ public class MyMapView extends MapView {
             case MotionEvent.ACTION_DOWN:
             {
                 Log.i("onLongPress", "This is a onLongPress (ACTION_DOWN) event...");
-                placingRoutePoint = true;
+                if (route.selectedWaypoint != null) {
+                    movingRoutePoint = true;
+                    placingRoutePoint = false;
+                }
+                else {
+                    placingRoutePoint = true;
+                    movingRoutePoint = false;
+                }
                 break;
             }
         }
@@ -100,13 +107,11 @@ public class MyMapView extends MapView {
             public void convertComplete(Location loc) {
                 Log.w("onLongPress", "lon:" + loc.longitude + " lat:" + loc.latitude);
 
-                addPointLocation = loc;
-
                 if (placingRoutePoint) {
                     String name = loc.longitude + "," + loc.latitude;
                     route.AddWaypoint(name, loc);
 
-                    placingRoutePoint = false;
+                    //placingRoutePoint = false;
                     movingRoutePoint = true;
                     // insert the new point
 

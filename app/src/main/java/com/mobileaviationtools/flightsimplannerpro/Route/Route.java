@@ -30,28 +30,37 @@ public class Route extends HashMap<String, Waypoint> {
         this.name = name;
         this.markerHit = new MarkerHit(this.mapView, this);
         this.context = context;
+
+        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
+        mapInfo.name = this.name + "markers";
+        mapInfo.zOrder = 101;
+        mapInfo.hitTestingEnabled = true;
+        mapInfo.delegate = markerHit;
+        mapView.addMapUsingMapInfo(mapInfo);
     }
 
     private MapView mapView;
     private String name;
     private MarkerHit markerHit;
     private Context context;
-    private Waypoint selectedWaypoint;
+    public Waypoint selectedWaypoint;
 
     private void removeRouteFromMap()
     {
-        mapView.removeMap(name + "markers", true);
+        //mapView.removeMap(name + "markers", true);
         mapView.removeMap(name + "lines", true);
     }
 
-    private void drawRouteOnMap()
+    private void drawRouteOnMap(Boolean createMarkermap)
     {
-        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
-        mapInfo.name = name + "markers";
-        mapInfo.zOrder = 101;
-        mapInfo.hitTestingEnabled = true;
-        mapInfo.delegate = markerHit;
-        mapView.addMapUsingMapInfo(mapInfo);
+//        if (createMarkermap) {
+//            DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
+//            mapInfo.name = name + "markers";
+//            mapInfo.zOrder = 101;
+//            mapInfo.hitTestingEnabled = true;
+//            mapInfo.delegate = markerHit;
+//            mapView.addMapUsingMapInfo(mapInfo);
+//        }
 
 
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
@@ -74,34 +83,42 @@ public class Route extends HashMap<String, Waypoint> {
 
         for (Waypoint w: this.values()) {
             waypoints[i] = w.location;
-            addMarker(w, R.drawable.bluedot);
+            if (createMarkermap) addMarker(w, R.drawable.bluedot);
             i++;
         }
 
         mapView.addDynamicLineToVectorMap(name+"lines", "route", waypoints, lineStyle);
     }
 
-    public void SelectWaypoint(String name)
-    {
+    public void SelectWaypoint(String name) {
         Waypoint w = this.get(name);
-        if (w != null)
-        {
+        if (w != null) {
             Log.i("Route", "Waypoint selected: " + name);
             resetSelectedWaypointMarker();
             setSelectedwaypointMarker(w);
         }
     }
 
+    public void UnSelectWaypoint()
+    {
+        resetSelectedWaypointMarker();
+    }
+
     public void dragSelectedWaypoint(Location newLocation)
     {
         if (selectedWaypoint != null)
         {
+            //mapView.removeMap(name + "lines", true);
             mapView.removeDynamicMarkerFromMap(this.name+"markers", selectedWaypoint.name);
             mapView.removeDynamicMarkerFromMap(this.name+"markers", selectedWaypoint.name + "s");
             selectedWaypoint.location = newLocation;
             selectedWaypoint.name = newLocation.longitude + "," + newLocation.latitude;
+
             addMarker(selectedWaypoint, R.drawable.bluedot);
             setSelectedwaypointMarker(selectedWaypoint);
+
+            removeRouteFromMap();
+            drawRouteOnMap(false);
         }
     }
 
@@ -152,9 +169,10 @@ public class Route extends HashMap<String, Waypoint> {
         waypoint.location = location;
         waypoint.name = name;
         this.put(waypoint.name, waypoint);
+        selectedWaypoint = waypoint;
         // redraw route on map
         removeRouteFromMap();
-        drawRouteOnMap();
+        drawRouteOnMap(true);
     }
 
 }
