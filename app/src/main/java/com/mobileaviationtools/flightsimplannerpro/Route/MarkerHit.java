@@ -32,20 +32,11 @@ public class MarkerHit implements DynamicMarkerMapDelegate {
                         " markerPoint:" + markerPoint.x + "," + markerPoint.y +
                         " location:" + location.longitude + "," + location.latitude);
 
-
-                route.SelectWaypoint(markerName);
+                if (!markerName.contains("s"))
+                    route.SelectWaypoint(markerName);
 
             }
         });
 
     }
-
-//    private OnWaypointSelected onWaypointSelected = null;
-//
-//    public void setOnWaypointSelected(final OnWaypointSelected waypointSelected) {
-//        onWaypointSelected = waypointSelected;
-//    }
-//    public interface OnWaypointSelected{
-//        public void OnWaypoint(Waypoint waypoint);
-//    };
 }

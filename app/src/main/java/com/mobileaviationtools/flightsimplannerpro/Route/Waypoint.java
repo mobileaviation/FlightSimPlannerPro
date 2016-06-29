@@ -14,6 +14,7 @@ public class Waypoint {
 
     public Location location;
     public String name;
+    public Integer Id;
     public DynamicMarker marker;
     public DynamicMarker selectedMarker;
 }
