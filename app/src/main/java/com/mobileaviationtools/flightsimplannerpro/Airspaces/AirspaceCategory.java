@@ -13,7 +13,7 @@ import android.graphics.Interpolator;
 //        polygonStyle.fillColor = Color.TRANSPARENT;
 
 public enum AirspaceCategory {
-    // outlineColor, outlineWidth, strokeColor, strokeWidth, fillColor
+    // outlineColor, outlineWidth, strokeColor, strokeWidth, fillColor, visible
     A (Color.BLACK, 0, 0xAF000000,4, Color.TRANSPARENT, true),
     AWY (Color.GREEN, 2, Color.YELLOW,5, Color.TRANSPARENT, false),
     B (Color.BLACK, 0, 0xBF000000,3, Color.TRANSPARENT, true),

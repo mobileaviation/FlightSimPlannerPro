@@ -52,17 +52,19 @@ public class MainActivity extends AppCompatActivity{
 		loc.latitude = 52.302;
 		mapView.setLocation3D(loc, 1);
 
-		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
+//		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
+//
+//		for (String a: airspacedbFiles)
+//		{
+//			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
+//			loadAirspacesAsync.context = this;
+//			loadAirspacesAsync.databaseName = a;
+//			loadAirspacesAsync.mapView = mapView;
+//			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//		}
 
-		for (String a: airspacedbFiles)
-		{
-			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
-			loadAirspacesAsync.context = this;
-			loadAirspacesAsync.databaseName = a;
-			loadAirspacesAsync.mapView = mapView;
-			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-		}
-
+		String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
+		mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
 
 		route = new Route(mapView, "Route", this);
 		mapView.Init(route);

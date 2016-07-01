@@ -45,6 +45,24 @@ public class DBFilesHelper {
         return databases;
     }
 
+    public static String CopyAirspaceMap(Context context)
+    {
+//        Log.i("Maptest", "Airspace Files Copied to: " + dest);
+//        mapView.addVectorMap("Airspaces", dest + "Airspaces.sqlite", dest + "Airspaces.map");
+
+        String p = context.getFilesDir().getPath() + "/";
+        try {
+            CopyFromAssetsToStorage(context, "Airspaces.map", p + "Airspaces.map");
+            CopyFromAssetsToStorage(context, "Airspaces.sqlite", p + "Airspaces.sqlite");
+        }
+        catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
+        return p;
+    }
+
     private static void CopyFromAssetsToStorage(Context context, String SourceFile, String DestinationFile) throws IOException {
         InputStream IS = context.getAssets().open(SourceFile);
         OutputStream OS = new FileOutputStream(DestinationFile);
