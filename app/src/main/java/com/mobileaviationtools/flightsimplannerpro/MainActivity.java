@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity{
 		route = new Route(mapView, "Route", this);
 		mapView.Init(route);
 
+		mapView.setMaximumZoom(2000000);
+		mapView.setMinimumZoom(20000);
+
 		Log.i("MainActivity", "OnCreate");
 
     }

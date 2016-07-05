@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
@@ -44,13 +45,13 @@ public class MyMapView extends MapView {
         {
             case MotionEvent.ACTION_DOWN:
             {
-                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_DOWN) event...");
+                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_DOWN) event...");
                 //route.UnSelectWaypoint();
                 break;
             }
             case MotionEvent.ACTION_MOVE:
             {
-                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
+                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_MOVE) event...");
                 if (movingRoutePoint) {
                     // update the route with the new location..
                     //event.setAction(MotionEvent.ACTION_CANCEL);
@@ -59,7 +60,7 @@ public class MyMapView extends MapView {
             }
             case MotionEvent.ACTION_UP:
             {
-                Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
+                //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
                 route.UnSelectWaypoint();
                 placingRoutePoint = false;
                 movingRoutePoint = false;
@@ -79,6 +80,11 @@ public class MyMapView extends MapView {
         return super.onTouchEvent(event);
     }
 
+    @Override
+    public void onScaleEnd(ScaleGestureDetector detector) {
+        Log.i("onScaleEnd", "ScaleX: " + this.getLocation3D().altitude);
+        super.onScale(detector);
+    }
 
     @Override
     public void onLongPress(MotionEvent event) {
@@ -89,7 +95,7 @@ public class MyMapView extends MapView {
         {
             case MotionEvent.ACTION_DOWN:
             {
-                Log.i("onLongPress", "This is a onLongPress (ACTION_DOWN) event...");
+                //Log.i("onLongPress", "This is a onLongPress (ACTION_DOWN) event...");
                 if (route.selectedWaypoint != null) {
                     movingRoutePoint = true;
                     placingRoutePoint = false;
@@ -105,7 +111,7 @@ public class MyMapView extends MapView {
         super.getLocationForPoint(new PointF(event.getX(), event.getY()), new ConvertPointCallback(){
             @Override
             public void convertComplete(Location loc) {
-                Log.w("onLongPress", "lon:" + loc.longitude + " lat:" + loc.latitude);
+                //Log.w("onLongPress", "lon:" + loc.longitude + " lat:" + loc.latitude);
 
                 if (placingRoutePoint) {
                     String name = loc.longitude + "," + loc.latitude;
