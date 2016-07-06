@@ -40,6 +40,8 @@ public class Route extends HashMap<Integer, Waypoint> {
     private Context context;
     public Waypoint selectedWaypoint;
     public Integer waypoint_Id;
+    public Integer id;
+
 
     private void removeRouteFromMap()
     {
