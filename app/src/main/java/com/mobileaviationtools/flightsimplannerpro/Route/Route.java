@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 import us.ba3.me.Location;
 import us.ba3.me.MapView;
@@ -40,6 +39,7 @@ public class Route extends HashMap<Integer, Waypoint> {
         this.markerHit = new MarkerHit(this.mapView, this);
         this.context = context;
         waypoint_Id = 0;
+        waypoints = new ArrayList<>();
 
         departure_airport = new Airport();
         destination_airport = new Airport();
@@ -73,8 +73,12 @@ public class Route extends HashMap<Integer, Waypoint> {
     public Geometry buffer;
     public Property bufferProperty;
 
-    //private Leg activeLeg;
+    private Leg activeLeg;
+    private Distance distance;
     private int legWaypointIndex;
+    private ArrayList<Waypoint> waypoints;
+
+    private String TAG = "Route";
 
     public void CreateBuffer()
     {
@@ -100,8 +104,6 @@ public class Route extends HashMap<Integer, Waypoint> {
         BufferOp bufOp = new BufferOp(g);
         bufOp.setEndCapStyle(BufferOp.CAP_ROUND);
         buffer = bufOp.getResultGeometry(Double.parseDouble(bufferProperty.value1));
-
-        //Geometry e = buffer.getEnvelope();
     }
 
     private OnDistanceFromWaypoint onDistanceFromWaypoint = null;
@@ -131,8 +133,8 @@ public class Route extends HashMap<Integer, Waypoint> {
             //activeLeg.setCurrectLocation(currentLocation);
 
             if (onNewActiveWaypoint != null) {
-                onNewActiveWaypoint.onOldWaypoint((Waypoint)this.values().toArray()[legWaypointIndex]);
-                onNewActiveWaypoint.onActiveWaypoint((Waypoint)this.values().toArray()[legWaypointIndex + 1]);
+                onNewActiveWaypoint.onOldWaypoint(this.waypoints.get(legWaypointIndex));
+                onNewActiveWaypoint.onActiveWaypoint(this.waypoints.get(legWaypointIndex + 1));
             }
         }
     }
@@ -143,7 +145,7 @@ public class Route extends HashMap<Integer, Waypoint> {
             activeLeg.setOnDistanceFromWaypoint(new Leg.OnDistanceFromWaypoint() {
                 @Override
                 public void onArrivedDestination(Waypoint waypoint, boolean firstHit) {
-                    distance = LegInfoView.Distance.smaller2000Meters;
+                    distance = Distance.smaller2000Meters;
                     endPlan = true;
                     if (onDistanceFromWaypoint != null)
                         onDistanceFromWaypoint.onArrivedDestination(waypoint, firstHit);
@@ -152,7 +154,7 @@ public class Route extends HashMap<Integer, Waypoint> {
                 @Override
                 public void on2000Meters(boolean firstHit) {
                     if (!endPlan) {
-                        distance = LegInfoView.Distance.smaller2000Meters;
+                        distance = Distance.smaller2000Meters;
                         if (onDistanceFromWaypoint != null)
                             onDistanceFromWaypoint.on2000Meters(firstHit);
                     }
@@ -161,7 +163,7 @@ public class Route extends HashMap<Integer, Waypoint> {
                 @Override
                 public void on1000Meters(boolean firstHit) {
                     if (!endPlan) {
-                        distance = LegInfoView.Distance.smaller1000Meters;
+                        distance = Distance.smaller1000Meters;
                         if (onDistanceFromWaypoint != null)
                             onDistanceFromWaypoint.on1000Meters(firstHit);
                     }
@@ -170,7 +172,7 @@ public class Route extends HashMap<Integer, Waypoint> {
                 @Override
                 public void on500Meters(boolean firstHit) {
                     if (!endPlan) {
-                        distance = LegInfoView.Distance.smaller500Meters;
+                        distance = Distance.smaller500Meters;
                         if (onDistanceFromWaypoint != null)
                             onDistanceFromWaypoint.on500Meters(firstHit);
                     }
@@ -179,7 +181,7 @@ public class Route extends HashMap<Integer, Waypoint> {
                 @Override
                 public void onMore2000Meters(boolean firstHit) {
                     if (!endPlan) {
-                        distance = LegInfoView.Distance.larger2000Meters;
+                        distance = Distance.larger2000Meters;
                         if (onDistanceFromWaypoint != null)
                             onDistanceFromWaypoint.onMore2000Meters(firstHit);
                     }
@@ -204,8 +206,8 @@ public class Route extends HashMap<Integer, Waypoint> {
             //activeLeg.setCurrectLocation(currentLocation);
             if (onNewActiveWaypoint != null)
             {
-                onNewActiveWaypoint.onOldWaypoint(Waypoints.get(0));
-                onNewActiveWaypoint.onActiveWaypoint(Waypoints.get(1));
+                onNewActiveWaypoint.onOldWaypoint(waypoints.get(0));
+                onNewActiveWaypoint.onActiveWaypoint(waypoints.get(1));
             }
             showOnlyActive = true;
         }
@@ -226,17 +228,17 @@ public class Route extends HashMap<Integer, Waypoint> {
 
         ArrayList<Point> points = new ArrayList<Point>();
 
-        int legcount = this.Waypoints.size()-1;
+        int legcount = this.waypoints.size()-1;
 
         for (int i=0; i<legcount; i++)
         {
-            Waypoint from = this.Waypoints.get(i);
-            Waypoint to = this.Waypoints.get(i+1);
+            Waypoint from = this.waypoints.get(i);
+            Waypoint to = this.waypoints.get(i+1);
 
-            float c1 = from.location.bearingTo(to.location);
-            float d1 = from.location.distanceTo(to.location);
-            float c2 = from.location.bearingTo(waypoint.location);
-            float d2 = from.location.distanceTo(waypoint.location);
+            float c1 = from.getAndroidLocation().bearingTo(to.getAndroidLocation());
+            float d1 = from.getAndroidLocation().distanceTo(to.getAndroidLocation());
+            float c2 = from.getAndroidLocation().bearingTo(waypoint.getAndroidLocation());
+            float d2 = from.getAndroidLocation().distanceTo(waypoint.getAndroidLocation());
             float a1 = c1 - c2;
             float a2 = 180f - (Math.abs(a1) + 90f);
             double cosa2 = Math.cos(Math.toRadians(a2));
@@ -252,15 +254,15 @@ public class Route extends HashMap<Integer, Waypoint> {
         Collections.sort(points);
         Log.i(TAG, "leg closed to track: " + Integer.toString(points.get(0).legIndex) + " with distance: " + Double.toString(points.get(0).distance));
 
-        Waypoint p1 = this.Waypoints.get(points.get(0).legIndex);
-        Waypoint p2 = this.Waypoints.get(points.get(0).legIndex+1);
+        Waypoint p1 = this.waypoints.get(points.get(0).legIndex);
+        Waypoint p2 = this.waypoints.get(points.get(0).legIndex+1);
 
         Integer s = Math.abs((p2.order - p1.order) / 2);
         waypoint.order = p1.order + s;
 
-        Waypoints.add(waypoint);
+        waypoints.add(waypoint);
 
-        Collections.sort(Waypoints);
+        Collections.sort(waypoints);
         UpdateWaypointsData();
     }
 
@@ -268,16 +270,16 @@ public class Route extends HashMap<Integer, Waypoint> {
     {
         Waypoint fromWaypoint = null;
         Integer distanceTotal = 0;
-        for (int i = 0; i<Waypoints.size(); i++)
+        for (int i = 0; i<waypoints.size(); i++)
         {
-            if (i==0) fromWaypoint = Waypoints.get(i);
+            if (i==0) fromWaypoint = waypoints.get(i);
             else
             {
-                Waypoint nextWaypoint = Waypoints.get(i);
-                nextWaypoint.true_track = fromWaypoint.location.bearingTo(nextWaypoint.location);
+                Waypoint nextWaypoint = waypoints.get(i);
+                nextWaypoint.true_track = fromWaypoint.getAndroidLocation().bearingTo(nextWaypoint.getAndroidLocation());
                 if (nextWaypoint.true_track<0) nextWaypoint.true_track = nextWaypoint.true_track + 360f;
 
-                nextWaypoint.distance_leg = Math.round(fromWaypoint.location.distanceTo(nextWaypoint.location));
+                nextWaypoint.distance_leg = Math.round(fromWaypoint.getAndroidLocation().distanceTo(nextWaypoint.getAndroidLocation()));
                 distanceTotal = distanceTotal + nextWaypoint.distance_leg;
                 nextWaypoint.distance_total = distanceTotal;
 
@@ -498,6 +500,8 @@ public class Route extends HashMap<Integer, Waypoint> {
         waypoint.name = name;
         waypoint.Id = waypoint_Id;
         this.put(waypoint_Id, waypoint);
+        waypoints.add(waypoint);
+
         waypoint_Id++;
         selectedWaypoint = waypoint;
         // redraw route on map

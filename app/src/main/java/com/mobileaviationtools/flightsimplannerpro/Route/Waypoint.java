@@ -20,6 +20,13 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
     }
 
     public Location location;
+    public android.location.Location getAndroidLocation()
+    {
+        android.location.Location l = new android.location.Location("Waypoint");
+        l.setLatitude(location.latitude);
+        l.setLongitude(location.longitude);
+        return l;
+    }
     public String name;
     public Integer Id;
     public DynamicMarker marker;

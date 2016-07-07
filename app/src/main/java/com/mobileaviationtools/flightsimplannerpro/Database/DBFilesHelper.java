@@ -25,6 +25,20 @@ public class DBFilesHelper {
         return p;
     }
 
+    public static boolean CopyNavigationDatabase(Context context, String name)
+    {
+        String dest = DatabasePath(context);
+        try {
+            CopyFromAssetsToStorage(context, name, dest + name);
+            Log.e("DatabaseFile", name + " copied to: " + dest);
+            return true;
+        } catch (IOException e) {
+            Log.e("DatabaseFile", "Error copying " + name + " file");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static ArrayList<String> CopyDatabases(Context context)
     {
         ArrayList<String> databases = new ArrayList<>();
