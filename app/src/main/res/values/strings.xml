@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Flight Sim Planner Pro</string>
+
+    <string name="title_activity_flight_plan_activate">Activate Route</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

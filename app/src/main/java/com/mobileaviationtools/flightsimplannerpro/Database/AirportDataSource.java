@@ -5,10 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import com.google.android.gms.maps.model;
 
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.mobileaviationtools.flightsimplannerpro.Airports.Airport;
 import com.mobileaviationtools.flightsimplannerpro.Airports.Runway;
+import com.mobileaviationtools.flightsimplannerpro.Info.Station;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -87,8 +88,6 @@ public class AirportDataSource {
         Log.d(TAG, "DELETE Query: " + deleteQuery);
         try {
             database.beginTransaction();
-            //database.rawQuery(NavigationDBHelper.AIRPORT_TABLE_LOCATION_DROP_INDEX, null);
-            //database.rawQuery(NavigationDBHelper.AIRPORT_TABLE_DROP_INDEX, null);
             database.rawQuery(deleteQuery, null);
         }
         catch (Exception ee)
@@ -121,16 +120,6 @@ public class AirportDataSource {
         }
 
         database.endTransaction();
-
-        try {
-            //database.rawQuery(NavigationDBHelper.AIRPORT_TABLE_LOCATION_INDEX, null);
-            //database.rawQuery(NavigationDBHelper.AIRPORT_TABLE_INDEX, null);
-        }
-        catch (Exception ee)
-        {
-            Log.i(TAG, "Database error: " + ee.getMessage());
-            return false;
-        }
 
         return true;
     }
@@ -187,7 +176,6 @@ public class AirportDataSource {
     }
 
     public Map<Integer, Airport> SearchAirportNameCode(String searchTerm) {
-        //ArrayList<Airport> airports = new ArrayList<Airport>();
         Map<Integer, Airport> airports = new HashMap<Integer, Airport>();
 
         String query = "SELECT * FROM " + NavigationDBHelper.AIRPORT_TABLE_NAME +
@@ -201,7 +189,6 @@ public class AirportDataSource {
         {
             Airport airport = cursorToAirport(cursor);
             airports.put(airport.id, airport);
-            //airports.add(airport);
             cursor.moveToNext();
         }
         // make sure to close the cursor
@@ -307,12 +294,12 @@ public class AirportDataSource {
         if (IDs.length()>0) {
             IDs = IDs.substring(0, IDs.length() - 1);
 
-            String query = "SELECT A." + dbHelper.C_id + ","
-                    + "A." + dbHelper.C_ident + ","
-                    + "A." + dbHelper.C_name + ","
-                    + "A." + dbHelper.C_latitude_deg + ","
-                    + "A." + dbHelper.C_longitude_deg + ","
-                    + "A." + dbHelper.C_type + ","
+            String query = "SELECT A." + NavigationDBHelper.C_id + ","
+                    + "A." + NavigationDBHelper.C_ident + ","
+                    + "A." + NavigationDBHelper.C_name + ","
+                    + "A." + NavigationDBHelper.C_latitude_deg + ","
+                    + "A." + NavigationDBHelper.C_longitude_deg + ","
+                    + "A." + NavigationDBHelper.C_type + ","
                     + "A." + NavigationDBHelper.C_mapLocation_ID + ","
                     + "A._id,"
                     + "R." + NavigationDBHelper.C_le_heading + " as heading FROM " + NavigationDBHelper.AIRPORT_TABLE_NAME + " A " +
@@ -373,13 +360,12 @@ public class AirportDataSource {
 
         where = where + " AND " + latBetween + " AND " + lonBetween;
 
-        String query = "SELECT A." + dbHelper.C_id + ","
-                + "A." + dbHelper.C_ident + ","
-                + "A." + dbHelper.C_name + ","
-                + "A." + dbHelper.C_latitude_deg + ","
-                + "A." + dbHelper.C_longitude_deg + ","
-                + "A." + dbHelper.C_type + ","
-                //+ "A." + NavigationDBHelper.C_mapLocation_ID + ","
+        String query = "SELECT A." + NavigationDBHelper.C_id + ","
+                + "A." + NavigationDBHelper.C_ident + ","
+                + "A." + NavigationDBHelper.C_name + ","
+                + "A." + NavigationDBHelper.C_latitude_deg + ","
+                + "A." + NavigationDBHelper.C_longitude_deg + ","
+                + "A." + NavigationDBHelper.C_type + ","
                 + "A._id,"
                 + "R." + NavigationDBHelper.C_le_heading + ","
                 + "R." + NavigationDBHelper.C_le_ident + ","
@@ -474,7 +460,6 @@ public class AirportDataSource {
     }
 
     public Map<Integer, Airport> getAllAirports() {
-        //ArrayList<Airport> airports = new ArrayList<Airport>();
         Map<Integer, Airport> airports = new HashMap<Integer, Airport>();
 
         Cursor cursor = database.query(NavigationDBHelper.AIRPORT_TABLE_NAME,
@@ -485,7 +470,6 @@ public class AirportDataSource {
         {
             Airport airport = cursorToAirport(cursor);
             airports.put(airport.id, airport);
-            //airports.add(airport);
             cursor.moveToNext();
         }
         // make sure to close the cursor
@@ -498,7 +482,6 @@ public class AirportDataSource {
         airport.ident = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_ident));
         airport.name = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_name));
         airport.id = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_id));
-        //airport.MapLocation_ID = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_mapLocation_ID));
         airport.latitude_deg = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_latitude_deg));
         airport.longitude_deg = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_longitude_deg));
         airport.heading = (cursor.isNull(cursor.getColumnIndex(NavigationDBHelper.C_le_heading))) ? 0 : cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_le_heading));
@@ -511,24 +494,13 @@ public class AirportDataSource {
         Runway runway = new Runway();
 
         if (!cursor.isNull(cursor.getColumnIndex(NavigationDBHelper.C_le_heading))) {
-            //runway.airport_ref = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_airport_ref));
-            //runway.airport_ident = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_airport_ident));
-            //runway.length_ft = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_length));
-            //runway.width_ft = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_width));
-            //runway.surface = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_surface));
-            //runway.id = cursor.getInt(cursor.getColumnIndex("id"));
             runway.le_ident = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_le_ident));
             runway.le_latitude_deg = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_le_latitude));
             runway.le_longitude_deg = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_le_longitude));
-            //runway.le_elevation_ft = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_le_elevation));
             runway.le_heading_degT = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_le_heading));
-            //runway.le_displaced_threshold_ft = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_le_displaced_threshold));
             runway.he_ident = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_he_ident));
             runway.he_latitude_deg = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_he_latitude));
             runway.he_longitude_deg = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_he_longitude));
-            //runway.he_elevation_ft = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_he_elevation));
-            //runway.he_heading_degT = cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_he_heading));
-            //runway.he_displaced_threshold_ft = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_he_displaced_threshold));
         }
         else
         {
@@ -559,7 +531,6 @@ public class AirportDataSource {
         airport.type = Airport.ParseAirportType(cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_type)));
         airport.wikipedia_link = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_wikipedia_link));
         airport.version = (cursor.isNull(cursor.getColumnIndex(NavigationDBHelper.C_Version))) ? 0 : cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_Version));
-        //airport.modified = Helpers.readDataTime(cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_Modified)));
         airport.heading = (cursor.isNull(cursor.getColumnIndex(NavigationDBHelper.C_heading))) ? 0 : cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_heading));
 
 

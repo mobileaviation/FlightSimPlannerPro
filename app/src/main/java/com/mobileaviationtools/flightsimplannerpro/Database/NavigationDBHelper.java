@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,8 +34,8 @@ public class NavigationDBHelper extends SQLiteOpenHelper {
     public static final String PROPERTIES_TABLE_NAME = "tbl_Properties";
     public static final String FREQUENCIES_TABLE_NAME = "tbl_AirportFrequencies";
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String TAG = "GooglemapsTest";
+    private static final int DATABASE_VERSION = 2;
+    private static final String TAG = "NavigationDBHelper";
 
     public Boolean updated = false;
 
@@ -103,7 +104,7 @@ public class NavigationDBHelper extends SQLiteOpenHelper {
     public NavigationDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.myContext = context;
-        DB_PATH = context.getFilesDir().getPath() + "/" + "Databases" + "/";
+        DB_PATH = context.getFilesDir().getPath() + "/" + "databases" + "/";
     }
 
     @Override
@@ -146,13 +147,11 @@ public class NavigationDBHelper extends SQLiteOpenHelper {
         boolean dbExist = checkDataBase();
         if(dbExist){
             //do nothing - database already exist
-            this.getWritableDatabase();
-
+            //String myPath = DB_PATH + DATABASE_NAME;
+            //myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
         }
         else
         {
-            this.getReadableDatabase();
-
             try {
                 copyDataBase();
             } catch (IOException e) {
@@ -166,7 +165,13 @@ public class NavigationDBHelper extends SQLiteOpenHelper {
         checkDB = null;
         try{
             String myPath = DB_PATH + DATABASE_NAME;
-            checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            File f = new File(myPath);
+            if (f.exists())
+                checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            else {
+                Log.e(TAG, "Databaswe File: " + myPath + "does not exists!");
+                return false;
+            }
         }
         catch(SQLiteException e){
             //database does't exist yet.
@@ -198,6 +203,10 @@ public class NavigationDBHelper extends SQLiteOpenHelper {
         String myPath = DB_PATH + DATABASE_NAME;
 
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+        if (myDataBase.isOpen())
+            Log.i(TAG, "Database: " + myPath + " is opened..");
+        else
+            Log.e(TAG, "Error opening " + myPath + " database file..");
         return myDataBase;
     }
 
@@ -208,7 +217,7 @@ public class NavigationDBHelper extends SQLiteOpenHelper {
             this.close();
             try
             {
-                myContext.deleteDatabase("airnav.db");
+                myContext.deleteDatabase(DATABASE_NAME);
             }
             catch (Exception ee)
             {

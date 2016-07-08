@@ -19,7 +19,7 @@ public class DBFilesHelper {
     public static String DatabasePath(Context context)
     {
         String p = context.getFilesDir().getPath() + "/"
-                + "Databases" + "/";
+                + "databases" + "/";
         File f = new File(p);
         if (!f.exists()) f.mkdir();
         return p;
@@ -28,6 +28,20 @@ public class DBFilesHelper {
     public static boolean CopyNavigationDatabase(Context context, String name)
     {
         String dest = DatabasePath(context);
+        try {
+            CopyFromAssetsToStorage(context, name, dest + name);
+            Log.e("DatabaseFile", name + " copied to: " + dest);
+            return true;
+        } catch (IOException e) {
+            Log.e("DatabaseFile", "Error copying " + name + " file");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean CopyFromAssetDatabaseTo(Context context, String name, String dest)
+    {
+        //String dest = DatabasePath(context);
         try {
             CopyFromAssetsToStorage(context, name, dest + name);
             Log.e("DatabaseFile", name + " copied to: " + dest);

@@ -1,16 +1,13 @@
 package com.mobileaviationtools.flightsimplannerpro.Route;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.PointF;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.mobileaviationtools.flightsimplannerpro.Airports.Airport;
+import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
+import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
+import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Property;
-import com.mobileaviationtools.flightsimplannerpro.R;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -22,23 +19,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 import us.ba3.me.Location;
-import us.ba3.me.MapView;
-import us.ba3.me.VectorMapInfo;
-import us.ba3.me.markers.DynamicMarker;
-import us.ba3.me.markers.DynamicMarkerMapInfo;
-import us.ba3.me.styles.LineStyle;
 
 /**
  * Created by Rob Verhoef on 28-6-2016.
  */
-public class Route extends HashMap<Integer, Waypoint> {
-    public Route(MapView mapView, String name, Context context)
+public class Route{
+    public Route(Context context)
     {
-        this.mapView = mapView;
-        this.name = name;
-        this.markerHit = new MarkerHit(this.mapView, this);
         this.context = context;
-        waypoint_Id = 0;
         waypoints = new ArrayList<>();
 
         departure_airport = new Airport();
@@ -50,12 +38,8 @@ public class Route extends HashMap<Integer, Waypoint> {
         showOnlyActive = false;
     }
 
-    private MapView mapView;
 
-    private MarkerHit markerHit;
     private Context context;
-    public Waypoint selectedWaypoint;
-    public Integer waypoint_Id;
     public Integer id;
 
     public String name;
@@ -76,7 +60,7 @@ public class Route extends HashMap<Integer, Waypoint> {
     private Leg activeLeg;
     private Distance distance;
     private int legWaypointIndex;
-    private ArrayList<Waypoint> waypoints;
+    public ArrayList<Waypoint> waypoints;
 
     private String TAG = "Route";
 
@@ -93,9 +77,9 @@ public class Route extends HashMap<Integer, Waypoint> {
             bufferProperty.value1 = "0.3";
             bufferProperty.value2 = "true";
         }
-        Coordinate[] coordinates = new Coordinate[this.size()];
+        Coordinate[] coordinates = new Coordinate[waypoints.size()];
         Integer i = 0;
-        for (Waypoint w : this.values())
+        for (Waypoint w : this.waypoints)
         {
             coordinates[i] = new Coordinate(w.location.longitude, w.location.latitude);
             i++;
@@ -109,25 +93,25 @@ public class Route extends HashMap<Integer, Waypoint> {
     private OnDistanceFromWaypoint onDistanceFromWaypoint = null;
     private OnNewActiveWaypoint onNewActiveWaypoint = null;
 
-//    public boolean getFlightplanActive(){ return (activeLeg != null); }
-//    public Leg getActiveLeg()
-//    {
-//        return activeLeg;
-//    }
-//    public int getActivetoWaypointIndex()
-//    {
-//        return legWaypointIndex+1;
-//    }
-//
-//    public void setActiveLeg(Leg leg)
-//    {
-//        activeLeg = leg;
-//    }
+    public boolean getRouteActive(){ return (activeLeg != null); }
+    public Leg getActiveLeg()
+    {
+        return activeLeg;
+    }
+    public int getActivetoWaypointIndex()
+    {
+        return legWaypointIndex+1;
+    }
+
+    public void setActiveLeg(Leg leg)
+    {
+        activeLeg = leg;
+    }
 
     public void nextLeg(android.location.Location currentLocation)
     {
         if (!endPlan) {
-            if (legWaypointIndex < this.size() - 2) legWaypointIndex++;
+            if (legWaypointIndex < waypoints.size() - 2) legWaypointIndex++;
 
             //activeLeg = new Leg(Waypoints.get(legWaypointIndex), Waypoints.get(legWaypointIndex + 1));
             //activeLeg.setCurrectLocation(currentLocation);
@@ -201,7 +185,7 @@ public class Route extends HashMap<Integer, Waypoint> {
     public void startRoute(Location currentLocation)
     {
         legWaypointIndex = 0;
-        if (this.size()>1) {
+        if (waypoints.size()>1) {
             //activeLeg = new Leg(Waypoints.get(0), Waypoints.get(1));
             //activeLeg.setCurrectLocation(currentLocation);
             if (onNewActiveWaypoint != null)
@@ -335,178 +319,35 @@ public class Route extends HashMap<Integer, Waypoint> {
         public void onActiveWaypoint(Waypoint waypoint);
     }
 
-    public void LoadRoute(Context context, Integer flightPlan_ID, Integer uniqueID)
+    public void LoadRoute(Context context, Integer route_ID, Integer uniqueID)
     {
 
-//        // First load the basis of the flightplan
-//        FlightPlanDataSource flightPlanDataSource = new FlightPlanDataSource(context);
-//        flightPlanDataSource.open();
-//        flightPlanDataSource.GetFlightplanByID(flightPlan_ID, this);
-//        flightPlanDataSource.close();
-//
-//        // Second, load the airports information
-//        AirportDataSource airportDataSource = new AirportDataSource(context);
-//        airportDataSource.open(uniqueID);
-//        this.departure_airport = airportDataSource.GetAirportByID(this.departure_airport.id);
-//        this.destination_airport = airportDataSource.GetAirportByID(this.destination_airport.id);
-//        this.alternate_airport = airportDataSource.GetAirportByID(this.alternate_airport.id);
-//        airportDataSource.close();
-//
-//        // Load the waypoint for this flightplan
-//        flightPlanDataSource.open();
-//        flightPlanDataSource.GetWaypointsByFlightPlan(this);
-//        flightPlanDataSource.clearTimes(this, true);
-//        flightPlanDataSource.close();
-//
-//        PropertiesDataSource propertiesDataSource = new PropertiesDataSource(context);
-//        propertiesDataSource.open(true);
-//        bufferProperty = propertiesDataSource.GetProperty("BUFFER");
-//        propertiesDataSource.close(true);
-//
-//        createBuffer();
-    }
+        // First load the basis of the flightplan
+        RouteDataSource routeDataSource = new RouteDataSource(context);
+        routeDataSource.open();
+        routeDataSource.GetRouteByID(route_ID, this);
+        routeDataSource.close();
 
+        // Second, load the airports information
+        AirportDataSource airportDataSource = new AirportDataSource(context);
+        airportDataSource.open(uniqueID);
+        this.departure_airport = airportDataSource.GetAirportByID(this.departure_airport.id);
+        this.destination_airport = airportDataSource.GetAirportByID(this.destination_airport.id);
+        this.alternate_airport = airportDataSource.GetAirportByID(this.alternate_airport.id);
+        airportDataSource.close();
 
-    private void removeRouteFromMap()
-    {
-        mapView.removeMap(name + "markers", true);
-        mapView.removeMap(name + "lines", true);
-    }
+        // Load the waypoint for this flightplan
+        routeDataSource.open();
+        routeDataSource.GetWaypointsByRoute(this);
+        routeDataSource.clearTimes(this, true);
+        routeDataSource.close();
 
-    private void drawRouteOnMap(Boolean createMarkermap)
-    {
+        PropertiesDataSource propertiesDataSource = new PropertiesDataSource(context);
+        propertiesDataSource.open(true);
+        bufferProperty = propertiesDataSource.GetProperty("BUFFER");
+        propertiesDataSource.close(true);
 
-        DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
-        mapInfo.name = name + "markers";
-        mapInfo.zOrder = 101;
-        mapInfo.hitTestingEnabled = true;
-        mapInfo.delegate = markerHit;
-        mapView.addMapUsingMapInfo(mapInfo);
-
-        VectorMapInfo vectorMapInfo = new VectorMapInfo();
-        vectorMapInfo.name = name + "lines";
-        vectorMapInfo.zOrder = 100;
-        vectorMapInfo.alpha = 0.75f;
-        //vectorMapInfo.vectorMapDelegate = lineSegmentHit;
-        mapView.addMapUsingMapInfo(vectorMapInfo);
-
-        //Create a style for the route line
-        LineStyle lineStyle = new LineStyle();
-        lineStyle.outlineColor = Color.DKGRAY;
-        lineStyle.outlineWidth = 2;
-        lineStyle.strokeColor = Color.GREEN;
-        lineStyle.strokeWidth = 10;
-
-        Location[] waypoints = new Location[this.size()];
-
-        int i = 0;
-
-        for (Waypoint w: this.values()) {
-            waypoints[i] = w.location;
-            addMarker(w, R.drawable.bluedot);
-            i++;
-        }
-
-        mapView.addDynamicLineToVectorMap(name+"lines", "route", waypoints, lineStyle);
-    }
-
-    public void SelectWaypoint(String selectedId) {
-        Integer s = Integer.parseInt(selectedId);
-
-        Toast toast = Toast.makeText(context, "Waypoint Selected!!", Toast.LENGTH_SHORT);
-        toast.show();
-
-        Waypoint w = this.get(s);
-        if (w != null) {
-            Log.i("Route", "Waypoint selected: " + selectedId);
-            resetSelectedWaypointMarker();
-            setSelectedwaypointMarker(w);
-        }
-    }
-
-    public void UnSelectWaypoint()
-    {
-        resetSelectedWaypointMarker();
-    }
-
-    public void dragSelectedWaypoint(Location newLocation)
-    {
-        if (selectedWaypoint != null)
-        {
-            //mapView.removeMap(name + "lines", true);
-            mapView.removeDynamicMarkerFromMap(this.name+"markers", selectedWaypoint.Id.toString());
-            mapView.removeDynamicMarkerFromMap(this.name+"markers", selectedWaypoint.Id.toString() + "s");
-
-            selectedWaypoint.location = newLocation;
-            selectedWaypoint.name = newLocation.longitude + "," + newLocation.latitude;
-
-            addMarker(selectedWaypoint, R.drawable.bluedot);
-            setSelectedwaypointMarker(selectedWaypoint);
-
-            removeRouteFromMap();
-            drawRouteOnMap(false);
-        }
-    }
-
-    private void setSelectedwaypointMarker(Waypoint newSelectedwaypoint)
-    {
-        mapView.hideDynamicMarker(this.name+"markers", newSelectedwaypoint.Id.toString());
-        mapView.showDynamicMarker(this.name+"markers", newSelectedwaypoint.Id.toString() + "s");
-        selectedWaypoint = newSelectedwaypoint;
-    }
-
-    private void resetSelectedWaypointMarker()
-    {
-        if (selectedWaypoint != null)
-        {
-            mapView.hideDynamicMarker(this.name+"markers", selectedWaypoint.Id.toString() + "s");
-            mapView.showDynamicMarker(this.name+"markers", selectedWaypoint.Id.toString());
-            selectedWaypoint = null;
-        }
-    }
-
-    private Bitmap getBitmapFromDrawable(Integer name)
-    {
-        return BitmapFactory.decodeResource(context.getResources(), name);
-    }
-
-    private void addMarker(Waypoint waypoint, Integer drawable)
-    {
-        waypoint.marker = new DynamicMarker();
-        waypoint.marker.name = waypoint.Id.toString();
-        waypoint.marker.setImage(getBitmapFromDrawable(drawable), false);
-        waypoint.marker.anchorPoint = new PointF(16,16);
-        waypoint.marker.location = waypoint.location;
-        waypoint.selectedMarker = new DynamicMarker();
-        waypoint.selectedMarker.name = waypoint.Id.toString() + "s";
-        waypoint.selectedMarker.setImage(getBitmapFromDrawable(R.drawable.greendot), false);
-        waypoint.selectedMarker.anchorPoint = new PointF(16,16);
-        waypoint.selectedMarker.location = waypoint.location;
-        mapView.addDynamicMarkerToMap(this.name+"markers", waypoint.marker);
-        mapView.addDynamicMarkerToMap(this.name+"markers", waypoint.selectedMarker);
-        mapView.showDynamicMarker(this.name+"markers", waypoint.Id.toString());
-        mapView.hideDynamicMarker(this.name+"markers", waypoint.Id.toString() + "s");
-    }
-
-    public void AddWaypoint(String name, Location location)
-    {
-        Log.i("Route", "Adding waypoint: " + name);
-
-        Toast toast = Toast.makeText(context, "Waypoint Added!!", Toast.LENGTH_SHORT);
-        toast.show();
-
-        Waypoint waypoint = new Waypoint();
-        waypoint.location = location;
-        waypoint.name = name;
-        waypoint.Id = waypoint_Id;
-        this.put(waypoint_Id, waypoint);
-        waypoints.add(waypoint);
-
-        waypoint_Id++;
-        selectedWaypoint = waypoint;
-        // redraw route on map
-        removeRouteFromMap();
-        drawRouteOnMap(true);
+        createBuffer();
     }
 
 }

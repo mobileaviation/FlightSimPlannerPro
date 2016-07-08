@@ -1,5 +1,6 @@
 package com.mobileaviationtools.flightsimplannerpro.Route;
 
+import com.mobileaviationtools.flightsimplannerpro.Database.Helpers;
 import com.mobileaviationtools.flightsimplannerpro.R;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
         fix_id = 0;
         navaid_id = 0;
         airport_id = 0;
+        UID = Helpers.generateUniqueId();
     }
 
     public Location location;
@@ -28,7 +30,7 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
         return l;
     }
     public String name;
-    public Integer Id;
+    public Integer UID;
     public DynamicMarker marker;
     public DynamicMarker selectedMarker;
 

@@ -7,8 +7,12 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
+import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
+import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
+import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
+import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 
 import java.util.ArrayList;
 
@@ -22,7 +26,8 @@ public class MainActivity extends AppCompatActivity{
 		super.onDestroy();
 	}
 
-	private Route route;
+	private RouteVisuals route;
+	private String TAG = "MainActivity";
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +71,31 @@ public class MainActivity extends AppCompatActivity{
 		String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
 		mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
 
-		route = new Route(mapView, "Route", this);
+		route = new RouteVisuals(this, mapView, null);
 		mapView.Init(route);
 
 		mapView.setMaximumZoom(2000000);
 		mapView.setMinimumZoom(20000);
 
-		Log.i("MainActivity", "OnCreate");
+		Log.i(TAG, "OnCreate");
+
+		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
+
+		AirportDataSource airportDataSource = new AirportDataSource(this);
+		airportDataSource.open(0);
+		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
+		airportDataSource.close();
+
+		PropertiesDataSource propertiesDataSource = new PropertiesDataSource(this);
+		propertiesDataSource.open(true);
+		propertiesDataSource.FillProperties();
+		Log.i(TAG, "Default Airport: " + propertiesDataSource.InitAirport.name);
+		propertiesDataSource.close(true);
+
+		RouteDataSource routeDataSource = new RouteDataSource(this);
+		routeDataSource.open();
+		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
+		routeDataSource.close();
 
     }
 

@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
+import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
@@ -26,14 +27,14 @@ public class MyMapView extends MapView {
         super(context);
     }
 
-    public void Init(Route route)
+    public void Init(RouteVisuals route)
     {
         this.route = route;
         placingRoutePoint = false;
         movingRoutePoint = false;
     }
 
-    private Route route;
+    private RouteVisuals route;
 
     private Boolean placingRoutePoint;
     private Boolean movingRoutePoint;
