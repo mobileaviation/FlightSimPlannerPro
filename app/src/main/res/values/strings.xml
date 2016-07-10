@@ -4,4 +4,7 @@
     <string name="title_activity_flight_plan_activate">Activate Route</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_flightplan">Create a new Route</string>
+    <string name="action_flightplan_activate">Activate a Route</string>
+    <string name="action_loadtrack">Load previous track.</string>
 </resources>

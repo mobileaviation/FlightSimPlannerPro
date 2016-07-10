@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/load_track_item"
+        android:title="@string/action_loadtrack"
+        android:orderInCategory="96"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_flightplan"
+        android:title="@string/action_flightplan"
+        android:icon="@drawable/flightplanbutton"
+        android:orderInCategory="101"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_flightplan_activate"
+        android:title="@string/action_flightplan_activate"
+        android:icon="@drawable/flightplanactivate"
+        android:orderInCategory="102"
+        app:showAsAction="always" />
+</menu>

@@ -1,3 +1,397 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8126914f5bc372a33e27ea90f02412c32468ce8a">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-9.0.0_5fe6dd4dfcd3a78c4efd17c84abaf529b2ffcde0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\libs\jts-1.13.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1d7457bff1a63d8f2b2e0e0961300aa1831d0fb7">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\jts-1.13_682228ecb439e0442ccfa6d73fc125c403e56869.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2f7bd8cc7519d5231aa8d2ae8e905d3f602bd491">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-9.0.0_410ef385f67f0780c3bc3d83133e2d1dfa7aba5b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5289e799a43a64c4137d109bf992e10a2f952aa3">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-9.0.0_1f3cc6a3bd6e2408f8b649b1dba0e1db413f061b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0_ff7f418efa995e5c3903c97f2ab1f9ee7ccde696.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\libs\commons-io-2.4.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\commons-io-2.4_a2151a7d1ddd1eb60cdbb2e686efdcad05dd9a78.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="373cd65725af2781d100ddc193c7d3f14464a774">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-impl-9.0.0_6a0e7b5be983e7704418fa0c6c31c97c04a4a0f2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="733964f04c339e425439545b1d172c23b53f8c13">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-storage-9.0.0_bddaf31dd7449f29ee441c17850174207b13f6c7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="99516bc0fdac20c6c50795f295e9b7edd88f6cfa">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\instant-run_d9743dd9ca0f0dbd5aefb08e9386b6ccc452d0b6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="817b9101192f2fd6dc0fd8cd522d8f4a1a75fcdc">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-9.0.0_adb7b9010d6f47a8ec0da144c04d5d00421bb659.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2c5bc0ebbe69c9fab587c2216b36ec44ab8f0704">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-9.0.0_471b061158d30ba33ef72cae678ede6994d8a64d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0facc6fc326f2406f4bb9b02f442994c5ce6a403">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-9.0.0_803b8029c3a074795a181b0d15b9af87388d35d0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_6db72dea9bcf6bbd923bf9b90a5f6af90990cc39.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-9.0.0_dd3fc256f9a2f44a6a6e252d4b5443306e2b41ab.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="7da84426d876216ed4cdddd85e739be5ecabdd04">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-9.0.0_aa1a703d476bd21ffaf3a29d3236135ae89f0251.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ea4b54dcbfe5ac05efb0a314105f07258118d3a7">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-iid-9.0.0_e0e8265f784fedbe498e5bac9f26de2d628aeaf6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="379d1834afa3c08f43be23a23b103053537b65b5">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-iid-9.0.0_06465074f4b52f180d44202bd4b256c67d1d04aa.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="59cca9b91688dc2467754d36793b3d23bebd21a9">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-9.0.0_fedbdd6a26e23a5224db5bff55a616075e0c5553.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2cb29455028e92e024bbad0d41c6ec772f2433d1">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-9.0.0_d1cce61bc3a6ceb814e30a9e4ff063ccedb73dc8.jar" />
+    </item>
+    <item
+        jar="C:\android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_a19621f3e7775972e60501d69e387f7bd8073140.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-api\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="69472e334350cafbf442776da05c9a04955252fb">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-api-9.0.0_27a30290cb0d0f735c22719823198badfad7cea7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4ef8ab5fee042023018249474bc93bd4b2b9c17e">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-9.0.0_193c9256f3a2272d679b9a3b2cba82330a36e707.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="70ddab48594608953b20164b82f1f890a9a8174a">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-9.0.0_59d965f7930e6c25307dc35d11653b6dcb644e7c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="184428c29b2a4b220cd44284d515db5d8cb5fc76">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-9.0.0_83b72d3a6cea98e3a2f129c58d4e8113f2980e1b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b8bedab61b3b5238cd9a07d3b04449d7fecdbc3b">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-9.0.0_94bf774d76dbf57019ecc9ec94e0b2278ce105d5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_057203f65da46039c0f8b97c2fde81daef1c8277.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_2a0f0d8292a1e689f6709c78fc50c2092488c955.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c7fceebe3f6e54198f0e08c8041a21567dfde582">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_0c058d152677babc58ca9e1bd0840cb6167a14d1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="7a23185c9b1c100e7d1a32275017e4712e31c796">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-base-9.0.0_88e3f69e1c3c5a6cb9af28523ea2b58b81a3a96c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_254281284ea9fd45e0f70999ad281e76eb3158d4.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-9.0.0_ab70adf1c216587820a03097317dcfecb94aaa48.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0dc8ab07eeceda5e99b305c8069765056b6e5c9d">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-impl-9.0.0_159e08220555f98bf08e339d76defabd224f7e12.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e595f98f8c525201dccd119f43ad1ddacd4c48d6">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-9.0.0_e445669de6c4f48ef2acd65b73e99f933636b297.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4caf75b2cfb7ec6e80a57d0ee64fc102ad3578b8">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-9.0.0_642cd5bf2471e69f2ab30c085ea2e8d65a82ce96.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.android.support-mediarouter-v7-23.0.0_c1125c72ed1ce949d16d1110ecc4acc047746824.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ed16ff19f0a9515604a0f08104ca0317b82e29e3">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-storage-common-9.0.0_ea60bc8a2368d5a90613afdfd93e9cebb2421d23.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-9.0.0_5204aca6c4e61ccbe66abc6b4ee747d8781e5ba5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="005786793d72c6deacbbbfd38177ed58e1aa6653">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-messaging-9.0.0_2d05943dc781198a5d3209c4d9a803df5d227e87.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ebfde1a055aea400df77584a68aa60609f618bed">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-config-9.0.0_817936bcd3c561a3afd1e71d3297a5bac55679a3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-common\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5f0f6913a208a126269aaa68004ed0329a832c5b">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-common-9.0.0_fe2f02a977ebc7bf1fb44c0dc650a98f5b480c45.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_303b6b2098aa7cda5a086827a354159bbe933b8f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4431efe5d0f67fab36a698dde725946b33a6bf4a">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-9.0.0_65f4113ca189abc9468545ca5223afb7b32229d5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="32a5a566ae197603d0bed3e6d1d275f6a771564e">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-database-9.0.0_b2f2641537e4ed56966f835534960df42c71f312.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="294d49a66cc1238d9f7fd352136a45622fa98c0f">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-9.0.0_88f4c6658010cb9bcc8bef4d100a248f7bc670a2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d96f9f3ef66494d1231304cafd28c962dda80dea">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appinvite-9.0.0_dc1b1ada54f5d8bb756e1044a8d46a3316c88366.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d7002ed92a3c46c6a89a786877ecf7978a4f0459">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-9.0.0_c9925a7424bbc3815af871aec64c5dc2ad6f83a3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a819aae4f0c711e50b4fd633922a3c1a176cb51e">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-9.0.0_84f89330323e097507e635c66e38a14c46895419.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-9.0.0_61bcb127a9bb264e447b5f415a602de141dc19f8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="79e4b41db41d4dbbf364c7bd6aaeee5b876c9d8b">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-lite-9.0.0_8a0246f44a7897fe78257f208edb86c78fe1a737.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\libs\altusmappingengine.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c210e2e05b92c08e94cabe35f5fa40ddfd0f790b">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\altusmappingengine_5e84eff1e50db47e347bfdb88cf39bfef7745dfd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="7e467a973b749c6390a5991c9a8edbde96fc10c9">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-crash-9.0.0_e809e9eb6b960b62fde4bdff85f9996b028da9ee.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="67a7d712de3e7d025f4efdcec1da183f764bdbab">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-9.0.0_180df4004a6f11e82217fed7d5ee6a14fc0e17ed.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f4e85eafa876cd7d7641244867dac3f88d71e866">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-vision-9.0.0_d1ab868aad0a77063442b02c8a08398abdcfc0e0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ef5c5c2afbd174d55cf1cfcac7d0346cbc4c1322">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-database-connection-9.0.0_c395612596458d6c3fdc4aa53b231837bb93abfe.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-module\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="24536a7b97926a9c155c88425da6875adeb11b51">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-module-9.0.0_8232dfd5dbba95b95de8c747f08d2391b25644b5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c11cf7a7a6e5adf8fa564303a11dbc351fc11b7c">
+        <dex dex="C:\Users\Rob Verhoef\AndroidStudioProjects\FlightSimPlannerPro\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-9.0.0_043b3dc2d078081108aefc7cd201272cd0f71f03.jar" />
+    </item>
+
+</items>

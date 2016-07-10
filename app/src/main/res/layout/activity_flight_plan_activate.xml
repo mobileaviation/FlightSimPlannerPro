@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.mobileaviationtools.flightsimplannerpro.Route.FlightPlanActivateActivity"
     android:baselineAligned="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+     android:background="@android:color/white">
 
 
     <LinearLayout

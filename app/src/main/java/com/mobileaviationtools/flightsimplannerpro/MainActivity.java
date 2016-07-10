@@ -1,9 +1,14 @@
 package com.mobileaviationtools.flightsimplannerpro;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
@@ -12,6 +17,7 @@ import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
 import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
+import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 
 import java.util.ArrayList;
@@ -79,7 +85,7 @@ public class MainActivity extends AppCompatActivity{
 
 		Log.i(TAG, "OnCreate");
 
-		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
+		DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
 
 		AirportDataSource airportDataSource = new AirportDataSource(this);
 		airportDataSource.open(0);
@@ -100,4 +106,56 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_flightplan_activate: {
+				showActivateRouteActivity();
+				return true;
+			}
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == 301)
+		{
+			Integer id = data.getIntExtra("id", 0);
+
+			if (requestCode == 300)
+			{
+				//LoadFlightplan(id);
+
+				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// User clicked OK button
+						dialog.dismiss();
+					}
+				});
+
+				builder.setMessage("To activate this route push the 'TakeOff' button!");
+				builder.setTitle("Activate route!");
+
+				AlertDialog closePlanDialog = builder.create();
+				closePlanDialog.show();
+			}
+		}
+	}
+
+	public void showActivateRouteActivity()
+	{
+		Intent activateRouteIntent = new Intent(MainActivity.this, RouteActivateActivity.class);
+		activateRouteIntent.putExtra("key", 1);
+		MainActivity.this.startActivityForResult(activateRouteIntent, 300);
+	}
 }
