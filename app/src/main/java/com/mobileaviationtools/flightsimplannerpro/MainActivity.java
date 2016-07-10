@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity{
 
 				if (route == null)
 					route = new Route(this);
-				route.LoadRoute(this, id, 0);
+				route.LoadRoute(this, id);
 			}
 		}
 	}
