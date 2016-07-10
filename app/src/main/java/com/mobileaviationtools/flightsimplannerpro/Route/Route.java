@@ -319,7 +319,7 @@ public class Route{
         public void onActiveWaypoint(Waypoint waypoint);
     }
 
-    public void LoadRoute(Context context, Integer route_ID, Integer uniqueID)
+    public void LoadRoute(Context context, Integer route_ID)
     {
 
         // First load the basis of the flightplan
@@ -330,7 +330,7 @@ public class Route{
 
         // Second, load the airports information
         AirportDataSource airportDataSource = new AirportDataSource(context);
-        airportDataSource.open(uniqueID);
+        airportDataSource.open(0);
         this.departure_airport = airportDataSource.GetAirportByID(this.departure_airport.id);
         this.destination_airport = airportDataSource.GetAirportByID(this.destination_airport.id);
         this.alternate_airport = airportDataSource.GetAirportByID(this.alternate_airport.id);

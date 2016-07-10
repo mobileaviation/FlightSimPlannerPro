@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity{
 		super.onDestroy();
 	}
 
-	private RouteVisuals route;
+	private RouteVisuals routeVisuals;
+	private Route route;
 	private String TAG = "MainActivity";
 
 	@Override
@@ -77,8 +78,8 @@ public class MainActivity extends AppCompatActivity{
 		String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
 		mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
 
-		route = new RouteVisuals(this, mapView, null);
-		mapView.Init(route);
+		routeVisuals = new RouteVisuals(this, mapView, null);
+		mapView.Init(routeVisuals);
 
 		mapView.setMaximumZoom(2000000);
 		mapView.setMinimumZoom(20000);
@@ -148,6 +149,10 @@ public class MainActivity extends AppCompatActivity{
 
 				AlertDialog closePlanDialog = builder.create();
 				closePlanDialog.show();
+
+				if (route == null)
+					route = new Route(this);
+				route.LoadRoute(this, id, 0);
 			}
 		}
 	}
