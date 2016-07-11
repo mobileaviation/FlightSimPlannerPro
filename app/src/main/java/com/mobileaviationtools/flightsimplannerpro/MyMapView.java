@@ -12,6 +12,9 @@ import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
 
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
 import us.ba3.me.ConvertPointCallback;
 import us.ba3.me.Location;
 import us.ba3.me.MapLoadingStrategy;
@@ -23,20 +26,32 @@ import us.ba3.me.virtualmaps.VirtualMapInfo;
  * Created by Rob Verhoef on 20-6-2016.
  */
 public class MyMapView extends MapView {
+    private String TAG = "MyMapView";
     public MyMapView(Context context) {
         super(context);
     }
 
     public void Init(RouteVisuals route)
     {
-        this.route = route;
+        this.routeVisuals = route;
         placingRoutePoint = false;
         movingRoutePoint = false;
     }
 
-    private RouteVisuals route;
+    private RouteVisuals routeVisuals;
 
     private Boolean placingRoutePoint;
+
+    @Override
+    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+        super.onSurfaceCreated(gl, config);
+        Log.i(TAG, "onSurfaceCreated");
+//        if (routeVisuals != null)
+//		{
+//			routeVisuals.drawRoute();
+//		}
+    }
+
     private Boolean movingRoutePoint;
 
     @Override
@@ -62,7 +77,7 @@ public class MyMapView extends MapView {
             case MotionEvent.ACTION_UP:
             {
                 //Log.i("OnTouchEvent", "This is a OnTouch (ACTION_UP) event...");
-                route.UnSelectWaypoint();
+                routeVisuals.UnSelectWaypoint();
                 placingRoutePoint = false;
                 movingRoutePoint = false;
                 break;
@@ -75,7 +90,7 @@ public class MyMapView extends MapView {
             public void convertComplete(Location loc) {
                 //Log.w("OnTouchEvent", "lon:" + loc.longitude + " lat:" + loc.latitude);
                 if (movingRoutePoint)
-                    route.dragSelectedWaypoint(loc);
+                    routeVisuals.dragSelectedWaypoint(loc);
 
             }});
         return super.onTouchEvent(event);
@@ -97,7 +112,7 @@ public class MyMapView extends MapView {
             case MotionEvent.ACTION_DOWN:
             {
                 //Log.i("onLongPress", "This is a onLongPress (ACTION_DOWN) event...");
-                if (route.selectedWaypoint != null) {
+                if (routeVisuals.selectedWaypoint != null) {
                     movingRoutePoint = true;
                     placingRoutePoint = false;
                 }
@@ -116,7 +131,7 @@ public class MyMapView extends MapView {
 
                 if (placingRoutePoint) {
                     String name = loc.longitude + "," + loc.latitude;
-                    route.AddWaypoint(name, loc);
+                    routeVisuals.AddWaypoint(name, loc);
 
                     //placingRoutePoint = false;
                     movingRoutePoint = true;

@@ -3,6 +3,8 @@ package com.mobileaviationtools.flightsimplannerpro;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.PointF;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +24,10 @@ import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 
 import java.util.ArrayList;
 
+import us.ba3.me.Location;
 import us.ba3.me.Location3D;
+import us.ba3.me.markers.DynamicMarker;
+import us.ba3.me.markers.DynamicMarkerMapInfo;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -35,6 +40,7 @@ public class MainActivity extends AppCompatActivity{
 	private RouteVisuals routeVisuals;
 	private Route route;
 	private String TAG = "MainActivity";
+	private MyMapView mapView;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,8 @@ public class MainActivity extends AppCompatActivity{
 
         //Get the map view and add a map.
 		//final MapView mapView = (MapView)this.findViewById(R.id.mapView1);
-        final MyMapView mapView;
+        //final MyMapView mapView
+
 		mapView = new MyMapView(this);
 		mapView.Init(null);
 		mapView.setLayoutParams(new LinearLayout.LayoutParams(
@@ -54,6 +61,8 @@ public class MainActivity extends AppCompatActivity{
 		baseLayout.addView(mapView);
 
 		mapView.setMultithreaded(true);
+
+
 
 		mapView.AddMappyMap();
 
@@ -78,7 +87,7 @@ public class MainActivity extends AppCompatActivity{
 		String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
 		mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
 
-		routeVisuals = new RouteVisuals(this, mapView, null);
+		routeVisuals = new RouteVisuals(this, mapView);
 		mapView.Init(routeVisuals);
 
 		mapView.setMaximumZoom(2000000);
@@ -106,6 +115,21 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+	@Override
+	protected void onResume() {
+		Log.i(TAG, "OnResume");
+		super.onResume();
+
+//		if (routeVisuals != null)
+//		{
+//			if (route != null)
+//				if (route.reloaded)
+//				{
+//					routeVisuals.setRoute(route);
+//					route.reloaded = false;
+//				}
+//		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,6 +144,11 @@ public class MainActivity extends AppCompatActivity{
 				showActivateRouteActivity();
 				return true;
 			}
+			case R.id.action_flightplan:
+			{
+				//routeVisuals.setRoute(route);
+				return true;
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -130,7 +159,7 @@ public class MainActivity extends AppCompatActivity{
 
 		if (resultCode == 301)
 		{
-			Integer id = data.getIntExtra("id", 0);
+			final Integer route_id = data.getIntExtra("id", 0);
 
 			if (requestCode == 300)
 			{
@@ -141,6 +170,7 @@ public class MainActivity extends AppCompatActivity{
 					public void onClick(DialogInterface dialog, int id) {
 						// User clicked OK button
 						dialog.dismiss();
+						LoadRoute(route_id);
 					}
 				});
 
@@ -150,11 +180,18 @@ public class MainActivity extends AppCompatActivity{
 				AlertDialog closePlanDialog = builder.create();
 				closePlanDialog.show();
 
-				if (route == null)
-					route = new Route(this);
-				route.LoadRoute(this, id);
+
+				//routeVisuals.markerTestje();
 			}
 		}
+	}
+
+	public void LoadRoute(Integer id)
+	{
+		if (route == null)
+			route = new Route(this);
+		route.LoadRoute(this, id);
+		routeVisuals.setRoute(route);
 	}
 
 	public void showActivateRouteActivity()

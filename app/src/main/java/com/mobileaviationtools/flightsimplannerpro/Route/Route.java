@@ -36,6 +36,7 @@ public class Route{
         legWaypointIndex = 0;
         endPlan = false;
         showOnlyActive = false;
+        reloaded = false;
     }
 
 
@@ -53,6 +54,7 @@ public class Route{
     public Date date;
     public boolean endPlan;
     public boolean showOnlyActive;
+    public boolean reloaded;
 
     public Geometry buffer;
     public Property bufferProperty;
@@ -348,6 +350,8 @@ public class Route{
         propertiesDataSource.close(true);
 
         createBuffer();
+
+        reloaded = true;
     }
 
 }

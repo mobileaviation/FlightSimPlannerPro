@@ -18,6 +18,7 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
         fix_id = 0;
         navaid_id = 0;
         airport_id = 0;
+        location = new Location();
         UID = Helpers.generateUniqueId();
     }
 

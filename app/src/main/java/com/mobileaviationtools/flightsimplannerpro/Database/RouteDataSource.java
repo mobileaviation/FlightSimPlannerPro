@@ -77,8 +77,8 @@ public class RouteDataSource {
         values.put(UserDBHelper.C_fix_id, waypoint.fix_id);
         values.put(UserDBHelper.C_navaid_id, waypoint.navaid_id);
         values.put(UserDBHelper.C_sortorder, waypoint.order);
-        values.put(UserDBHelper.C_latitude_deg, waypoint.getAndroidLocation().getLatitude());
-        values.put(UserDBHelper.C_longitude_deg, waypoint.getAndroidLocation().getLongitude());
+        values.put(UserDBHelper.C_latitude_deg, waypoint.location.latitude);
+        values.put(UserDBHelper.C_longitude_deg, waypoint.location.longitude);
         values.put(UserDBHelper.C_flightplan_id, waypoint.flightplan_id);
         values.put(UserDBHelper.C_frequency_khz, waypoint.frequency);
         values.put(UserDBHelper.C_eto, ((waypoint.eto == null) ? 0l : waypoint.eto.getTime()));
@@ -395,8 +395,9 @@ public class RouteDataSource {
         waypoint.wind_speed = cursor.getInt(cursor.getColumnIndex(UserDBHelper.C_wind_speed_kt));
         waypoint.wind_direction = cursor.getFloat(cursor.getColumnIndex(UserDBHelper.C_wind_direction_deg));
 
-        waypoint.getAndroidLocation().setLatitude(cursor.getDouble(cursor.getColumnIndex(UserDBHelper.C_latitude_deg)));
-        waypoint.getAndroidLocation().setLongitude(cursor.getDouble(cursor.getColumnIndex(UserDBHelper.C_longitude_deg)));
+
+        waypoint.location.latitude = cursor.getDouble(cursor.getColumnIndex(UserDBHelper.C_latitude_deg));
+        waypoint.location.longitude = cursor.getDouble(cursor.getColumnIndex(UserDBHelper.C_longitude_deg));
 
         if (waypoint.order==1) waypoint.waypointType = WaypointType.departudeAirport;
         else
