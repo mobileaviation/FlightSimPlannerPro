@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.mobileaviationtools.flightsimplannerpro.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import us.ba3.me.Location;
@@ -25,6 +26,7 @@ import us.ba3.me.styles.LineStyle;
 public class RouteVisuals extends HashMap<Integer, Waypoint> {
     public RouteVisuals(Context context, MapView mapView)
     {
+        dragging = false;
         this.mapView = mapView;
         this.context = context;
         blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
@@ -66,29 +68,28 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         mapView.removeMap("lines", true);
     }
 
-    private void drawRouteOnMap()
+    private void setMarkerAndLinesMaps(String markerName, String lineName, Boolean setMarkerHit)
     {
-
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
-        mapInfo.name = "markers";
+        mapInfo.name = markerName;
         mapInfo.zOrder = 101;
-        mapInfo.hitTestingEnabled = true;
-        mapInfo.delegate = markerHit;
+        mapInfo.hitTestingEnabled = setMarkerHit;
+        if (setMarkerHit) mapInfo.delegate = markerHit;
         mapView.addMapUsingMapInfo(mapInfo);
 
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
-        vectorMapInfo.name = "lines";
+        vectorMapInfo.name = lineName;
         vectorMapInfo.zOrder = 100;
         vectorMapInfo.alpha = 0.75f;
         //vectorMapInfo.vectorMapDelegate = lineSegmentHit;
         mapView.addMapUsingMapInfo(vectorMapInfo);
 
-        //Create a style for the route line
-        LineStyle lineStyle = new LineStyle();
-        lineStyle.outlineColor = Color.DKGRAY;
-        lineStyle.outlineWidth = 2;
-        lineStyle.strokeColor = Color.GREEN;
-        lineStyle.strokeWidth = 10;
+
+    }
+
+    private void drawRouteOnMap()
+    {
+        setMarkerAndLinesMaps("markers", "lines", true);
 
         Location[] waypoints = new Location[route.waypoints.size()];
 
@@ -99,6 +100,13 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
             addMarker(w);
             i++;
         }
+
+        //Create a style for the route line
+        LineStyle lineStyle = new LineStyle();
+        lineStyle.outlineColor = Color.DKGRAY;
+        lineStyle.outlineWidth = 2;
+        lineStyle.strokeColor = Color.GREEN;
+        lineStyle.strokeWidth = 10;
 
         mapView.addDynamicLineToVectorMap("lines", "route", waypoints, lineStyle);
     }
@@ -119,16 +127,21 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
 
     public void UnSelectWaypoint()
     {
-        resetSelectedWaypointMarker();
+        if (dragging) {
+            dragging = false;
+            resetSelectedWaypointMarker();
+            mapView.removeMap("draglines", true);
+            removeRouteFromMap();
+            drawRouteOnMap();
+        }
     }
 
-    public void dragSelectedWaypoint(Location newLocation)
+    public void dragSelectedWaypoint1(Location newLocation)
     {
         if (selectedWaypoint != null)
         {
             //mapView.removeMap(name + "lines", true);
             mapView.removeDynamicMarkerFromMap("markers", selectedWaypoint.UID.toString());
-            mapView.removeDynamicMarkerFromMap("markers", selectedWaypoint.UID.toString() + "s");
 
             selectedWaypoint.location = newLocation;
             selectedWaypoint.name = newLocation.longitude + "," + newLocation.latitude;
@@ -141,10 +154,52 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         }
     }
 
+    private boolean dragging;
+    public void dragSelectedWaypoint(Location newLocation)
+    {
+        Integer i = route.waypoints.indexOf(selectedWaypoint);
+        Waypoint beforeWaypoint = (i==0) ? null : route.waypoints.get(i-1);
+        Waypoint afterWaypoint = (i==route.waypoints.size()-1) ? null : route.waypoints.get(i+1);
+        dragging = true;
+
+        mapView.setDynamicMarkerLocation("markers", selectedWaypoint.UID.toString(), newLocation, 0);
+        selectedWaypoint.location = newLocation;
+
+        mapView.removeMap("draglines", false);
+        VectorMapInfo vectorMapInfo = new VectorMapInfo();
+        vectorMapInfo.name = "draglines";
+        vectorMapInfo.zOrder = 100;
+        vectorMapInfo.alpha = 0.75f;
+        mapView.addMapUsingMapInfo(vectorMapInfo);
+
+
+        // get before and after waypoint
+        Location[] waypoints = new Location[3];
+        waypoints[0] = (beforeWaypoint==null) ? null : beforeWaypoint.location;
+        waypoints[1] = newLocation;
+        waypoints[2] = (afterWaypoint==null) ? null : afterWaypoint.location;
+        ArrayList<Location> locations = new ArrayList<>();
+
+        for (Integer ii = 0; ii<3; ii++)
+        {
+            if (waypoints[ii]!=null) {
+                locations.add(waypoints[ii]);
+            }
+        }
+
+        LineStyle lineStyle = new LineStyle();
+        lineStyle.outlineColor = Color.DKGRAY;
+        lineStyle.outlineWidth = 2;
+        lineStyle.strokeColor = Color.BLUE;
+        lineStyle.strokeWidth = 10;
+
+        mapView.addDynamicLineToVectorMap("draglines", "draglines", locations.toArray(new Location[locations.size()]), lineStyle);
+
+    }
+
     private void setSelectedwaypointMarker(Waypoint newSelectedwaypoint)
     {
-        mapView.hideDynamicMarker("markers", newSelectedwaypoint.UID.toString());
-        mapView.showDynamicMarker("markers", newSelectedwaypoint.UID.toString() + "s");
+        mapView.setDynamicMarkerImage("markers", newSelectedwaypoint.UID.toString(), blueDot);
         selectedWaypoint = newSelectedwaypoint;
     }
 
@@ -152,8 +207,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     {
         if (selectedWaypoint != null)
         {
-            mapView.hideDynamicMarker("markers", selectedWaypoint.UID.toString() + "s");
-            mapView.showDynamicMarker("markers", selectedWaypoint.UID.toString());
+            mapView.setDynamicMarkerImage("markers", selectedWaypoint.UID.toString(), greenDot);
             selectedWaypoint = null;
         }
     }
@@ -166,15 +220,8 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         waypoint.marker.setImage(greenDot, false);
         waypoint.marker.anchorPoint = new PointF(16,16);
         waypoint.marker.location = waypoint.location;
-        waypoint.selectedMarker = new DynamicMarker();
-        waypoint.selectedMarker.name = waypoint.UID.toString() + "s";
-        waypoint.selectedMarker.setImage(blueDot, false);
-        waypoint.selectedMarker.anchorPoint = new PointF(16,16);
-        waypoint.selectedMarker.location = waypoint.location;
         mapView.addDynamicMarkerToMap("markers", waypoint.marker);
-        mapView.addDynamicMarkerToMap("markers", waypoint.selectedMarker);
         mapView.showDynamicMarker("markers", waypoint.UID.toString());
-        mapView.hideDynamicMarker("markers", waypoint.UID.toString() + "s");
     }
 
     public void AddWaypoint(String name, Location location)
