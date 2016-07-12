@@ -1,19 +1,17 @@
 package com.mobileaviationtools.flightsimplannerpro;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.PointF;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
 import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
@@ -22,14 +20,9 @@ import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 
-import java.util.ArrayList;
-
-import us.ba3.me.Location;
 import us.ba3.me.Location3D;
-import us.ba3.me.markers.DynamicMarker;
-import us.ba3.me.markers.DynamicMarkerMapInfo;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
 	@Override
 	protected void onDestroy() {
@@ -60,9 +53,7 @@ public class MainActivity extends AppCompatActivity{
 		LinearLayout baseLayout = (LinearLayout)this.findViewById(R.id.baseLayout);
 		baseLayout.addView(mapView);
 
-		mapView.setMultithreaded(true);
-
-
+		//mapView.setMultithreaded(true);
 
 		mapView.AddMappyMap();
 

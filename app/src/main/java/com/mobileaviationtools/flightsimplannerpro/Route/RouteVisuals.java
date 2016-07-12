@@ -18,6 +18,7 @@ import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
 import us.ba3.me.markers.DynamicMarker;
 import us.ba3.me.markers.DynamicMarkerMapInfo;
+import us.ba3.me.markers.MarkerRotationType;
 import us.ba3.me.styles.LineStyle;
 
 /**
@@ -29,8 +30,14 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         dragging = false;
         this.mapView = mapView;
         this.context = context;
-        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
-        greenDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.greendot);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inScaled = false;
+        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot, options);
+        greenDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.greendot, options);
+        crossHair = BitmapFactory.decodeResource(context.getResources(), R.drawable.crosshair, options);
+        this.mapView.addCachedImage("bluedot", blueDot, true);
+        this.mapView.addCachedImage("greendot", greenDot, true);
+        this.mapView.addCachedImage("crosshair", crossHair, true);
         this.markerHit = new MarkerHit(this.mapView, this);
     }
 
@@ -61,6 +68,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     public Waypoint selectedWaypoint;
     public Bitmap blueDot;
     public Bitmap greenDot;
+    public Bitmap crossHair;
 
     private void removeRouteFromMap()
     {
@@ -83,6 +91,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         vectorMapInfo.alpha = 0.75f;
         //vectorMapInfo.vectorMapDelegate = lineSegmentHit;
         mapView.addMapUsingMapInfo(vectorMapInfo);
+        mapView.setTesselationThresholdForMap(lineName, 10);
 
 
     }
@@ -217,11 +226,17 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     {
         waypoint.marker = new DynamicMarker();
         waypoint.marker.name = waypoint.UID.toString();
-        waypoint.marker.setImage(greenDot, false);
-        waypoint.marker.anchorPoint = new PointF(16,16);
         waypoint.marker.location = waypoint.location;
+        waypoint.marker.anchorPoint = new PointF(16,16);
+        //waypoint.marker.rotation = 45;
+        //waypoint.marker.rotationType = MarkerRotationType.kMarkerRotationTrueNorthAligned;
+        //waypoint.marker.setImage(greenDot, false);
+        waypoint.marker.setImage("greendot");
+
+        //waypoint.marker.offset = new PointF(16,16);
+
         mapView.addDynamicMarkerToMap("markers", waypoint.marker);
-        mapView.showDynamicMarker("markers", waypoint.UID.toString());
+        //mapView.showDynamicMarker("markers", waypoint.UID.toString());
     }
 
     public void AddWaypoint(String name, Location location)
@@ -252,8 +267,9 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
 
         DynamicMarker marker = new DynamicMarker();
         marker.name = "test";
-        marker.setImage(BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot), false);
+        marker.setImage(BitmapFactory.decodeResource(context.getResources(), R.drawable.greendot), false);
         marker.anchorPoint = new PointF(16,16);
+        marker.hitTestSize = new PointF(64,64);
         marker.location = l;
 
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
@@ -263,7 +279,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         mapView.addMapUsingMapInfo(mapInfo);
 
         mapView.addDynamicMarkerToMap("markers", marker);
-        mapView.showDynamicMarker("markers", "test");
+        //mapView.showDynamicMarker("markers", "test");
     }
 
 }
