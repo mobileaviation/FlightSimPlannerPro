@@ -1,7 +1,10 @@
 package com.mobileaviationtools.flightsimplannerpro.Airspaces;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
+
+import com.mobileaviationtools.flightsimplannerpro.Helpers;
 
 import java.util.ArrayList;
 
@@ -14,10 +17,12 @@ import us.ba3.me.styles.PolygonStyle;
  * Created by Rob Verhoef on 15-6-2016.
  */
 public class Airspaces extends ArrayList<Airspace>  {
-    public Airspaces()
+    public Airspaces(Context context)
     {
-
+        this.context = context;
     }
+
+    private Context context;
 
     public void Add(Airspace airspace) {
         this.add(airspace);
@@ -56,9 +61,9 @@ public class Airspaces extends ArrayList<Airspace>  {
 
             if (airspace.Category.getVisible()) {
                 polygonStyle.outlineColor = airspace.Category.getOutlineColor();
-                polygonStyle.outlineWidth = airspace.Category.getOutlineWidth();
+                polygonStyle.outlineWidth = Helpers.convertDpToPixel(airspace.Category.getOutlineWidth(), context);
                 polygonStyle.strokeColor = airspace.Category.getStrokeColor();
-                polygonStyle.strokeWidth = airspace.Category.getStrokeWidth();
+                polygonStyle.strokeWidth = Helpers.convertDpToPixel(airspace.Category.getStrokeWidth(), context);
                 polygonStyle.fillColor = airspace.Category.getFillColor();
 
 

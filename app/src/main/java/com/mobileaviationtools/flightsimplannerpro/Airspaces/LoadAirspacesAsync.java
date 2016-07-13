@@ -19,7 +19,7 @@ public class LoadAirspacesAsync extends AsyncTask {
     protected Object doInBackground(Object[] params) {
         AirspacesDB airspacesDB = new AirspacesDB(context);
         airspacesDB.Open(databaseName);
-        Airspaces airspaces = new Airspaces();
+        Airspaces airspaces = new Airspaces(context);
         String country = databaseName.split("_")[0];
         airspaces.readFromDatabase(airspacesDB.GetAirspaces(country));
         airspaces.createAirspacesLayer(mapView, country);

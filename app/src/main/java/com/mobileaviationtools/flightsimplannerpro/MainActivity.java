@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
 import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
@@ -19,6 +21,8 @@ import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
+
+import java.util.ArrayList;
 
 import us.ba3.me.Location3D;
 
@@ -64,19 +68,19 @@ public class MainActivity extends AppCompatActivity {
 		loc.latitude = 52.302;
 		mapView.setLocation3D(loc, 1);
 
-//		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
-//
-//		for (String a: airspacedbFiles)
-//		{
-//			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
-//			loadAirspacesAsync.context = this;
-//			loadAirspacesAsync.databaseName = a;
-//			loadAirspacesAsync.mapView = mapView;
-//			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//		}
+		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
 
-		String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
-		mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
+		for (String a: airspacedbFiles)
+		{
+			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
+			loadAirspacesAsync.context = this;
+			loadAirspacesAsync.databaseName = a;
+			loadAirspacesAsync.mapView = mapView;
+			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		}
+
+		//String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
+		//mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
 
 		routeVisuals = new RouteVisuals(this, mapView);
 		mapView.Init(routeVisuals);
