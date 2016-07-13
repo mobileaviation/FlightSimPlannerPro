@@ -199,57 +199,27 @@ public class Route{
         }
     }
 
-    public void InsertWaypoint(Waypoint waypoint)
+    public Waypoint InsertWaypoint(Waypoint selectedWaypoint)
     {
-        class Point implements Comparable<Point>
-        {
-            public int legIndex;
-            public double distance;
+        Integer i = this.waypoints.indexOf(selectedWaypoint);
 
-            @Override
-            public int compareTo(Point point) {
-                return (int) Math.round(this.distance - point.distance);
-            }
+        if (i > 0) {
+            Waypoint waypoint = new Waypoint();
+            waypoint.location = selectedWaypoint.location;
+            waypoint.name = waypoint.UID.toString();
+
+            waypoints.add(i, waypoint);
+
+            waypoint.order = waypoints.get(i-1).order + ((waypoints.get(i+1).order - waypoints.get(i-1).order) /2);
+            waypoint.flightplan_id = this.id;
+
+            UpdateWaypointsData();
+            UpdateWaypointsDatabase();
+
+            return waypoint;
         }
-
-        ArrayList<Point> points = new ArrayList<Point>();
-
-        int legcount = this.waypoints.size()-1;
-
-        for (int i=0; i<legcount; i++)
-        {
-            Waypoint from = this.waypoints.get(i);
-            Waypoint to = this.waypoints.get(i+1);
-
-            float c1 = from.getAndroidLocation().bearingTo(to.getAndroidLocation());
-            float d1 = from.getAndroidLocation().distanceTo(to.getAndroidLocation());
-            float c2 = from.getAndroidLocation().bearingTo(waypoint.getAndroidLocation());
-            float d2 = from.getAndroidLocation().distanceTo(waypoint.getAndroidLocation());
-            float a1 = c1 - c2;
-            float a2 = 180f - (Math.abs(a1) + 90f);
-            double cosa2 = Math.cos(Math.toRadians(a2));
-            double d3 = cosa2 * d2;
-            Log.i(TAG, "90degree distance from: " + from.name + " -> " + to.name + " = " + Double.toString(d3));
-
-            Point p = new Point();
-            p.distance = d3;
-            p.legIndex = i;
-            points.add(p);
-        }
-
-        Collections.sort(points);
-        Log.i(TAG, "leg closed to track: " + Integer.toString(points.get(0).legIndex) + " with distance: " + Double.toString(points.get(0).distance));
-
-        Waypoint p1 = this.waypoints.get(points.get(0).legIndex);
-        Waypoint p2 = this.waypoints.get(points.get(0).legIndex+1);
-
-        Integer s = Math.abs((p2.order - p1.order) / 2);
-        waypoint.order = p1.order + s;
-
-        waypoints.add(waypoint);
-
-        Collections.sort(waypoints);
-        UpdateWaypointsData();
+        else
+            return null;
     }
 
     public void UpdateWaypointsData()
@@ -352,6 +322,22 @@ public class Route{
         createBuffer();
 
         reloaded = true;
+    }
+
+    public void UpdateWaypointsDatabase()
+    {
+        RouteDataSource routeDataSource = new RouteDataSource(context);
+        routeDataSource.open();
+        routeDataSource.UpdateInsertWaypoints(this.waypoints);
+        routeDataSource.close();
+    }
+
+    public void DeleteWaypointFromDatabase(Waypoint waypoint)
+    {
+        RouteDataSource routeDataSource = new RouteDataSource(context);
+        routeDataSource.open();
+        routeDataSource.deleteWaypoint(waypoint);
+        routeDataSource.close();
     }
 
 }

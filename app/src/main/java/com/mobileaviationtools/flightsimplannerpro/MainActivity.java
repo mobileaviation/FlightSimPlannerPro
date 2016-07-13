@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 		Log.i(TAG, "OnCreate");
 
-		DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
+		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
 
 		AirportDataSource airportDataSource = new AirportDataSource(this);
 		airportDataSource.open(0);

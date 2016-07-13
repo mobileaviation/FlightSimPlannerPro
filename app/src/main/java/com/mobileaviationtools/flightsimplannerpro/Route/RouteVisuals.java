@@ -19,7 +19,6 @@ import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
 import us.ba3.me.markers.DynamicMarker;
 import us.ba3.me.markers.DynamicMarkerMapInfo;
-import us.ba3.me.markers.MarkerRotationType;
 import us.ba3.me.styles.LineStyle;
 
 /**
@@ -37,11 +36,13 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         greenDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.greendot);
         addWaypointBtn = BitmapFactory.decodeResource(context.getResources(), R.drawable.add_waypoint_btn);
         removeWaypointBtn = BitmapFactory.decodeResource(context.getResources(), R.drawable.remove_waypoint_btn);
+
         this.mapView.addCachedImage("bluedot", blueDot, true);
         this.mapView.addCachedImage("greendot", greenDot, true);
         this.mapView.addCachedImage("addwaypoint", addWaypointBtn, true);
         this.mapView.addCachedImage("removewaypoint", removeWaypointBtn, true);
-        this.markerHit = new MarkerHit(this.mapView, this);
+        this.routePointHit = new RoutePointHit(this.mapView, this);
+        this.editWaypointBtnHit = new EditWaypointBtnHit(this.mapView, this);
     }
 
     public void setRoute(Route route)
@@ -67,7 +68,8 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     private MapView mapView;
     private Context context;
     private Route route;
-    private MarkerHit markerHit;
+    private RoutePointHit routePointHit;
+    private EditWaypointBtnHit editWaypointBtnHit;
     public Waypoint selectedWaypoint;
     public Bitmap blueDot;
     public Bitmap greenDot;
@@ -79,16 +81,24 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     {
         mapView.removeMap("markers", true);
         mapView.removeMap("lines", true);
+        mapView.removeMap("buttons", true);
     }
 
     private void setMarkerAndLinesMaps(String markerName, String lineName, Boolean setMarkerHit)
     {
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
         mapInfo.name = markerName;
-        mapInfo.zOrder = 101;
+        mapInfo.zOrder = 110;
         mapInfo.hitTestingEnabled = setMarkerHit;
-        if (setMarkerHit) mapInfo.delegate = markerHit;
+        if (setMarkerHit) mapInfo.delegate = routePointHit;
         mapView.addMapUsingMapInfo(mapInfo);
+
+        DynamicMarkerMapInfo buttonsMapInfo = new DynamicMarkerMapInfo();
+        buttonsMapInfo.name = "buttons";
+        buttonsMapInfo.zOrder = 120;
+        buttonsMapInfo.hitTestingEnabled = setMarkerHit;
+        if (setMarkerHit) buttonsMapInfo.delegate = editWaypointBtnHit;
+        mapView.addMapUsingMapInfo(buttonsMapInfo);
 
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
         vectorMapInfo.name = lineName;
@@ -97,7 +107,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         //vectorMapInfo.vectorMapDelegate = lineSegmentHit;
         mapView.addMapUsingMapInfo(vectorMapInfo);
 
-
+        addWaypointEditBtns();
     }
 
     private void drawRouteOnMap()
@@ -125,29 +135,24 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     }
 
     public void SelectWaypoint(String selectedId) {
-        if (!(selectedId.equals("addWaypointBtn") ||
-                selectedId.equals("removeWaypointBtn"))) {
-            Integer s = Integer.parseInt(selectedId);
+        Integer s = Integer.parseInt(selectedId);
 
-            Toast toast = Toast.makeText(context, "Waypoint Selected!!", Toast.LENGTH_SHORT);
-            toast.show();
+        Toast toast = Toast.makeText(context, "Waypoint Selected!!", Toast.LENGTH_SHORT);
+        toast.show();
 
-            Waypoint w = this.get(s);
-            if (w != null) {
-                Log.i(TAG, "Waypoint selected: " + selectedId);
-                resetSelectedWaypointMarker();
-                setSelectedwaypointMarker(w);
-            }
-        }
-        else
-        {
-            Log.i(TAG, "Add/Remove Waypoint Btn Clicked!");
+        Waypoint w = this.get(s);
+        if (w != null) {
+            Log.i(TAG, "Waypoint selected: " + selectedId);
+            resetSelectedWaypointMarker();
+            setSelectedwaypointMarker(w);
         }
     }
 
     public void UnSelectWaypoint()
     {
         if (dragging) {
+            route.UpdateWaypointsData();
+            route.UpdateWaypointsDatabase();
             dragging = false;
             resetSelectedWaypointMarker();
             mapView.removeMap("draglines", true);
@@ -188,7 +193,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         mapView.removeMap("draglines", false);
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
         vectorMapInfo.name = "draglines";
-        vectorMapInfo.zOrder = 100;
+        vectorMapInfo.zOrder = 101;
         vectorMapInfo.alpha = 0.75f;
         mapView.addMapUsingMapInfo(vectorMapInfo);
 
@@ -222,7 +227,15 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         mapView.setDynamicMarkerImage("markers", newSelectedwaypoint.UID.toString(), blueDot);
         selectedWaypoint = newSelectedwaypoint;
 
-        addWaypointEditBtns();
+        setWaypointEditBtns(selectedWaypoint.location);
+    }
+
+    private void setWaypointEditBtns(Location location)
+    {
+        mapView.setDynamicMarkerLocation("buttons", "addWaypointBtn", location, 0);
+        mapView.setDynamicMarkerLocation("buttons", "removeWaypointBtn", location, 0);
+        mapView.showDynamicMarker("buttons", "addWaypointBtn");
+        mapView.showDynamicMarker("buttons", "removeWaypointBtn");
     }
 
     private void addWaypointEditBtns()
@@ -230,16 +243,20 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         DynamicMarker addWaypointMarker = new DynamicMarker();
         addWaypointMarker.setImage("addwaypoint");
         addWaypointMarker.name = "addWaypointBtn";
-        addWaypointMarker.anchorPoint = new PointF(-25, 50);
-        addWaypointMarker.location = selectedWaypoint.location;
-        mapView.addDynamicMarkerToMap("markers",  addWaypointMarker);
+        addWaypointMarker.anchorPoint = new PointF(Helpers.convertDpToPixel(-25, context),
+                Helpers.convertDpToPixel(60, context));
+        addWaypointMarker.location = new Location(1, 1);
+        mapView.addDynamicMarkerToMap("buttons",  addWaypointMarker);
+        mapView.hideDynamicMarker("buttons", "addWaypointBtn");
 
         DynamicMarker removeWaypointMarker = new DynamicMarker();
         removeWaypointMarker.setImage("removewaypoint");
         removeWaypointMarker.name = "removeWaypointBtn";
-        removeWaypointMarker.anchorPoint = new PointF(-25, -50);
-        removeWaypointMarker.location = selectedWaypoint.location;
-        mapView.addDynamicMarkerToMap("markers",  removeWaypointMarker);
+        removeWaypointMarker.anchorPoint = new PointF(Helpers.convertDpToPixel(-25, context),
+                Helpers.convertDpToPixel(-10, context));
+        removeWaypointMarker.location = new Location(1, 1);
+        mapView.addDynamicMarkerToMap("buttons",  removeWaypointMarker);
+        mapView.hideDynamicMarker("buttons", "removeWaypointBtn");
     }
 
     private void resetSelectedWaypointMarker()
@@ -247,8 +264,8 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         if (selectedWaypoint != null)
         {
             mapView.setDynamicMarkerImage("markers", selectedWaypoint.UID.toString(), greenDot);
-            mapView.removeDynamicMarkerFromMap("markers", "addWaypointBtn");
-            mapView.removeDynamicMarkerFromMap("markers", "removeWaypointBtn");
+            mapView.hideDynamicMarker("buttons", "addWaypointBtn");
+            mapView.hideDynamicMarker("buttons", "removeWaypointBtn");
             
             selectedWaypoint = null;
         }
@@ -273,24 +290,74 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         //mapView.showDynamicMarker("markers", waypoint.UID.toString());
     }
 
-    public void AddWaypoint(String name, Location location)
+//    public void AddWaypoint(String name, Location location)
+//    {
+//        Log.i("Route", "Adding waypoint: " + name);
+//
+//        Toast toast = Toast.makeText(context, "Waypoint Added!!", Toast.LENGTH_SHORT);
+//        toast.show();
+//
+//        Waypoint waypoint = new Waypoint();
+//        waypoint.location = location;
+//        waypoint.name = name;
+//
+//        route.InsertWaypoint(waypoint);
+//        this.put(waypoint.UID, waypoint);
+//
+//        selectedWaypoint = waypoint;
+//        // redraw route on map
+//        removeRouteFromMap();
+//        drawRouteOnMap();
+//    }
+
+    public void removeWaypoint()
     {
-        Log.i("Route", "Adding waypoint: " + name);
+        if (selectedWaypoint != null)
+        {
+            route.DeleteWaypointFromDatabase(selectedWaypoint);
 
-        Toast toast = Toast.makeText(context, "Waypoint Added!!", Toast.LENGTH_SHORT);
-        toast.show();
+            route.waypoints.remove(selectedWaypoint);
+            mapView.removeDynamicMarkerFromMap("markers", selectedWaypoint.UID.toString());
 
-        Waypoint waypoint = new Waypoint();
-        waypoint.location = location;
-        waypoint.name = name;
+            selectedWaypoint = null;
 
-        route.InsertWaypoint(waypoint);
-        this.put(waypoint.UID, waypoint);
+            route.UpdateWaypointsData();
 
-        selectedWaypoint = waypoint;
-        // redraw route on map
-        removeRouteFromMap();
-        drawRouteOnMap();
+            removeRouteFromMap();
+            drawRouteOnMap();
+
+            mapView.hideDynamicMarker("buttons", "addWaypointBtn");
+            mapView.hideDynamicMarker("buttons", "removeWaypointBtn");
+
+        }
+    }
+
+    public void insertWaypoint()
+    {
+        if (selectedWaypoint != null)
+        {
+            Waypoint waypoint = route.InsertWaypoint(selectedWaypoint);
+
+            if (waypoint != null) {
+                this.put(waypoint.UID, waypoint);
+
+                selectedWaypoint = waypoint;
+                removeRouteFromMap();
+                drawRouteOnMap();
+
+                mapView.hideDynamicMarker("buttons", "addWaypointBtn");
+                mapView.hideDynamicMarker("buttons", "removeWaypointBtn");
+
+                mapView.setDynamicMarkerImage("markers", selectedWaypoint.UID.toString(), blueDot);
+            }
+            else
+            {
+                UnSelectWaypoint();
+                Toast toast = Toast.makeText(context, "Cannot add waypoint before departure airport!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+        }
     }
 
 }

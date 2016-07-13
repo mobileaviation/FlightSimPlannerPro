@@ -124,23 +124,23 @@ public class MyMapView extends MapView {
             }
         }
 
-        super.getLocationForPoint(new PointF(event.getX(), event.getY()), new ConvertPointCallback(){
-            @Override
-            public void convertComplete(Location loc) {
-                //Log.w("onLongPress", "lon:" + loc.longitude + " lat:" + loc.latitude);
-
-                if (placingRoutePoint) {
-                    String name = loc.longitude + "," + loc.latitude;
-                    routeVisuals.AddWaypoint(name, loc);
-
-                    //placingRoutePoint = false;
-                    movingRoutePoint = true;
-                    // insert the new point
-
-                }
-
-
-            }});
+//        super.getLocationForPoint(new PointF(event.getX(), event.getY()), new ConvertPointCallback(){
+//            @Override
+//            public void convertComplete(Location loc) {
+//                //Log.w("onLongPress", "lon:" + loc.longitude + " lat:" + loc.latitude);
+//
+//                if (placingRoutePoint) {
+//                    String name = loc.longitude + "," + loc.latitude;
+//                    routeVisuals.AddWaypoint(name, loc);
+//
+//                    //placingRoutePoint = false;
+//                    movingRoutePoint = true;
+//                    // insert the new point
+//
+//                }
+//
+//
+//            }});
 
         super.onLongPress(event);
     }
