@@ -136,11 +136,17 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
 
     public void SelectWaypoint(String selectedId) {
         Integer s = Integer.parseInt(selectedId);
-
-        Toast toast = Toast.makeText(context, "Waypoint Selected!!", Toast.LENGTH_SHORT);
-        toast.show();
-
         Waypoint w = this.get(s);
+
+        if (selectedWaypoint != null)
+        {
+            if (selectedWaypoint.UID == w.UID)
+            {
+                resetSelectedWaypointMarker();
+                return;
+            }
+        }
+
         if (w != null) {
             Log.i(TAG, "Waypoint selected: " + selectedId);
             resetSelectedWaypointMarker();
@@ -156,24 +162,6 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
             dragging = false;
             resetSelectedWaypointMarker();
             mapView.removeMap("draglines", true);
-            removeRouteFromMap();
-            drawRouteOnMap();
-        }
-    }
-
-    public void dragSelectedWaypoint1(Location newLocation)
-    {
-        if (selectedWaypoint != null)
-        {
-            //mapView.removeMap(name + "lines", true);
-            mapView.removeDynamicMarkerFromMap("markers", selectedWaypoint.UID.toString());
-
-            selectedWaypoint.location = newLocation;
-            selectedWaypoint.name = newLocation.longitude + "," + newLocation.latitude;
-
-            addMarker(selectedWaypoint);
-            setSelectedwaypointMarker(selectedWaypoint);
-
             removeRouteFromMap();
             drawRouteOnMap();
         }

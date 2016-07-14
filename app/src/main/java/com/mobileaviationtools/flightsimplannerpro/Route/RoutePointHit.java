@@ -32,8 +32,8 @@ public class RoutePointHit implements DynamicMarkerMapDelegate {
                         " markerPoint:" + markerPoint.x + "," + markerPoint.y +
                         " location:" + location.longitude + "," + location.latitude);
 
-                if (!markerName.contains("s"))
-                    route.SelectWaypoint(markerName);
+
+                route.SelectWaypoint(markerName);
 
             }
         });

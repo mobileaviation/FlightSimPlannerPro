@@ -4,13 +4,19 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
@@ -42,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
         //Get the map view and add a map.
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT
 		));
-		LinearLayout baseLayout = (LinearLayout)this.findViewById(R.id.baseLayout);
+		LinearLayout baseLayout = (LinearLayout)this.findViewById(R.id.mapLayout);
 		baseLayout.addView(mapView);
 
 		//mapView.setMultithreaded(true);
@@ -90,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
 		Log.i(TAG, "OnCreate");
 
+		setupButtons();
+
 		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
 
 		AirportDataSource airportDataSource = new AirportDataSource(this);
@@ -107,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
 		routeDataSource.open();
 		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
 		routeDataSource.close();
+
+
 
     }
 
@@ -129,7 +141,45 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		return false;
+	}
+
+	private void setupButtons()
+	{
+		Button activateRouteBtn = (Button)this.findViewById(R.id.activateRouteBtn);
+		Button addNewRouteBtn = (Button)this.findViewById(R.id.addNewRouteBtn);
+		Button connectBtn = (Button)this.findViewById(R.id.connectBtn);
+
+		activateRouteBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showActivateRouteActivity();
+			}
+		});
+
+		addNewRouteBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
+
+		connectBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+				boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+				if (!enabled)
+				{
+					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					startActivity(intent);
+				}
+				else
+				{
+
+				}
+			}
+		});
 	}
 
 	@Override
