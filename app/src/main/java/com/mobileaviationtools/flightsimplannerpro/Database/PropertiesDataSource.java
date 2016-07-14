@@ -9,6 +9,7 @@ import android.util.Log;
 import com.mobileaviationtools.flightsimplannerpro.Airports.Airport;
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportType;
 import com.mobileaviationtools.flightsimplannerpro.Airports.Runway;
+import com.mobileaviationtools.flightsimplannerpro.ConnectionType;
 import com.mobileaviationtools.flightsimplannerpro.Property;
 
 import java.io.IOException;
@@ -114,16 +115,16 @@ public class PropertiesDataSource {
     private Property initAirport;
     public Runway InitRunway;
     private Property connectionType;
-//    public NavigationActivity.ConnectionType getConnectionType()
-//    { return (connectionType.value2.equals("sim")) ? NavigationActivity.ConnectionType.sim
-//            : NavigationActivity.ConnectionType.gps; }
-//    public void updateConnectionType(NavigationActivity.ConnectionType type)
-//    {
-//        if (type == NavigationActivity.ConnectionType.gps)
-//            connectionType.value2 = "gps";
-//        else connectionType.value2 = "sim";
-//        updateProperty(connectionType);
-//    }
+    public ConnectionType getConnectionType()
+    { return (connectionType.value2.equals("sim")) ? ConnectionType.sim
+            : ConnectionType.gps; }
+    public void updateConnectionType(ConnectionType type)
+    {
+        if (type == ConnectionType.gps)
+            connectionType.value2 = "gps";
+        else connectionType.value2 = "sim";
+        updateProperty(connectionType);
+    }
     private Property instrumentsVisible;
     public Boolean getInstrumentsVisible()
     { return (instrumentsVisible.value2.equals("1")); }

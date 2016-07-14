@@ -5,11 +5,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -18,7 +24,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
@@ -27,12 +39,14 @@ import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
+import com.mobileaviationtools.flightsimplannerpro.Track.LocationTracking;
 
 import java.util.ArrayList;
 
 import us.ba3.me.Location3D;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener,
+		GoogleApiClient.ConnectionCallbacks{
 
 	@Override
 	protected void onDestroy() {
@@ -44,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
 	private Route route;
 	private String TAG = "MainActivity";
 	private MyMapView mapView;
+	LocationManager service;
+	String locationProvider;
+	PropertiesDataSource properties;
+	private LocationTracking locationTracking;
+	private Boolean locationConnected;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         //Get the map view and add a map.
 		//final MapView mapView = (MapView)this.findViewById(R.id.mapView1);
         //final MyMapView mapView
+		locationConnected = false;
 
 		mapView = new MyMapView(this);
 		mapView.Init(null);
@@ -107,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
 		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
 		airportDataSource.close();
 
-		PropertiesDataSource propertiesDataSource = new PropertiesDataSource(this);
-		propertiesDataSource.open(true);
-		propertiesDataSource.FillProperties();
-		Log.i(TAG, "Default Airport: " + propertiesDataSource.InitAirport.name);
-		propertiesDataSource.close(true);
+		properties = new PropertiesDataSource(this);
+		properties.open(true);
+		properties.FillProperties();
+		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
+		properties.close(true);
 
 		RouteDataSource routeDataSource = new RouteDataSource(this);
 		routeDataSource.open();
@@ -167,20 +187,49 @@ public class MainActivity extends AppCompatActivity {
 		connectBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-				boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
-				if (!enabled)
-				{
-					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-					startActivity(intent);
+				if (!locationConnected) {
+					if (properties.getConnectionType() == ConnectionType.gps) {
+						service = (LocationManager) getSystemService(LOCATION_SERVICE);
+						boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+						if (!enabled) {
+							Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+							startActivity(intent);
+						} else {
+							Criteria criteria = new Criteria();
+							locationProvider = service.getBestProvider(criteria, false);
+							Location location = service.getLastKnownLocation(locationProvider);
+							service.requestLocationUpdates(locationProvider, 400, 1, MainActivity.this);
+							if (location != null) {
+								onLocationChanged(location);
+							}
+						}
+					}
 				}
 				else
 				{
-
+					locationConnected = false;
+					setConnectionBtnImage(locationConnected);
 				}
 			}
 		});
 	}
+
+//	private com.google.android.gms.location.LocationClient mLocationClient;
+//	private void connectToGps() {
+//		if(servicesConnected())
+//		{
+//			if (mLocationClient == null)
+//			{
+//				mLocationClient = new LocationClient(
+//						this, this, this
+//				);
+//
+//
+//			}
+//
+//			mLocationClient.connect();
+//		}
+//	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -244,5 +293,115 @@ public class MainActivity extends AppCompatActivity {
 		Intent activateRouteIntent = new Intent(MainActivity.this, RouteActivateActivity.class);
 		activateRouteIntent.putExtra("key", 1);
 		MainActivity.this.startActivityForResult(activateRouteIntent, 300);
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		Log.i(TAG, "new location: " + location.getLongitude() + " : " + location.getLatitude());
+	}
+
+	private void setLocation(Location location)
+	{
+		setTrackPoints(location);
+		setPlaneMarker(location);
+		SetInfoPanel(location);
+	}
+
+	private void SetInfoPanel(Location location) {
+	}
+
+	private void setPlaneMarker(Location location) {
+//		LatLng planePosition = new LatLng(position.getLatitude(), position.getLongitude());
+//		if (trackingEnabled)
+//			map.moveCamera(CameraUpdateFactory.newLatLng(planePosition));
+//
+//		plane.setPosition(planePosition);
+//		plane.setRotation(position.getBearing());
+//		plane.UpdateDirectionLine();
+	}
+
+	private LatLng oldPoint;
+	private float pointDistance = 0;
+	private float setTrackPoints(Location newPoint)
+	{
+		float b = newPoint.getBearing();
+		if (oldPoint != null)
+		{
+			Location loc = new Location("loc old");
+			loc.setLatitude(oldPoint.latitude);
+			loc.setLongitude(oldPoint.longitude);
+
+			Location locnew = new Location("loc new");
+			locnew.setLatitude(newPoint.getLatitude());
+			locnew.setLongitude(newPoint.getLongitude());
+
+			float v = loc.distanceTo(locnew);
+
+			if (v>100)
+			{
+				b = loc.bearingTo(locnew);
+
+				oldPoint = new LatLng(newPoint.getLatitude(), newPoint.getLongitude());
+				//map.addPolyline(trackOptions);
+
+				if (locationTracking != null)
+					locationTracking.SetLocationPoint(newPoint);
+			}
+
+			if (locationTracking != null)
+			    locationTracking.SetLocationPoint(newPoint);
+		}
+		else
+		{
+			oldPoint = new LatLng(newPoint.getLatitude(), newPoint.getLongitude());
+		}
+
+		return b;
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+
+	}
+
+	private void setConnectionBtnImage(Boolean connected)
+	{
+		Button connectBtn = (Button)this.findViewById(R.id.connectBtn);
+		if (connected)
+		{
+			connectBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.connected, null));
+		}
+		else
+		{
+			connectBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.disconnected, null));
+		}
+	}
+
+	@Override
+	public void onConnected(@Nullable Bundle bundle) {
+		Toast gpsConnected = Toast.makeText(this, "GPS Enabled!", Toast.LENGTH_SHORT);
+		gpsConnected.show();
+		locationTracking = new LocationTracking(route, getBaseContext());
+		locationConnected = true;
+		setConnectionBtnImage(locationConnected);
+	}
+
+
+	@Override
+	public void onConnectionSuspended(int i) {
+		Toast gpsDisconnected = Toast.makeText(this, "GPS Disabled!", Toast.LENGTH_SHORT);
+		gpsDisconnected.show();
+		locationConnected = false;
+		setConnectionBtnImage(locationConnected);
 	}
 }
