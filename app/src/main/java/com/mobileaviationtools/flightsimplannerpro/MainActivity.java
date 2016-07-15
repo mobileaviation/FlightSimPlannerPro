@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -36,6 +37,8 @@ import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
 import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
+import com.mobileaviationtools.flightsimplannerpro.LocationService.NativeLocation;
+import com.mobileaviationtools.flightsimplannerpro.LocationService.PlaneMarker;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
@@ -45,8 +48,7 @@ import java.util.ArrayList;
 
 import us.ba3.me.Location3D;
 
-public class MainActivity extends AppCompatActivity implements LocationListener,
-		GoogleApiClient.ConnectionCallbacks{
+public class MainActivity extends AppCompatActivity {
 
 	@Override
 	protected void onDestroy() {
@@ -58,11 +60,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 	private Route route;
 	private String TAG = "MainActivity";
 	private MyMapView mapView;
-	LocationManager service;
-	String locationProvider;
 	PropertiesDataSource properties;
+	private NativeLocation nativeLocation;
 	private LocationTracking locationTracking;
-	private Boolean locationConnected;
+	private PlaneMarker planeMarker;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +71,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
-
-        //Get the map view and add a map.
-		//final MapView mapView = (MapView)this.findViewById(R.id.mapView1);
-        //final MyMapView mapView
-		locationConnected = false;
 
 		mapView = new MyMapView(this);
 		mapView.Init(null);
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 		LinearLayout baseLayout = (LinearLayout)this.findViewById(R.id.mapLayout);
 		baseLayout.addView(mapView);
 
-		//mapView.setMultithreaded(true);
+		mapView.setMultithreaded(true);
 
 		mapView.AddMappyMap();
 
@@ -117,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 		mapView.setMinimumZoom(20000);
 
 		Log.i(TAG, "OnCreate");
+
+		nativeLocation = new NativeLocation(this);
+		setupLocationListener();
 
 		setupButtons();
 
@@ -187,49 +186,35 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 		connectBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (!locationConnected) {
-					if (properties.getConnectionType() == ConnectionType.gps) {
-						service = (LocationManager) getSystemService(LOCATION_SERVICE);
-						boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
-						if (!enabled) {
-							Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-							startActivity(intent);
-						} else {
-							Criteria criteria = new Criteria();
-							locationProvider = service.getBestProvider(criteria, false);
-							Location location = service.getLastKnownLocation(locationProvider);
-							service.requestLocationUpdates(locationProvider, 400, 1, MainActivity.this);
-							if (location != null) {
-								onLocationChanged(location);
-							}
-						}
-					}
-				}
-				else
-				{
-					locationConnected = false;
-					setConnectionBtnImage(locationConnected);
-				}
+				if (nativeLocation.connected) nativeLocation.disconnect();
+				else nativeLocation.connect();
 			}
 		});
 	}
 
-//	private com.google.android.gms.location.LocationClient mLocationClient;
-//	private void connectToGps() {
-//		if(servicesConnected())
-//		{
-//			if (mLocationClient == null)
-//			{
-//				mLocationClient = new LocationClient(
-//						this, this, this
-//				);
-//
-//
-//			}
-//
-//			mLocationClient.connect();
-//		}
-//	}
+	private void setupLocationListener()
+	{
+		nativeLocation.setOnConnectionChanged(new NativeLocation.OnConnectionChanged() {
+			@Override
+			public void Connected() {
+				locationTracking = new LocationTracking(route, MainActivity.this, mapView);
+				if (planeMarker == null) planeMarker = new PlaneMarker(MainActivity.this, mapView);
+				setConnectionBtnImage(true);
+			}
+
+			@Override
+			public void Disconnected() {
+				setConnectionBtnImage(false);
+			}
+		});
+
+		nativeLocation.setOnLocationChangedListener(new LocationSource.OnLocationChangedListener() {
+			@Override
+			public void onLocationChanged(Location location) {
+				setLocation(location);
+			}
+		});
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -257,7 +242,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
 			if (requestCode == 300)
 			{
-				//LoadFlightplan(id);
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -274,8 +258,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 				AlertDialog closePlanDialog = builder.create();
 				closePlanDialog.show();
 
-
-				//routeVisuals.markerTestje();
 			}
 		}
 	}
@@ -295,84 +277,29 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 		MainActivity.this.startActivityForResult(activateRouteIntent, 300);
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
-		Log.i(TAG, "new location: " + location.getLongitude() + " : " + location.getLatitude());
-	}
 
 	private void setLocation(Location location)
 	{
-		setTrackPoints(location);
-		setPlaneMarker(location);
-		SetInfoPanel(location);
+		Log.i(TAG, "Setting new location");
+		if (locationTracking != null) {
+			float b = locationTracking.setTrackPoints(location);
+			setPlaneMarker(location, b);
+			SetInfoPanel(location);
+		}
 	}
 
 	private void SetInfoPanel(Location location) {
 	}
 
-	private void setPlaneMarker(Location location) {
-//		LatLng planePosition = new LatLng(position.getLatitude(), position.getLongitude());
-//		if (trackingEnabled)
-//			map.moveCamera(CameraUpdateFactory.newLatLng(planePosition));
-//
-//		plane.setPosition(planePosition);
-//		plane.setRotation(position.getBearing());
-//		plane.UpdateDirectionLine();
+	private void setPlaneMarker(Location location, float bearing) {
+		us.ba3.me.Location l = new us.ba3.me.Location(
+				location.getLatitude(), location.getLongitude());
+		planeMarker.setLocation(l, (double) bearing);
 	}
 
-	private LatLng oldPoint;
-	private float pointDistance = 0;
-	private float setTrackPoints(Location newPoint)
-	{
-		float b = newPoint.getBearing();
-		if (oldPoint != null)
-		{
-			Location loc = new Location("loc old");
-			loc.setLatitude(oldPoint.latitude);
-			loc.setLongitude(oldPoint.longitude);
 
-			Location locnew = new Location("loc new");
-			locnew.setLatitude(newPoint.getLatitude());
-			locnew.setLongitude(newPoint.getLongitude());
 
-			float v = loc.distanceTo(locnew);
 
-			if (v>100)
-			{
-				b = loc.bearingTo(locnew);
-
-				oldPoint = new LatLng(newPoint.getLatitude(), newPoint.getLongitude());
-				//map.addPolyline(trackOptions);
-
-				if (locationTracking != null)
-					locationTracking.SetLocationPoint(newPoint);
-			}
-
-			if (locationTracking != null)
-			    locationTracking.SetLocationPoint(newPoint);
-		}
-		else
-		{
-			oldPoint = new LatLng(newPoint.getLatitude(), newPoint.getLongitude());
-		}
-
-		return b;
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-
-	}
 
 	private void setConnectionBtnImage(Boolean connected)
 	{
@@ -387,21 +314,5 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 		}
 	}
 
-	@Override
-	public void onConnected(@Nullable Bundle bundle) {
-		Toast gpsConnected = Toast.makeText(this, "GPS Enabled!", Toast.LENGTH_SHORT);
-		gpsConnected.show();
-		locationTracking = new LocationTracking(route, getBaseContext());
-		locationConnected = true;
-		setConnectionBtnImage(locationConnected);
-	}
 
-
-	@Override
-	public void onConnectionSuspended(int i) {
-		Toast gpsDisconnected = Toast.makeText(this, "GPS Disabled!", Toast.LENGTH_SHORT);
-		gpsDisconnected.show();
-		locationConnected = false;
-		setConnectionBtnImage(locationConnected);
-	}
 }

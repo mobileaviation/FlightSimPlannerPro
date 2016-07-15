@@ -9,7 +9,7 @@ import android.util.Log;
 import com.mobileaviationtools.flightsimplannerpro.Airports.Airport;
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportType;
 import com.mobileaviationtools.flightsimplannerpro.Airports.Runway;
-import com.mobileaviationtools.flightsimplannerpro.ConnectionType;
+import com.mobileaviationtools.flightsimplannerpro.LocationService.ConnectionType;
 import com.mobileaviationtools.flightsimplannerpro.Property;
 
 import java.io.IOException;
