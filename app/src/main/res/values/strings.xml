@@ -7,4 +7,7 @@
     <string name="action_flightplan">Create a new Route</string>
     <string name="action_flightplan_activate">Activate a Route</string>
     <string name="action_loadtrack">Load previous track.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

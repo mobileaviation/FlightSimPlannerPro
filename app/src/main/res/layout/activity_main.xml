@@ -43,10 +43,18 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:baselineAligned="false"
                 android:layout_weight="80"
-                android:background="#c84b4b4b">
+                android:background="#004b4b4b"
+                android:id="@+id/infoPanelLayout">
+
+                <fragment
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/infoPanelFragment"
+                    android:name="com.mobileaviationtools.flightsimplannerpro.Info.InfoPanelFragment"
+                    tools:layout="@layout/fragment_info_panel" />
 
             </LinearLayout>
 

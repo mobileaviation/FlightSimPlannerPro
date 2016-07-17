@@ -69,6 +69,7 @@ public class NativeLocation implements
         Log.i(TAG, "Connected to GPS at: " + currectLocation.getLongitude() + " : " + currectLocation.getLatitude());
         connected = true;
         if (onConnectionChanged != null) onConnectionChanged.Connected();
+        LocationServices.FusedLocationApi.requestLocationUpdates(client, locationRequest, this);
         this.onLocationChanged(currectLocation);
     }
 
