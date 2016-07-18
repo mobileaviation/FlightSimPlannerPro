@@ -62,95 +62,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c77edf5-6fa0-4e8f-8a0f-653732888245" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_contextmanager_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_maps_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_plus_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_9_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Info/InfoPanelFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/infopanelborder.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_flight_plan_activate.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/route_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_flight_plan_activate.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/route_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/android_android_23.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_9_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_plus_9_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_9_0_0.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_common_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_common_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_module_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_module_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_config_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_config_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_crash_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_crash_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_iid_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_iid_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_drive_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_drive_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_games_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_games_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_iid_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_identity_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_iid_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_identity_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gass_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_places_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_9_2_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_9_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_9_2_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_android_23.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MapOverlay/PDF.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_4_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_common_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_common_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_module_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_module_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_config_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_config_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_9_2_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_23_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_23_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_drive_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_drive_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_identity_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_identity_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_iid_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_iid_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_maps_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_places_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_places_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_9_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_9_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_9_2_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_4_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_4_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_4_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/LocationService/NativeLocation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/LocationService/NativeLocation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_flight_plan_activate.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_flight_plan_activate.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/route_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/route_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="FlightSimPlannerPro.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -182,10 +141,57 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="296" column="50" selection-start-line="296" selection-start-column="50" selection-end-line="296" selection-end-column="50" />
+              <caret line="96" column="20" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#9263#9264#0" expanded="true" />
                 <element signature="e#9301#9302#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PDF.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MapOverlay/PDF.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyMapView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MyMapView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="216" column="49" selection-start-line="216" selection-start-column="37" selection-end-line="216" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChartBundleTileProvider.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/TileWorkers/ChartBundleTileProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WmsTileWorker.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/TileWorkers/WmsTileWorker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.287594">
+              <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+              <folding>
+                <element signature="method#WmsTileWorker#0;class#WmsTileWorker#0" expanded="false" />
+                <element signature="method#checkDirectory#0;class#WmsTileWorker#0" expanded="false" />
+                <element signature="method#checkCache#0;class#WmsTileWorker#0" expanded="false" />
+                <element signature="method#getBitmapFromURL#0;class#WmsTileWorker#0" expanded="false" />
+                <element signature="method#setTransparentColor#0;class#WmsTileWorker#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -193,48 +199,25 @@
       </file>
       <file leaf-file-name="fragment_info_panel.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
               <folding />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_info_panel.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml">
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_main.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="infopanelborder.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/infopanelborder.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="57" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -252,37 +235,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlaneMarker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/LocationService/PlaneMarker.java">
-          <provider selected="true" editor-type-id="text-editor">
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_main.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NativeLocation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/LocationService/NativeLocation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1716#1717#0" expanded="true" />
-                <element signature="e#1748#1749#0" expanded="true" />
-              </folding>
-            </state>
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_main.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocationTracking.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Track/LocationTracking.java">
-          <provider selected="true" editor-type-id="text-editor">
+          <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+              <caret line="56" column="65" selection-start-line="56" selection-start-column="65" selection-end-line="56" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -295,8 +268,8 @@
       <list>
         <option value="Enum" />
         <option value="layoutResourceFile_vertical" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -2211,7 +2184,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4401644399623" />
+        <entry key="$PROJECT_DIR$" value="4401992798873" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2393,61 +2366,61 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/abego/treelayout/org.abego.treelayout.core/1.0.1/org.abego.treelayout.core-1.0.1.jar" />
-                            <option value="C:/android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.4.0/appcompat-v7-23.4.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services/9.2.0/play-services-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/android/m2repository/com/android/support/support-v4/23.4.0/support-v4-23.4.0.aar" />
-                            <option value="C:/android/sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/23.4.0/animated-vector-drawable-23.4.0.aar" />
-                            <option value="C:/android/sdk/extras/android/m2repository/com/android/support/support-vector-drawable/23.4.0/support-vector-drawable-23.4.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-ads/9.2.0/play-services-ads-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-ads-lite/9.2.0/play-services-ads-lite-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-analytics/9.2.0/play-services-analytics-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-analytics-impl/9.2.0/play-services-analytics-impl-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-appinvite/9.2.0/play-services-appinvite-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-auth/9.2.0/play-services-auth-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-auth-base/9.2.0/play-services-auth-base-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-base/9.2.0/play-services-base-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-cast-framework/9.2.0/play-services-cast-framework-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-cast/9.2.0/play-services-cast-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-clearcut/9.2.0/play-services-clearcut-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-basement/9.2.0/play-services-basement-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-config/9.2.0/firebase-config-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-contextmanager/9.2.0/play-services-contextmanager-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-crash/9.2.0/firebase-crash-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-drive/9.2.0/play-services-drive-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-auth/9.2.0/firebase-auth-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-auth-common/9.2.0/firebase-auth-common-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-auth-module/9.2.0/firebase-auth-module-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-database-connection/9.2.0/firebase-database-connection-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-database/9.2.0/firebase-database-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-iid/9.2.0/firebase-iid-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-messaging/9.2.0/firebase-messaging-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-storage/9.2.0/firebase-storage-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-storage-common/9.2.0/firebase-storage-common-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-common/9.2.0/firebase-common-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-fitness/9.2.0/play-services-fitness-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-games/9.2.0/play-services-games-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-gass/9.2.0/play-services-gass-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-gcm/9.2.0/play-services-gcm-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-appindexing/9.2.0/play-services-appindexing-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-identity/9.2.0/play-services-identity-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-iid/9.2.0/play-services-iid-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-location/9.2.0/play-services-location-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-maps/9.2.0/play-services-maps-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-analytics/9.2.0/firebase-analytics-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/firebase/firebase-analytics-impl/9.2.0/firebase-analytics-impl-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-nearby/9.2.0/play-services-nearby-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-panorama/9.2.0/play-services-panorama-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-places/9.2.0/play-services-places-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-plus/9.2.0/play-services-plus-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-safetynet/9.2.0/play-services-safetynet-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-tagmanager-api/9.2.0/play-services-tagmanager-api-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-tagmanager/9.2.0/play-services-tagmanager-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-tasks/9.2.0/play-services-tasks-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-vision/9.2.0/play-services-vision-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-wallet/9.2.0/play-services-wallet-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/google/m2repository/com/google/android/gms/play-services-wearable/9.2.0/play-services-wearable-9.2.0.aar" />
-                            <option value="C:/android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar" />
-                            <option value="C:/android/sdk/extras/android/m2repository/com/android/support/mediarouter-v7/23.0.0/mediarouter-v7-23.0.0.aar" />
+                            <option value="C:/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.4.0/appcompat-v7-23.4.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services/9.2.0/play-services-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.4.0/support-v4-23.4.0.aar" />
+                            <option value="C:/Android/sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/23.4.0/animated-vector-drawable-23.4.0.aar" />
+                            <option value="C:/Android/sdk/extras/android/m2repository/com/android/support/support-vector-drawable/23.4.0/support-vector-drawable-23.4.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-ads/9.2.0/play-services-ads-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-ads-lite/9.2.0/play-services-ads-lite-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-analytics/9.2.0/play-services-analytics-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-analytics-impl/9.2.0/play-services-analytics-impl-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-appinvite/9.2.0/play-services-appinvite-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-auth/9.2.0/play-services-auth-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-auth-base/9.2.0/play-services-auth-base-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-base/9.2.0/play-services-base-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-cast-framework/9.2.0/play-services-cast-framework-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-cast/9.2.0/play-services-cast-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-clearcut/9.2.0/play-services-clearcut-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-basement/9.2.0/play-services-basement-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-config/9.2.0/firebase-config-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-contextmanager/9.2.0/play-services-contextmanager-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-crash/9.2.0/firebase-crash-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-drive/9.2.0/play-services-drive-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-auth/9.2.0/firebase-auth-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-auth-common/9.2.0/firebase-auth-common-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-auth-module/9.2.0/firebase-auth-module-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-database-connection/9.2.0/firebase-database-connection-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-database/9.2.0/firebase-database-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-iid/9.2.0/firebase-iid-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-messaging/9.2.0/firebase-messaging-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-storage/9.2.0/firebase-storage-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-storage-common/9.2.0/firebase-storage-common-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-common/9.2.0/firebase-common-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-fitness/9.2.0/play-services-fitness-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-games/9.2.0/play-services-games-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-gass/9.2.0/play-services-gass-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-gcm/9.2.0/play-services-gcm-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-appindexing/9.2.0/play-services-appindexing-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-identity/9.2.0/play-services-identity-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-iid/9.2.0/play-services-iid-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-location/9.2.0/play-services-location-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-maps/9.2.0/play-services-maps-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-analytics/9.2.0/firebase-analytics-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/firebase/firebase-analytics-impl/9.2.0/firebase-analytics-impl-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-nearby/9.2.0/play-services-nearby-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-panorama/9.2.0/play-services-panorama-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-places/9.2.0/play-services-places-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-plus/9.2.0/play-services-plus-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-safetynet/9.2.0/play-services-safetynet-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-tagmanager-api/9.2.0/play-services-tagmanager-api-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-tagmanager/9.2.0/play-services-tagmanager-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-tasks/9.2.0/play-services-tasks-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-vision/9.2.0/play-services-vision-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-wallet/9.2.0/play-services-wallet-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-wearable/9.2.0/play-services-wearable-9.2.0.aar" />
+                            <option value="C:/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar" />
+                            <option value="C:/Android/sdk/extras/android/m2repository/com/android/support/mediarouter-v7/23.0.0/mediarouter-v7-23.0.0.aar" />
                             <option value="$MODULE_DIR$/libs/altusmappingengine.jar" />
                             <option value="$MODULE_DIR$/libs/commons-io-2.4.jar" />
                             <option value="$MODULE_DIR$/libs/jts-1.13.jar" />
@@ -2536,7 +2509,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Database/Helpers.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Database/MarkerProperties.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Info/Station.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Database/FlightPlanDataSource.java" />
@@ -2581,20 +2553,21 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/route_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/infopanelborder.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Info/InfoPanelFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MapOverlay/PDF.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2631,6 +2604,178 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flightsimplannerpro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flightsimplannerpro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TileWorkers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FlightSimPlannerPro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flightsimplannerpro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MapOverlay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -2645,7 +2790,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2680,9 +2824,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2695,7 +2837,7 @@
     <property name="android.sdk.path" value="C:/Android/sdk" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="411f350600446015" />
+    <property name="device.picker.selection" value="041604e472552102" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../FlightSimPlanner/GoogleMapsTest/src/main/res/layout/country_item.xml" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Rob Verhoef.WIN7-ROBVERHOEF/Documents/GitHub/FlightSimPlannerPro/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Route/RouteTest.java" />
   </component>
@@ -3007,27 +3149,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32718894" sideWeight="0.49266502" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32373273" sideWeight="0.47188264" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32369298" sideWeight="0.4696162" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3778802" sideWeight="0.1693154" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3778802" sideWeight="0.7310513" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37708566" sideWeight="0.7249467" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328341" sideWeight="0.49755502" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32480535" sideWeight="0.48614073" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328341" sideWeight="0.49755502" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3778802" sideWeight="0.26894864" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37708566" sideWeight="0.2750533" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19254279" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1924307" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15709047" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15671642" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14486553" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36818686" sideWeight="0.6620469" order="3" side_tool="false" content_ui="tabs" />
@@ -3114,38 +3256,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Route/RouteActivateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="60" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Helpers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Airspaces/AirspaceCategory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="62" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/edit_waypoint.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Airspaces/Airspaces.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5418327">
@@ -3184,14 +3294,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.49173555">
           <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MyMapView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="22" selection-start-line="118" selection-start-column="22" selection-end-line="118" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3244,10 +3346,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#182#183#0" expanded="false" />
-            <element signature="e#215#216#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3328,140 +3426,142 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_flight_plan_activate.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_flight_plan_activate.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_flight_plan_activate.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="48" selection-start-line="105" selection-start-column="48" selection-end-line="105" selection-end-column="48" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_flight_plan_activate.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_flight_plan_activate.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_flight_plan_activate.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_flight_plan_activate.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/route_item.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/route_item.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/route_item.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/route_item.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
           <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/route_item.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
           <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/Info/InfoPanelFragment.java">
@@ -3478,9 +3578,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3488,51 +3586,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1716#1717#0" expanded="true" />
-            <element signature="e#1748#1749#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.346154">
-          <caret line="56" column="65" selection-start-line="56" selection-start-column="65" selection-end-line="56" selection-end-column="65" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.730769">
-          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="56" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="296" column="50" selection-start-line="296" selection-start-column="50" selection-end-line="296" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9301#9302#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/infopanelborder.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3547,48 +3611,125 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_info_panel.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/infopanelborder.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50395256">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_main.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="65" selection-start-line="56" selection-start-column="65" selection-end-line="56" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_info_panel.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="57" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MapOverlay/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/TileWorkers/TileProviderFormats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.531955">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="20" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9263#9264#0" expanded="true" />
+            <element signature="e#9301#9302#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/MyMapView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="216" column="49" selection-start-line="216" selection-start-column="37" selection-end-line="216" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/TileWorkers/ChartBundleTileProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobileaviationtools/flightsimplannerpro/TileWorkers/WmsTileWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.287594">
+          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+          <folding>
+            <element signature="method#WmsTileWorker#0;class#WmsTileWorker#0" expanded="false" />
+            <element signature="method#checkDirectory#0;class#WmsTileWorker#0" expanded="false" />
+            <element signature="method#checkCache#0;class#WmsTileWorker#0" expanded="false" />
+            <element signature="method#getBitmapFromURL#0;class#WmsTileWorker#0" expanded="false" />
+            <element signature="method#setTransparentColor#0;class#WmsTileWorker#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

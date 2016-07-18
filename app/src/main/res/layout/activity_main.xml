@@ -54,14 +54,15 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/infoPanelFragment"
                     android:name="com.mobileaviationtools.flightsimplannerpro.Info.InfoPanelFragment"
-                    tools:layout="@layout/fragment_info_panel" />
+                    tools:layout="@layout/fragment_info_panel"
+                    android:layout_marginTop="1dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="51dp"
                 android:id="@+id/buttonsLayout">
 
                 <Button
