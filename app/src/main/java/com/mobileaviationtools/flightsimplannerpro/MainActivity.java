@@ -46,6 +46,7 @@ import com.mobileaviationtools.flightsimplannerpro.LocationService.PlaneMarker;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
+import com.mobileaviationtools.flightsimplannerpro.Test.TrackTest;
 import com.mobileaviationtools.flightsimplannerpro.Track.LocationTracking;
 
 import java.util.ArrayList;
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 		addNewRouteBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				testTrack();
 			}
 		});
 
@@ -226,6 +227,25 @@ public class MainActivity extends AppCompatActivity {
 				setLocation(location);
 			}
 		});
+	}
+
+	private void testTrack()
+	{
+		locationTracking = new LocationTracking(route, MainActivity.this, mapView);
+		if (planeMarker == null) planeMarker = new PlaneMarker(MainActivity.this, mapView);
+		TrackTest trackTest = new TrackTest(this);
+		trackTest.setOnLocationChangedListener(new LocationSource.OnLocationChangedListener() {
+			@Override
+			public void onLocationChanged(Location location) {
+				Log.i(TAG, "TestTrack Location: " + location.getLongitude() + " : " + location.getLatitude());
+
+				setLocation(location);
+			}
+		});
+
+		trackTest.LoadTrackpoints();
+		Log.i(TAG, "TrackTest points loaded: " + trackTest.trackPoints.size());
+		trackTest.startRoute();
 	}
 
 	@Override

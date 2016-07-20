@@ -19,7 +19,7 @@ public class TrackTest {
     }
 
     private Context context;
-    private ArrayList<TrackPoint> trackPoints;
+    public ArrayList<TrackPoint> trackPoints;
 
     public void LoadTrackpoints()
     {
