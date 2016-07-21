@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.activity_main);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		mapView = new MyMapView(this);
 		mapView.Init(null);
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 		addNewRouteBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				testTrack();
+				//testTrack();
 			}
 		});
 

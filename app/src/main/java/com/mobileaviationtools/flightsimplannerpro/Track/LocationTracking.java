@@ -116,7 +116,7 @@ public class LocationTracking {
             us.ba3.me.Location[] loc = new us.ba3.me.Location[2];
             loc[0] = new us.ba3.me.Location(oldPoint.latitude, oldPoint.longitude);
             loc[1] = new us.ba3.me.Location(newPoint.getLatitude(), newPoint.getLongitude());
-            mapView.addLineToVectorMap("TrackLine", loc, lineStyle);
+            mapView.addDynamicLineToVectorMap("TrackLine", "trackline", loc, lineStyle);
         }
     }
 
