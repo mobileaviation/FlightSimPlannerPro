@@ -36,11 +36,13 @@ public class MyMapView extends MapView {
         this.routeVisuals = route;
         placingRoutePoint = false;
         movingRoutePoint = false;
+        scrolling = false;
     }
 
     private RouteVisuals routeVisuals;
-
     private Boolean placingRoutePoint;
+    private Boolean movingRoutePoint;
+    private Boolean scrolling;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -52,7 +54,7 @@ public class MyMapView extends MapView {
 //		}
     }
 
-    private Boolean movingRoutePoint;
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -94,6 +96,21 @@ public class MyMapView extends MapView {
 
             }});
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2, float arg3) {
+        Log.i("onScroll", "Action arg0: " + arg0.getAction() + " arg1: "  +
+                arg1.getAction());
+        super.getLocationForPoint(new PointF(arg1.getX(), arg1.getY()), new ConvertPointCallback() {
+            @Override
+            public void convertComplete(Location location) {
+                scrolling = true;
+                // Get bounds of current screen
+                MyMapView.this.get
+            }
+        });
+        return super.onScroll(arg0, arg1, arg2, arg3);
     }
 
     @Override
