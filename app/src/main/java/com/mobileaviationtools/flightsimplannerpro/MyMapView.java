@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
+import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
+import com.mobileaviationtools.flightsimplannerpro.TileWorkers.MarkersTileWorker;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
 
@@ -17,8 +19,10 @@ import javax.microedition.khronos.opengles.GL10;
 
 import us.ba3.me.ConvertPointCallback;
 import us.ba3.me.Location;
+import us.ba3.me.Location3D;
 import us.ba3.me.MapLoadingStrategy;
 import us.ba3.me.MapView;
+import us.ba3.me.markers.DynamicMarkerMapInfo;
 import us.ba3.me.virtualmaps.TileFactory;
 import us.ba3.me.virtualmaps.VirtualMapInfo;
 
@@ -102,12 +106,14 @@ public class MyMapView extends MapView {
     public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2, float arg3) {
         Log.i("onScroll", "Action arg0: " + arg0.getAction() + " arg1: "  +
                 arg1.getAction());
+        Location3D location3D = this.getLocation3D();
+        Log.i("onScroll", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
         super.getLocationForPoint(new PointF(arg1.getX(), arg1.getY()), new ConvertPointCallback() {
             @Override
             public void convertComplete(Location location) {
                 scrolling = true;
                 // Get bounds of current screen
-                MyMapView.this.get
+                //MyMapView.this.get
             }
         });
         return super.onScroll(arg0, arg1, arg2, arg3);
@@ -115,7 +121,8 @@ public class MyMapView extends MapView {
 
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
-        Log.i("onScaleEnd", "ScaleX: " + this.getLocation3D().altitude);
+        Location3D location3D = this.getLocation3D();
+        Log.i("onScaleEnd", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
         super.onScale(detector);
     }
 
@@ -209,6 +216,30 @@ public class MyMapView extends MapView {
         chartBundlemapInfo.compressTextures = true;
         chartBundlemapInfo.setTileProvider(chartBundleFactory);
         this.addMapUsingMapInfo(chartBundlemapInfo);
+    }
+
+    public void AddMarkersMap(MarkerProperties markerProperties)
+    {
+        String mapmame = "markersTest";
+        TileFactory markersMapFactory = new TileFactory(this);
+
+        DynamicMarkerMapInfo airportMarkerMap = new DynamicMarkerMapInfo();
+        airportMarkerMap.name = "airportMarkerMap";
+        airportMarkerMap.zOrder = 200;
+        this.addMapUsingMapInfo(airportMarkerMap);
+
+        MarkersTileWorker markersTileWorker = new MarkersTileWorker(this, getContext(), "airportMarkerMap", markerProperties);
+
+        markersMapFactory.addWorker(markersTileWorker);
+
+        VirtualMapInfo markersTestMapInfo = new VirtualMapInfo();
+        markersTestMapInfo.name = mapmame;
+        markersTestMapInfo.zOrder = 6;
+        markersTestMapInfo.maxLevel = 20;
+        markersTestMapInfo.isSphericalMercator = false;
+        markersTestMapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
+        markersTestMapInfo.setTileProvider(markersMapFactory);
+        this.addMapUsingMapInfo(markersTestMapInfo);
     }
 
     public void AddMappyMap()

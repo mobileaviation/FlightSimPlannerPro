@@ -66,7 +66,8 @@ public class Airport implements Serializable {
     public Bitmap GetIcon(float angle, String iata_code)
     {
         if (type == AirportType.large_airport) {
-            return getLargeAirportIcon(iata_code);
+            return getSmallAirportIcon(angle, iata_code);
+            //return getLargeAirportIcon(iata_code);
             //return BitmapDescriptorFactory.fromResource(R.drawable.large_airport);
         }
         //if (type == AirportType.heliport) return BitmapDescriptorFactory.fromResource(R.drawable.heliport);

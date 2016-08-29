@@ -376,7 +376,8 @@ public class AirportDataSource {
                 + "R." + NavigationDBHelper.C_he_longitude
                 + " FROM " + NavigationDBHelper.AIRPORT_TABLE_NAME + " A " +
                 "LEFT JOIN " + NavigationDBHelper.RUNWAY_TABLE_NAME + " R ON R." + NavigationDBHelper.C_airport_ref + " = A." + NavigationDBHelper.C_id + " " + where
-                + " AND (" + NavigationDBHelper.C_pid + "<>" + pid + " or " +  NavigationDBHelper.C_pid + " is null);";
+                + ";";
+                //+ " AND (" + NavigationDBHelper.C_pid + "<>" + pid + " or " +  NavigationDBHelper.C_pid + " is null);";
 
         Log.i(TAG, "Airports Query: " + query);
 

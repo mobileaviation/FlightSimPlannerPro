@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
+import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Info.InfoPanelFragment;
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 		mapView.AddMappyMap();
 
+
 		// Primary location Netherlands
 		Location3D loc = new Location3D();
 		loc.altitude = 600000;
@@ -144,14 +146,17 @@ public class MainActivity extends AppCompatActivity {
 		properties = new PropertiesDataSource(this);
 		properties.open(true);
 		properties.FillProperties();
+		MarkerProperties markerProperties = properties.getMarkersProperties();
 		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
 		properties.close(true);
+
 
 		RouteDataSource routeDataSource = new RouteDataSource(this);
 		routeDataSource.open();
 		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
 		routeDataSource.close();
 
+		mapView.AddMarkersMap(markerProperties);
 
 		// ATTENTION: This was auto-generated to implement the App Indexing API.
 		// See https://g.co/AppIndexing/AndroidStudio for more information.

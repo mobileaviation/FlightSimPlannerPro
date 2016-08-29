@@ -48,7 +48,7 @@ public class Airspaces extends ArrayList<Airspace>  {
 
         VectorMapInfo airspacesInfo = new VectorMapInfo();
         airspacesInfo.name = mapname;
-        airspacesInfo.zOrder = 8;
+        airspacesInfo.zOrder = 100;
         airspacesInfo.maxLevel = 20;
         airspacesInfo.mapType = MapType.kMapTypeVirtualVector;
 
