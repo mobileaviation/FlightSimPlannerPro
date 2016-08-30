@@ -1,6 +1,8 @@
 package com.mobileaviationtools.flightsimplannerpro.TileWorkers;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.support.annotation.IntegerRes;
 import android.util.Log;
@@ -12,11 +14,14 @@ import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Helpers;
 import com.mobileaviationtools.flightsimplannerpro.MyMapView;
+import com.mobileaviationtools.flightsimplannerpro.R;
 
 import java.util.HashMap;
 
 import us.ba3.me.Location;
+import us.ba3.me.MapLoadingStrategy;
 import us.ba3.me.markers.DynamicMarker;
+import us.ba3.me.markers.DynamicMarkerMapInfo;
 import us.ba3.me.virtualmaps.InternetTileProvider;
 import us.ba3.me.virtualmaps.TileProviderRequest;
 import us.ba3.me.virtualmaps.TileProviderResponse;
@@ -34,6 +39,7 @@ public class MarkersTileWorker extends TileWorker {
         this.mapView = mapView;
         curAirports = new HashMap<Integer, Airport>();
         this.markerProperties = markerProperties;
+        Log.i("MarkersTileWorker", "MarkersTileWorker created");
     }
 
     private Context context;
@@ -41,6 +47,7 @@ public class MarkersTileWorker extends TileWorker {
     private String airportMapName;
     private HashMap<Integer, Airport> curAirports;
     private MarkerProperties markerProperties;
+    private Bitmap blueDot;
 
     @Override
     public void doWork(TileProviderRequest request) {
@@ -58,7 +65,15 @@ public class MarkersTileWorker extends TileWorker {
 //
 //        Log.i("MarkersTileWorker", "Zoom: " + yi + " X: " + xi + " Y: " + yi);
 
+        String mapname = Double.toString(request.bounds.min.latitude) + Double.toString(request.bounds.min.longitude)+"Airports";
+        DynamicMarkerMapInfo airportMarkerMap = new DynamicMarkerMapInfo();
+        airportMarkerMap.name = mapname;
+        airportMarkerMap.zOrder = 200;
+        //airportMarkerMap.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
+        mapView.addMapUsingMapInfo(airportMarkerMap);
+
         HashMap<Integer, Airport> airports = getAirports(request);
+        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
 
         for (Airport airport: airports.values())
         {
@@ -67,14 +82,15 @@ public class MarkersTileWorker extends TileWorker {
             airportMarker.anchorPoint = new PointF(Helpers.convertDpToPixel(15, context),
                     Helpers.convertDpToPixel(15, context));
             airportMarker.location = new Location(airport.latitude_deg, airport.longitude_deg);
-            airportMarker.setImage(airport.GetIcon(0, airport.ident), false);
-            mapView.addDynamicMarkerToMap(airportMapName,  airportMarker);
-            mapView.showDynamicMarker(airportMapName, airport.ident);
+            airportMarker.setImage(blueDot, false);
+            //airportMarker.setImage(airport.GetIcon(0, airport.ident), false);
+            mapView.addDynamicMarkerToMap(mapname,  airportMarker);
+            //mapView.showDynamicMarker(airportMapName, airport.ident);
 
         }
 
         request.responseType = TileProviderResponse.kTileResponseRenderImage;
-        request.isOpaque = false;
+        request.isOpaque = true;
 
         //super.doWork(request);
     }

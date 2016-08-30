@@ -218,15 +218,19 @@ public class MyMapView extends MapView {
         this.addMapUsingMapInfo(chartBundlemapInfo);
     }
 
+    private Boolean added = false;
     public void AddMarkersMap(MarkerProperties markerProperties)
     {
+
+        added = true;
         String mapmame = "markersTest";
         TileFactory markersMapFactory = new TileFactory(this);
 
-        DynamicMarkerMapInfo airportMarkerMap = new DynamicMarkerMapInfo();
-        airportMarkerMap.name = "airportMarkerMap";
-        airportMarkerMap.zOrder = 200;
-        this.addMapUsingMapInfo(airportMarkerMap);
+//        DynamicMarkerMapInfo airportMarkerMap = new DynamicMarkerMapInfo();
+//        airportMarkerMap.name = "airportMarkerMap";
+//        airportMarkerMap.zOrder = 200;
+//        airportMarkerMap.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
+//        this.addMapUsingMapInfo(airportMarkerMap);
 
         MarkersTileWorker markersTileWorker = new MarkersTileWorker(this, getContext(), "airportMarkerMap", markerProperties);
 
@@ -240,6 +244,9 @@ public class MyMapView extends MapView {
         markersTestMapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
         markersTestMapInfo.setTileProvider(markersMapFactory);
         this.addMapUsingMapInfo(markersTestMapInfo);
+
+        Log.i(TAG, "Markersmap added!!");
+
     }
 
     public void AddMappyMap()
