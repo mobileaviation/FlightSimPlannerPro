@@ -61,37 +61,38 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/buttonsLayout">
+                android:id="@+id/buttonsLayout"
+                android:layout_height="match_parent">
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/activateRouteBtn"
                     android:background="@drawable/flightplanactivate"
-                    android:layout_gravity="top"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
                     android:clickable="true"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical|center_horizontal" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/addNewRouteBtn"
                     android:background="@drawable/flightplanbutton"
                     android:layout_marginRight="20dp"
-                    android:layout_gravity="top"
                     android:layout_marginTop="5dp"
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical|center_horizontal" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/connectBtn"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/disconnected" />
+                    android:background="@drawable/disconnected"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical|center_horizontal" />
             </LinearLayout>
 
         </LinearLayout>

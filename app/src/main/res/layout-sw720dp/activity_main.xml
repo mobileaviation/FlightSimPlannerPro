@@ -66,36 +66,37 @@
                 android:id="@+id/buttonsLayout">
 
                 <Button
-                    android:layout_width="70dp"
-                    android:layout_height="fill_parent"
                     android:id="@+id/activateRouteBtn"
                     android:background="@drawable/flightplanactivate"
-                    android:layout_gravity="top"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
                     android:clickable="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp" />
 
                 <Button
-                    android:layout_width="70dp"
-                    android:layout_height="fill_parent"
                     android:id="@+id/addNewRouteBtn"
                     android:background="@drawable/flightplanbutton"
                     android:layout_marginRight="20dp"
-                    android:layout_gravity="top"
                     android:layout_marginTop="5dp"
                     android:clickable="true"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp" />
 
                 <Button
-                    android:layout_width="70dp"
-                    android:layout_height="fill_parent"
                     android:id="@+id/connectBtn"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/disconnected"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp" />
             </LinearLayout>
 
         </LinearLayout>
