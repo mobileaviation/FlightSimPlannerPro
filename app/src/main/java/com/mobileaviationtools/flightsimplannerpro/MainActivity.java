@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 	private LocationTracking locationTracking;
 	private PlaneMarker planeMarker;
 	private InfoPanelFragment infoPanel = null;
+	private Integer pid;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		Log.i(TAG, "OnCreate");
+
+		pid = android.os.Process.myPid();
+		Log.i(TAG, "Flight sim plannen Pro PID: " + pid);
 
 		mapView = new MyMapView(this);
 		mapView.Init(null);
@@ -129,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 		mapView.setMaximumZoom(2000000);
 		mapView.setMinimumZoom(20000);
 
-		Log.i(TAG, "OnCreate");
+
 
 		nativeLocation = new NativeLocation(this);
 		setupLocationListener();
@@ -139,8 +145,9 @@ public class MainActivity extends AppCompatActivity {
 		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
 
 		AirportDataSource airportDataSource = new AirportDataSource(this);
-		airportDataSource.open(0);
+		airportDataSource.open(pid);
 		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
+		airportDataSource.UpdateProgramID();
 		airportDataSource.close();
 
 		properties = new PropertiesDataSource(this);
@@ -148,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
 		properties.FillProperties();
 		MarkerProperties markerProperties = properties.getMarkersProperties();
 		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
+		Log.i(TAG, "Default Airport PID: " + properties.InitAirport.PID);
 		properties.close(true);
 
 
@@ -156,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
 		routeDataSource.close();
 
-		mapView.AddMarkersMap(markerProperties);
+		mapView.AddMarkersMap(markerProperties, pid);
 
 		// ATTENTION: This was auto-generated to implement the App Indexing API.
 		// See https://g.co/AppIndexing/AndroidStudio for more information.

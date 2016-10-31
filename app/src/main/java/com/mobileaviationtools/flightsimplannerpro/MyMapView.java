@@ -7,10 +7,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
-import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
-import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
-import com.mobileaviationtools.flightsimplannerpro.TileWorkers.MarkersTileWorker;
+import com.mobileaviationtools.flightsimplannerpro.TileWorkers.AirportsTileWorker;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
 
@@ -22,7 +20,6 @@ import us.ba3.me.Location;
 import us.ba3.me.Location3D;
 import us.ba3.me.MapLoadingStrategy;
 import us.ba3.me.MapView;
-import us.ba3.me.markers.DynamicMarkerMapInfo;
 import us.ba3.me.virtualmaps.TileFactory;
 import us.ba3.me.virtualmaps.VirtualMapInfo;
 
@@ -47,6 +44,7 @@ public class MyMapView extends MapView {
     private Boolean placingRoutePoint;
     private Boolean movingRoutePoint;
     private Boolean scrolling;
+    private Integer PID;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -219,9 +217,9 @@ public class MyMapView extends MapView {
     }
 
     private Boolean added = false;
-    public void AddMarkersMap(MarkerProperties markerProperties)
+    public void AddMarkersMap(MarkerProperties markerProperties, Integer PID)
     {
-
+        this.PID = PID;
         added = true;
         String mapmame = "markersTest";
         TileFactory markersMapFactory = new TileFactory(this);
@@ -232,7 +230,7 @@ public class MyMapView extends MapView {
 //        airportMarkerMap.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
 //        this.addMapUsingMapInfo(airportMarkerMap);
 
-        MarkersTileWorker markersTileWorker = new MarkersTileWorker(this, getContext(), "airportMarkerMap", markerProperties);
+        AirportsTileWorker markersTileWorker = new AirportsTileWorker(this, getContext(), "airportMarkerMap", markerProperties, PID);
 
         markersMapFactory.addWorker(markersTileWorker);
 

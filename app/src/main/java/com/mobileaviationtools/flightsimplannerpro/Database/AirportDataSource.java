@@ -74,7 +74,6 @@ public class AirportDataSource {
         dbHelper.close();
     }
 
-
     public boolean insertAirports(Map<Integer, Airport> airports)
     {
         String deleteQuery = "DELETE FROM " + NavigationDBHelper.AIRPORT_TABLE_NAME + " WHERE "
@@ -167,14 +166,6 @@ public class AirportDataSource {
         return newAirport;
     }
 
-    public void setProgramID(Integer uniqueId)
-    {
-        String u = "UPDATE " + NavigationDBHelper.AIRPORT_TABLE_NAME + " SET " + NavigationDBHelper.C_pid +
-                "=" + Integer.toString(uniqueId);
-        Log.i(TAG , "Set program pid: " + u);
-        database.execSQL(u);
-    }
-
     public Map<Integer, Airport> SearchAirportNameCode(String searchTerm) {
         Map<Integer, Airport> airports = new HashMap<Integer, Airport>();
 
@@ -195,7 +186,6 @@ public class AirportDataSource {
         cursor.close();
         return airports;
     }
-
 
     public Airport GetAirportByID(Integer id) {
         String query = "SELECT * FROM " + NavigationDBHelper.AIRPORT_TABLE_NAME +
@@ -344,9 +334,10 @@ public class AirportDataSource {
                                                                      MarkerProperties markerProperties)
     {
         Map<Integer, Airport> airports;
-        if (curAirports==null) airports = new HashMap<Integer, Airport>();
-        else
-            airports = curAirports;
+        airports = new HashMap<Integer, Airport>();
+//        if (curAirports==null) airports = new HashMap<Integer, Airport>();
+//        else
+//            airports = curAirports;
 
         String where = markerProperties.getWhereByZoomLevel(zoomLevel);
 
@@ -376,12 +367,13 @@ public class AirportDataSource {
                 + "R." + NavigationDBHelper.C_he_longitude
                 + " FROM " + NavigationDBHelper.AIRPORT_TABLE_NAME + " A " +
                 "LEFT JOIN " + NavigationDBHelper.RUNWAY_TABLE_NAME + " R ON R." + NavigationDBHelper.C_airport_ref + " = A." + NavigationDBHelper.C_id + " " + where
-                + ";";
-                //+ " AND (" + NavigationDBHelper.C_pid + "<>" + pid + " or " +  NavigationDBHelper.C_pid + " is null);";
+                //+ ";";
+                + " AND " + NavigationDBHelper.C_pid + "=" + pid + ";";
 
         Log.i(TAG, "Airports Query: " + query);
 
         Cursor cursor = database.rawQuery(query, null);
+        Log.i(TAG, "Returned data count: " + cursor.getCount());
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -403,15 +395,16 @@ public class AirportDataSource {
         // make sure to close the cursor
         cursor.close();
 
-        String pidQuery = "UPDATE " + NavigationDBHelper.AIRPORT_TABLE_NAME + " SET " + NavigationDBHelper.C_pid + " = " + pid + " " + where;
+        String pidQuery = "UPDATE " + NavigationDBHelper.AIRPORT_TABLE_NAME + " SET " + NavigationDBHelper.C_pid + "=0 " + where + ";";
         database.execSQL(pidQuery);
 
         return airports;
     }
 
-    private void UpdateProgramID(String query)
+    public void UpdateProgramID()
     {
-
+        String pidQuery = "UPDATE " + NavigationDBHelper.AIRPORT_TABLE_NAME + " SET " + NavigationDBHelper.C_pid + " = " + pid + ";";
+        database.execSQL(pidQuery);
     }
 
     public ArrayList<Station> getAirportsInBuffer(Geometry buffer)
@@ -533,7 +526,7 @@ public class AirportDataSource {
         airport.wikipedia_link = cursor.getString(cursor.getColumnIndex(NavigationDBHelper.C_wikipedia_link));
         airport.version = (cursor.isNull(cursor.getColumnIndex(NavigationDBHelper.C_Version))) ? 0 : cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_Version));
         airport.heading = (cursor.isNull(cursor.getColumnIndex(NavigationDBHelper.C_heading))) ? 0 : cursor.getDouble(cursor.getColumnIndex(NavigationDBHelper.C_heading));
-
+        airport.PID = cursor.getInt(cursor.getColumnIndex(NavigationDBHelper.C_pid));
 
         return airport;
     }
