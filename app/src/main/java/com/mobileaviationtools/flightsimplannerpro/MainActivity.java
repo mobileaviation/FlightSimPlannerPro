@@ -55,7 +55,9 @@ import com.mobileaviationtools.flightsimplannerpro.Track.LocationTracking;
 
 import java.util.ArrayList;
 
+import us.ba3.me.LightingType;
 import us.ba3.me.Location3D;
+import us.ba3.me.LocationType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -96,78 +98,88 @@ public class MainActivity extends AppCompatActivity {
 		pid = android.os.Process.myPid();
 		Log.i(TAG, "Flight sim plannen Pro PID: " + pid);
 
-		mapView = new MyMapView(this);
+		mapView = new MyMapView(getApplication());
 		mapView.Init(null);
 		mapView.setLayoutParams(new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT
 		));
+
+		//Set lighting type to classic
+		mapView.setLightingType(LightingType.kLightingTypeClassic);
+
+		//Set sun relative to observer
+		mapView.setSunLocation(new us.ba3.me.Location(0,0), LocationType.kLocationTypeRelative);
+
+		mapView.setBackgroundColor(Color.BLACK);
+
 		LinearLayout baseLayout = (LinearLayout) this.findViewById(R.id.mapLayout);
 		baseLayout.addView(mapView);
 
 		mapView.setMultithreaded(true);
 
-		mapView.AddMappyMap();
+		//mapView.AddMappyMap();
+		mapView.AddMapquestMap();
 
 
-		// Primary location Netherlands
-		Location3D loc = new Location3D();
-		loc.altitude = 600000;
-		loc.longitude = 5.6129;
-		loc.latitude = 52.302;
-		mapView.setLocation3D(loc, 1);
-
-		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
-
-		for (String a : airspacedbFiles) {
-			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
-			loadAirspacesAsync.context = this;
-			loadAirspacesAsync.databaseName = a;
-			loadAirspacesAsync.mapView = mapView;
-			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-		}
-
-		//String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
-		//mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
-
-		routeVisuals = new RouteVisuals(this, mapView);
-		mapView.Init(routeVisuals);
-
-		infoPanel = (InfoPanelFragment) getSupportFragmentManager().findFragmentById(R.id.infoPanelFragment);
-
-		mapView.setMaximumZoom(2000000);
-		mapView.setMinimumZoom(20000);
-
-
-
-		nativeLocation = new NativeLocation(this);
-		setupLocationListener();
-
-		setupButtons();
-
-		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
-
-		AirportDataSource airportDataSource = new AirportDataSource(this);
-		airportDataSource.open(pid);
-		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
-		airportDataSource.UpdateProgramID();
-		airportDataSource.close();
-
-		properties = new PropertiesDataSource(this);
-		properties.open(true);
-		properties.FillProperties();
-		MarkerProperties markerProperties = properties.getMarkersProperties();
-		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
-		Log.i(TAG, "Default Airport PID: " + properties.InitAirport.PID);
-		properties.close(true);
-
-
-		RouteDataSource routeDataSource = new RouteDataSource(this);
-		routeDataSource.open();
-		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
-		routeDataSource.close();
-
-		mapView.AddMarkersMap(markerProperties, pid);
+//		// Primary location Netherlands
+//		Location3D loc = new Location3D();
+//		loc.altitude = 600000;
+//		loc.longitude = 5.6129;
+//		loc.latitude = 52.302;
+//		mapView.setLocation3D(loc, 1);
+//
+//		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
+//
+//		for (String a : airspacedbFiles) {
+//			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
+//			loadAirspacesAsync.context = this;
+//			loadAirspacesAsync.databaseName = a;
+//			loadAirspacesAsync.mapView = mapView;
+//			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//		}
+//
+//		//String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
+//		//mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
+//
+//		routeVisuals = new RouteVisuals(this, mapView);
+//		mapView.Init(routeVisuals);
+//
+//		infoPanel = (InfoPanelFragment) getSupportFragmentManager().findFragmentById(R.id.infoPanelFragment);
+//
+//		mapView.setMaximumZoom(2000000);
+//		mapView.setMinimumZoom(20000);
+//
+//
+//
+//		nativeLocation = new NativeLocation(this);
+//		setupLocationListener();
+//
+//		setupButtons();
+//
+//		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
+//
+//		AirportDataSource airportDataSource = new AirportDataSource(this);
+//		airportDataSource.open(pid);
+//		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
+//		airportDataSource.UpdateProgramID();
+//		airportDataSource.close();
+//
+//		properties = new PropertiesDataSource(this);
+//		properties.open(true);
+//		properties.FillProperties();
+//		MarkerProperties markerProperties = properties.getMarkersProperties();
+//		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
+//		Log.i(TAG, "Default Airport PID: " + properties.InitAirport.PID);
+//		properties.close(true);
+//
+//
+//		RouteDataSource routeDataSource = new RouteDataSource(this);
+//		routeDataSource.open();
+//		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
+//		routeDataSource.close();
+//
+//		mapView.AddMarkersMap(markerProperties, pid);
 
 	}
 

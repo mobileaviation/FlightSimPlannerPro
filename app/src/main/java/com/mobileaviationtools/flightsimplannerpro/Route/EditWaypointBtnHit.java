@@ -3,8 +3,9 @@ package com.mobileaviationtools.flightsimplannerpro.Route;
 import android.graphics.PointF;
 import android.util.Log;
 
-import us.ba3.me.ConvertPointCallback;
+//import us.ba3.me.ConvertPointCallback;
 import us.ba3.me.Location;
+import us.ba3.me.LocationReceiver;
 import us.ba3.me.MapView;
 import us.ba3.me.markers.DynamicMarkerMapDelegate;
 
@@ -23,9 +24,9 @@ public class EditWaypointBtnHit implements DynamicMarkerMapDelegate {
 
     @Override
     public void tapOnMarker(String mapName, final String markerName, final PointF screenPoint, final PointF markerPoint) {
-        mapView.getLocationForPoint(new PointF(screenPoint.x, screenPoint.y), new ConvertPointCallback() {
+        mapView.getLocationForPoint(new PointF(screenPoint.x, screenPoint.y), new LocationReceiver() {
             @Override
-            public void convertComplete(Location location) {
+            public void receiveLocation(Location location) {
 
             }
         });

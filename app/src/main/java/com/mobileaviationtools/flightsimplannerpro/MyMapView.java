@@ -15,9 +15,10 @@ import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import us.ba3.me.ConvertPointCallback;
+//import us.ba3.me.;
 import us.ba3.me.Location;
 import us.ba3.me.Location3D;
+import us.ba3.me.LocationReceiver;
 import us.ba3.me.MapLoadingStrategy;
 import us.ba3.me.MapView;
 import us.ba3.me.virtualmaps.TileFactory;
@@ -89,9 +90,15 @@ public class MyMapView extends MapView {
 
         }
 
-        super.getLocationForPoint(new PointF(event.getX(), event.getY()), new ConvertPointCallback(){
+//        super.getLocationForPoint(new PointF(event.getX(), event.getY()), new LocationReceiver() {
+//            @Override
+//            public void receiveLocation(Location location) {
+//
+//            }
+//        });
+        super.getLocationForPoint(new PointF(event.getX(), event.getY()), new LocationReceiver(){
             @Override
-            public void convertComplete(Location loc) {
+            public void receiveLocation(Location loc) {
                 //Log.w("OnTouchEvent", "lon:" + loc.longitude + " lat:" + loc.latitude);
                 if (movingRoutePoint)
                     routeVisuals.dragSelectedWaypoint(loc);
@@ -106,9 +113,9 @@ public class MyMapView extends MapView {
                 arg1.getAction());
         Location3D location3D = this.getLocation3D();
         Log.i("onScroll", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
-        super.getLocationForPoint(new PointF(arg1.getX(), arg1.getY()), new ConvertPointCallback() {
+        super.getLocationForPoint(new PointF(arg1.getX(), arg1.getY()), new LocationReceiver() {
             @Override
-            public void convertComplete(Location location) {
+            public void receiveLocation (Location location) {
                 scrolling = true;
                 // Get bounds of current screen
                 //MyMapView.this.get
@@ -169,8 +176,10 @@ public class MyMapView extends MapView {
 
     public void AddMapquestMap()
     {
-        this.addInternetMap("MapQuest Aerial",
+        this.addStreamingRasterMap("MapQuest Aerial",
         "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
+        "",
+        "",
         "", 		//Subdomains
         20,			//Max Level
         2,			//zOrder
@@ -182,14 +191,14 @@ public class MyMapView extends MapView {
 
     public void AddSkylineAirspacesMap()
     {
-        this.addInternetMap("SkylinesAirspaces",
-        "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
-        "",
-        20,
-        5,
-        3,
-        true,
-        true);
+//        this.addInternetMap("SkylinesAirspaces",
+//        "https://skylines.aero/mapproxy/tiles/1.0.0/airspace/{z}/{x}/{y}.png",
+//        "",
+//        20,
+//        5,
+//        3,
+//        true,
+//        true);
     }
 
     public void AddFAASectionalsMap()
@@ -210,9 +219,10 @@ public class MyMapView extends MapView {
         chartBundlemapInfo.name = mapname;
         chartBundlemapInfo.zOrder = 7;
         chartBundlemapInfo.maxLevel = 20;
-        chartBundlemapInfo.isSphericalMercator = false;
+        //chartBundlemapInfo.isSphericalMercator = false;
         chartBundlemapInfo.compressTextures = true;
-        chartBundlemapInfo.setTileProvider(chartBundleFactory);
+        chartBundlemapInfo.tileProvider = chartBundleFactory;
+        //chartBundlemapInfo.setTileProvider(chartBundleFactory);
         this.addMapUsingMapInfo(chartBundlemapInfo);
     }
 
@@ -238,9 +248,10 @@ public class MyMapView extends MapView {
         markersTestMapInfo.name = mapmame;
         markersTestMapInfo.zOrder = 6;
         markersTestMapInfo.maxLevel = 20;
-        markersTestMapInfo.isSphericalMercator = false;
+        //markersTestMapInfo.isSphericalMercator = false;
         markersTestMapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
-        markersTestMapInfo.setTileProvider(markersMapFactory);
+        //markersTestMapInfo.setTileProvider(markersMapFactory);
+        markersTestMapInfo.tileProvider = markersMapFactory;
         this.addMapUsingMapInfo(markersTestMapInfo);
 
         Log.i(TAG, "Markersmap added!!");
@@ -265,9 +276,10 @@ public class MyMapView extends MapView {
         mappymapInfo.name = mapname;
         mappymapInfo.zOrder = 7;
         mappymapInfo.maxLevel = 20;
-        mappymapInfo.isSphericalMercator = false;
+        //mappymapInfo.isSphericalMercator = false;
         mappymapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
-        mappymapInfo.setTileProvider(mappyFactory);
+        //mappymapInfo.setTileProvider(mappyFactory);
+        mappymapInfo.tileProvider = mappyFactory;
         this.addMapUsingMapInfo(mappymapInfo);
     }
 

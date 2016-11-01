@@ -29,6 +29,8 @@ public class Route{
         this.context = context;
         waypoints = new ArrayList<>();
 
+        legs = new ArrayList<>();
+
         departure_airport = new Airport();
         destination_airport = new Airport();
         alternate_airport = new Airport();
@@ -60,6 +62,7 @@ public class Route{
     public Property bufferProperty;
 
     private Leg activeLeg;
+    public ArrayList<Leg> legs;
     private Distance distance;
     private int legWaypointIndex;
     public ArrayList<Waypoint> waypoints;
@@ -313,6 +316,12 @@ public class Route{
         routeDataSource.GetWaypointsByRoute(this);
         routeDataSource.clearTimes(this, true);
         routeDataSource.close();
+
+        for (int i = 1; i<waypoints.size(); i++ )
+        {
+            Leg leg = new Leg(waypoints.get(i-1), waypoints.get(i), context);
+            legs.add(leg);
+        }
 
         PropertiesDataSource propertiesDataSource = new PropertiesDataSource(context);
         propertiesDataSource.open(true);

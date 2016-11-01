@@ -84,7 +84,7 @@ public class AirportsTileWorker extends TileWorker {
             mapView.addMapUsingMapInfo(airportMarkerMap);
 
 
-            blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
+            //blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
 
             Log.i(TAG, "******************** Adding airports: " + airports.size() + " ************************");
             for (Airport airport : airports.values()) {

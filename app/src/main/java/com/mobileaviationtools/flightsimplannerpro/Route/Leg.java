@@ -1,16 +1,25 @@
 package com.mobileaviationtools.flightsimplannerpro.Route;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.PointF;
 import android.location.Location;
+
+import com.mobileaviationtools.flightsimplannerpro.R;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import us.ba3.me.markers.DynamicMarker;
 
 /**
  * Created by Rob Verhoef on 7-7-2016.
  */
 public class Leg {
-    public Leg(Waypoint from, Waypoint to)
+    public Leg(Waypoint from, Waypoint to, Context context)
     {
+        this.context = context;
         this.toWaypoint = to;
         this.fromWaypoint = from;
         distancesAchived = new HashSet<Distance>();
@@ -21,6 +30,7 @@ public class Leg {
     private OnDistanceFromWaypoint onDistanceFromWaypoint = null;
 
     private Set<Distance> distancesAchived;
+    private Context context;
 
     private Waypoint toWaypoint;
     public Waypoint getToWaypoint()
@@ -40,6 +50,8 @@ public class Leg {
     private float courseTo;
     private float speed;
     private float deviationFromTrack;
+    private Bitmap blueDot;
+
     public float getDeviationFromTrack()
     {
         return currectLocation.bearingTo(toWaypoint.getAndroidLocation()) - fromWaypoint.getAndroidLocation().bearingTo(toWaypoint.getAndroidLocation());
@@ -78,6 +90,26 @@ public class Leg {
     {
         Integer c =  Math.round(this.currectLocation.bearingTo(toWaypoint.getAndroidLocation()));
         return (c<0) ? 360+c : c;
+    }
+
+    public DynamicMarker getLegInfoMarker()
+    {
+        DynamicMarker airportMarker = new DynamicMarker();
+        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
+
+        airportMarker.name = toWaypoint.name;
+
+        //float distanceBetween = fromWaypoint.getAndroidLocation().distanceTo(toWaypoint.getAndroidLocation());
+        //float courseBetween = fromWaypoint.getAndroidLocation().bearingTo(toWaypoint.getAndroidLocation());
+        //us.ba3.me.M
+
+        //airportMarker.location = new us.ba3.me.Location(airport.latitude_deg, airport.longitude_deg);
+        //airportMarker.setImage(blueDot, false);
+        airportMarker.setImage(blueDot, false);
+
+        airportMarker.anchorPoint = new PointF(blueDot.getWidth()/2, blueDot.getHeight()/2);
+
+        return airportMarker;
     }
 
     public void setCurrectLocation(Location currentLocation)
