@@ -27,7 +27,7 @@ android:baselineAligned="false">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location:"
+                android:text="Location: sw720dp"
                 android:id="@+id/textView"
                 android:singleLine="true"
                 android:textColor="#ffffff"

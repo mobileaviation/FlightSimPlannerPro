@@ -3,24 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="33203b081101ca6242a4cd746aafe5fc2dd98a34">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.2.0_ac2e0b007736c1f93d3fc912292be799594d09b0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_dc9fa2c1893627574ecd0e8954746b243912484a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -84,30 +66,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="a06eb7761fca120bbb46b34b930a3a3462ba9d7f">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-9.2.0_6d41053f5a5454805993cd380b868491373f4019\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="fbb50f7f89342c915898c9376a67229e2fcee286">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-iid-9.2.0_e8f4b273a5008662fa4736a870a3630b30510f6f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_ca4811af912b09a100a04409cc3f8a986dcad1cb\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -129,15 +93,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="21bb89120d84fa29afeb0f9c0ebf415bc3b45a7e">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-9.2.0_a4bc3cb47fd75e30d51556a62288cf36b3a81036\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -147,21 +102,246 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="08cdd337d1d9247eb915f0ab365624dd7966e7fa">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-9.2.0_8f80a48ce3028089d82f008a2758fa61fbb45126\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="7c39a4b431976abc46d3cf6344c75d06c769cd35">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-9.2.0_2fe16c1f16706a932fbc915bb02e57791180092d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4838df6db988160b107e954e02a745370df543b6">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.2.0_b7b8d78b557ba932622aecaa12d62d014887c280\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_6fae7844c367202ff23c798bc2a43f80de5a7a3e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ce9432b50a02be101bc491a1b38d3904200bd988">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-config-9.2.0_478e4df1b7d25ff92d1b9140db1113b298974545\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="dd7676ac12aa6653718b7ea33d93ce9d6915d526">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.2.0_9e0f58e1b773911b3d43bae16b141d156b69ec7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="18e52280643effbab30370b073e456d670a0db54">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-9.2.0_7d91ea74cff24c1f0b047ce7e48d301481e53005\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8ec9ae00d45e758ac5b7a1c5dc0daa8a4b24280f">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-9.2.0_e1e7a98d5367cd737f851ed30491cd2ba4298456\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_9b1c6336b1498c537b340ef1652411d2d76934a0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="be009dbe07b3a252c8cda07fc948ac713d2f5171">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-9.2.0_37e7a8af96f926def5786495748c1e737532d292\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7c7c21cc7a45d5c2a57d77f4840d4d4ea3c7604f">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-9.2.0_89fec324f94e769a36f3fce9373d03e54b255d05\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gass\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1dc44c4798cbd79e95e4838a3fdc734c0e3f895f">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gass-9.2.0_8240f975856b15cd7b4d50700f75091f44546c83\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b53d61bae49278c0fa202d9066d2e72fc151c1e8">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-clearcut-9.2.0_74fa318143bd696e38d947418fae10c5b8ddcccb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67d776e397511ab1a8dfd1fa58a6032eac1996c4">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2092a513a75d94a5227c68a85f26fd34469f1c85\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="33b5900f82d19fd3dacee518363b249ace77b8f5">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-9.2.0_8c53105c5c98d39706733dc6c718582cce240f31\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="39261f58509b1a379df041f03da394c29da05395">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-9.2.0_e3d2aafc8d26b02a029fe9038f9724adf77b492d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="30489a97b06cc3945bdbcc1770089af9e3b3b64d">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.2.0_b3aa08b5e6fd1f5463eb093527557aa084fc3d3d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="535d4497b5fa5d451e07a043e9e220d5c25ab7c7">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-9.2.0_f71f8e9a6ffdcdd364eb0ea5d8965d3232e9755b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f56a68df45e18ce77814db6553fdaa229308f49b">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-9.2.0_718ddd6642f733e4202aaf11d671a9b159559e2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a0712565a784bedd07ada2393c95e0b1e288840f">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-9.2.0_df5e2826c576aa97d763da25188232b5b0dde1e1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="363f626ad5686283250cdb6073ae1bba5cb07a87">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.2.0_4f585af2aa91c1909fd00e5a39a74d8c2d7aa681\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="404f4108b41050173f93836f5b35efdd9525a0ad">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-9.2.0_63f2b427b2c25bcf229d0e40b46a59293d4112fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="33203b081101ca6242a4cd746aafe5fc2dd98a34">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.2.0_ac2e0b007736c1f93d3fc912292be799594d09b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_dc9fa2c1893627574ecd0e8954746b243912484a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a06eb7761fca120bbb46b34b930a3a3462ba9d7f">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-9.2.0_6d41053f5a5454805993cd380b868491373f4019\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_ca4811af912b09a100a04409cc3f8a986dcad1cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="21bb89120d84fa29afeb0f9c0ebf415bc3b45a7e">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-9.2.0_a4bc3cb47fd75e30d51556a62288cf36b3a81036\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\9.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="08cdd337d1d9247eb915f0ab365624dd7966e7fa">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-9.2.0_8f80a48ce3028089d82f008a2758fa61fbb45126\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -219,30 +399,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="4838df6db988160b107e954e02a745370df543b6">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.2.0_b7b8d78b557ba932622aecaa12d62d014887c280\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="a03f4d605b0f29222c2ddf8b7896258cb4b92def">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-9.2.0_5743df442556b2c6b35f2bc913ee69b76d0bcb35\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_6fae7844c367202ff23c798bc2a43f80de5a7a3e\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -264,39 +426,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ce9432b50a02be101bc491a1b38d3904200bd988">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-config-9.2.0_478e4df1b7d25ff92d1b9140db1113b298974545\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="dd7676ac12aa6653718b7ea33d93ce9d6915d526">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.2.0_9e0f58e1b773911b3d43bae16b141d156b69ec7e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_fc18a0fdc80391aaf9a93e629f1a6f03cf6a9cf4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="18e52280643effbab30370b073e456d670a0db54">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-9.2.0_7d91ea74cff24c1f0b047ce7e48d301481e53005\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -313,35 +448,8 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="e107a17afefdc2bcc016cc2025fe188766d8c1d9">
+        sha1="501608699ebec3d54b42fee59ce44fb17a8e3522">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_66c471a28bb7567e25099e854acdab4cfaa833e3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8ec9ae00d45e758ac5b7a1c5dc0daa8a4b24280f">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-9.2.0_e1e7a98d5367cd737f851ed30491cd2ba4298456\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_9b1c6336b1498c537b340ef1652411d2d76934a0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="be009dbe07b3a252c8cda07fc948ac713d2f5171">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-9.2.0_37e7a8af96f926def5786495748c1e737532d292\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -372,42 +480,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7c7c21cc7a45d5c2a57d77f4840d4d4ea3c7604f">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-9.2.0_89fec324f94e769a36f3fce9373d03e54b255d05\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gass\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="1dc44c4798cbd79e95e4838a3fdc734c0e3f895f">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gass-9.2.0_8240f975856b15cd7b4d50700f75091f44546c83\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b53d61bae49278c0fa202d9066d2e72fc151c1e8">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-clearcut-9.2.0_74fa318143bd696e38d947418fae10c5b8ddcccb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7418f4b83ea1c5b74036a982bc34599b49c63922">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2092a513a75d94a5227c68a85f26fd34469f1c85\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -423,24 +495,6 @@
         revision="23.0.3"
         sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_c3bc7a6cd06d0b1c45446bd7f0b72570b3825773\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="33b5900f82d19fd3dacee518363b249ace77b8f5">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-9.2.0_8c53105c5c98d39706733dc6c718582cce240f31\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="39261f58509b1a379df041f03da394c29da05395">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-9.2.0_e3d2aafc8d26b02a029fe9038f9724adf77b492d\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -462,66 +516,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="30489a97b06cc3945bdbcc1770089af9e3b3b64d">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.2.0_b3aa08b5e6fd1f5463eb093527557aa084fc3d3d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="535d4497b5fa5d451e07a043e9e220d5c25ab7c7">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-9.2.0_f71f8e9a6ffdcdd364eb0ea5d8965d3232e9755b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f56a68df45e18ce77814db6553fdaa229308f49b">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-9.2.0_718ddd6642f733e4202aaf11d671a9b159559e2a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="a0712565a784bedd07ada2393c95e0b1e288840f">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-9.2.0_df5e2826c576aa97d763da25188232b5b0dde1e1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_edb71564036c296233fdc1129a78f5f2076bcd96\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="363f626ad5686283250cdb6073ae1bba5cb07a87">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.2.0_4f585af2aa91c1909fd00e5a39a74d8c2d7aa681\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\9.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="404f4108b41050173f93836f5b35efdd9525a0ad">
-        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-9.2.0_63f2b427b2c25bcf229d0e40b46a59293d4112fc\classes.dex" />
     </item>
     <item
         is-multidex="true"

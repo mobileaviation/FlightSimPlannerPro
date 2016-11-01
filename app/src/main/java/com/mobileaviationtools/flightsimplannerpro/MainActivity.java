@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
@@ -18,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		Log.i(TAG, "OnCreate");
+		ScreendensityInfo();
 
 		pid = android.os.Process.myPid();
 		Log.i(TAG, "Flight sim plannen Pro PID: " + pid);
@@ -358,5 +361,49 @@ public class MainActivity extends AppCompatActivity {
 		super.onStop();
 
 
+	}
+
+	private void ScreendensityInfo()
+	{
+		String TAG = "ScreenDensityInfo";
+		//Determine screen size
+		if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
+			Log.i(TAG, "Large screen");
+		} else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
+			Log.i(TAG, "Normal sized screen");
+		} else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
+			Log.i(TAG, "Small sized screen" );
+		} else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+			Log.i(TAG, "XLarge sized screen" );
+		} else {
+			Log.i(TAG,  "Screen size is neither large, normal or small");
+		}
+
+//Determine density
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int density = metrics.densityDpi;
+		Log.i(TAG, "Density: "+ metrics.density +
+				" HeightPixels: " + metrics.heightPixels +
+				" WidthPixels: " + metrics.widthPixels +
+				" ScaledDensity: " + metrics.scaledDensity +
+				" xdpi: " + metrics.xdpi +
+				" ydpi: " + metrics.ydpi);
+
+		if (density==DisplayMetrics.DENSITY_HIGH) {
+			Log.i(TAG, "DENSITY_HIGH... Density is " + String.valueOf(density));
+		} else if (density==DisplayMetrics.DENSITY_MEDIUM) {
+			Log.i(TAG, "DENSITY_MEDIUM... Density is " + String.valueOf(density));
+		} else if (density==DisplayMetrics.DENSITY_LOW) {
+			Log.i(TAG, "DENSITY_LOW... Density is " + String.valueOf(density));
+		} else if (density==DisplayMetrics.DENSITY_XHIGH) {
+			Log.i(TAG, "DENSITY_XHIGH... Density is " + String.valueOf(density));
+		} else if (density==DisplayMetrics.DENSITY_XXHIGH) {
+			Log.i(TAG, "DENSITY_XXHIGH... Density is " + String.valueOf(density));
+		} else if (density==DisplayMetrics.DENSITY_XXXHIGH) {
+			Log.i(TAG,  "DENSITY_XXXHIGH... Density is " + String.valueOf(density));
+		} else {
+			Log.i(TAG, "Density is neither HIGH, MEDIUM OR LOW.  Density is " + String.valueOf(density));
+		}
 	}
 }
