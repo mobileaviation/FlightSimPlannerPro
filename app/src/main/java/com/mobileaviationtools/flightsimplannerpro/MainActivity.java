@@ -35,6 +35,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.LocationSource;
+//import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -58,6 +59,7 @@ import java.util.ArrayList;
 import us.ba3.me.LightingType;
 import us.ba3.me.Location3D;
 import us.ba3.me.LocationType;
+import us.ba3.me.MapView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 	private Route route;
 	private String TAG = "MainActivity";
 	private MyMapView mapView;
+	private MapView mapView1;
 	PropertiesDataSource properties;
 	private NativeLocation nativeLocation;
 	private LocationTracking locationTracking;
@@ -84,10 +87,24 @@ public class MainActivity extends AppCompatActivity {
 	private InfoPanelFragment infoPanel = null;
 	private Integer pid;
 
+	// ****************************************************
+	// ********* Map orders
+	// Route - Markers				141
+	// Route - Edit Buttons			140
+	// Route - Line					130
+	// Track - Line					120
+	// Airport Markers				102
+	// Navaids Markers				101
+	// Fixes Markers				100
+	// Airspaces					50
+	// Overlay Maps - PDF maps		11
+	// Overlay Maps - AAF maps		10
+	// Bottom layers map			1
+	// *****************************************************
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -99,87 +116,89 @@ public class MainActivity extends AppCompatActivity {
 		Log.i(TAG, "Flight sim plannen Pro PID: " + pid);
 
 		mapView = new MyMapView(getApplication());
+//		mapView1 = new MapView(this);
 		mapView.Init(null);
 		mapView.setLayoutParams(new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT
 		));
-
-		//Set lighting type to classic
+//
+//		//Set lighting type to classic
 		mapView.setLightingType(LightingType.kLightingTypeClassic);
-
-		//Set sun relative to observer
+//
+//		//Set sun relative to observer
 		mapView.setSunLocation(new us.ba3.me.Location(0,0), LocationType.kLocationTypeRelative);
-
-		mapView.setBackgroundColor(Color.BLACK);
-
+//
+//		mapView.setBackgroundColor(Color.BLACK);
+//
 		LinearLayout baseLayout = (LinearLayout) this.findViewById(R.id.mapLayout);
 		baseLayout.addView(mapView);
 
+		Log.i(TAG, "Map added...................");
+//
 		mapView.setMultithreaded(true);
-
+//
 		//mapView.AddMappyMap();
-		mapView.AddMapquestMap();
-
+		mapView.AddMappyMapWMS();
 
 //		// Primary location Netherlands
-//		Location3D loc = new Location3D();
-//		loc.altitude = 600000;
-//		loc.longitude = 5.6129;
-//		loc.latitude = 52.302;
-//		mapView.setLocation3D(loc, 1);
-//
-//		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
-//
-//		for (String a : airspacedbFiles) {
-//			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
-//			loadAirspacesAsync.context = this;
-//			loadAirspacesAsync.databaseName = a;
-//			loadAirspacesAsync.mapView = mapView;
-//			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//		}
-//
-//		//String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
-//		//mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
-//
-//		routeVisuals = new RouteVisuals(this, mapView);
-//		mapView.Init(routeVisuals);
-//
-//		infoPanel = (InfoPanelFragment) getSupportFragmentManager().findFragmentById(R.id.infoPanelFragment);
-//
-//		mapView.setMaximumZoom(2000000);
-//		mapView.setMinimumZoom(20000);
-//
-//
-//
-//		nativeLocation = new NativeLocation(this);
-//		setupLocationListener();
-//
-//		setupButtons();
-//
-//		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
-//
-//		AirportDataSource airportDataSource = new AirportDataSource(this);
-//		airportDataSource.open(pid);
-//		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
-//		airportDataSource.UpdateProgramID();
-//		airportDataSource.close();
-//
-//		properties = new PropertiesDataSource(this);
-//		properties.open(true);
-//		properties.FillProperties();
-//		MarkerProperties markerProperties = properties.getMarkersProperties();
-//		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
-//		Log.i(TAG, "Default Airport PID: " + properties.InitAirport.PID);
-//		properties.close(true);
-//
-//
-//		RouteDataSource routeDataSource = new RouteDataSource(this);
-//		routeDataSource.open();
-//		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
-//		routeDataSource.close();
-//
-//		mapView.AddMarkersMap(markerProperties, pid);
+		Location3D loc = new Location3D();
+		loc.altitude = 600000;
+		loc.longitude = 5.6129;
+		loc.latitude = 52.302;
+		mapView.setLocation3D(loc, 1);
+
+		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
+
+		for (String a : airspacedbFiles) {
+			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
+			loadAirspacesAsync.context = this;
+			loadAirspacesAsync.databaseName = a;
+			loadAirspacesAsync.mapView = mapView;
+			loadAirspacesAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		}
+
+		//String p = DBFilesHelper.CopyAirspaceMap(this.getApplicationContext());
+		//mapView.addVectorMap("Airspaces", p + "Airspaces.sqlite", p + "Airspaces.map");
+
+		routeVisuals = new RouteVisuals(this, mapView);
+		mapView.Init(routeVisuals);
+
+		infoPanel = (InfoPanelFragment) getSupportFragmentManager().findFragmentById(R.id.infoPanelFragment);
+
+		mapView.setMaximumZoom(2000000);
+		mapView.setMinimumZoom(20000);
+
+
+
+		nativeLocation = new NativeLocation(this);
+		setupLocationListener();
+
+		setupButtons();
+
+		DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
+
+		AirportDataSource airportDataSource = new AirportDataSource(this);
+		airportDataSource.open(pid);
+		Log.i(TAG, "Airport Count: " + airportDataSource.GetAirportsCount());
+		airportDataSource.UpdateProgramID();
+		airportDataSource.close();
+
+		properties = new PropertiesDataSource(this);
+		properties.open(true);
+		properties.FillProperties();
+		MarkerProperties markerProperties = properties.getMarkersProperties();
+		Log.i(TAG, "Default Airport: " + properties.InitAirport.name);
+		Log.i(TAG, "Default Airport PID: " + properties.InitAirport.PID);
+		properties.close(true);
+
+
+		RouteDataSource routeDataSource = new RouteDataSource(this);
+		routeDataSource.open();
+		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
+		routeDataSource.close();
+
+		mapView.AddMarkersMap(markerProperties, pid);
 
 	}
 

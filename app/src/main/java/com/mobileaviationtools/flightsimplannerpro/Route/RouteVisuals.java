@@ -88,21 +88,23 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     {
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
         mapInfo.name = markerName;
-        mapInfo.zOrder = 110;
+        mapInfo.zOrder = 141;
+        mapInfo.alpha = 0;
         mapInfo.hitTestingEnabled = setMarkerHit;
         if (setMarkerHit) mapInfo.delegate = routePointHit;
         mapView.addMapUsingMapInfo(mapInfo);
 
         DynamicMarkerMapInfo buttonsMapInfo = new DynamicMarkerMapInfo();
         buttonsMapInfo.name = "buttons";
-        buttonsMapInfo.zOrder = 120;
+        buttonsMapInfo.zOrder = 140;
+        buttonsMapInfo.alpha = 0;
         buttonsMapInfo.hitTestingEnabled = setMarkerHit;
         if (setMarkerHit) buttonsMapInfo.delegate = editWaypointBtnHit;
         mapView.addMapUsingMapInfo(buttonsMapInfo);
 
         VectorMapInfo vectorMapInfo = new VectorMapInfo();
         vectorMapInfo.name = lineName;
-        vectorMapInfo.zOrder = 100;
+        vectorMapInfo.zOrder = 130;
         vectorMapInfo.alpha = 0.75f;
         //vectorMapInfo.vectorMapDelegate = lineSegmentHit;
         mapView.addMapUsingMapInfo(vectorMapInfo);

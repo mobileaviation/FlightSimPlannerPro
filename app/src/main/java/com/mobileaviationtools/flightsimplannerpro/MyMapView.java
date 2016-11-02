@@ -174,18 +174,19 @@ public class MyMapView extends MapView {
         super.onLongPress(event);
     }
 
-    public void AddMapquestMap()
+    public void AddMappyMap()
     {
-        this.addStreamingRasterMap("MapQuest Aerial",
-        "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
+        this.addStreamingRasterMap("Mappy",
+        //"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
+                "https://map1.mappy.net/map/1.0/slab/standard/256/{z}/{x}/{y}",
         "",
         "",
         "", 		//Subdomains
         20,			//Max Level
-        2,			//zOrder
+        200,			//zOrder
         3,			//Number of simultaneous downloads
         true,		//Use cache
-        true		//No alpha
+        false		//No alpha
         );
     }
 
@@ -217,7 +218,7 @@ public class MyMapView extends MapView {
 
         VirtualMapInfo chartBundlemapInfo = new VirtualMapInfo();
         chartBundlemapInfo.name = mapname;
-        chartBundlemapInfo.zOrder = 7;
+        chartBundlemapInfo.zOrder = 180;
         chartBundlemapInfo.maxLevel = 20;
         //chartBundlemapInfo.isSphericalMercator = false;
         chartBundlemapInfo.compressTextures = true;
@@ -246,8 +247,9 @@ public class MyMapView extends MapView {
 
         VirtualMapInfo markersTestMapInfo = new VirtualMapInfo();
         markersTestMapInfo.name = mapmame;
-        markersTestMapInfo.zOrder = 6;
+        markersTestMapInfo.zOrder = 102;
         markersTestMapInfo.maxLevel = 20;
+        markersTestMapInfo.alpha = 0;
         //markersTestMapInfo.isSphericalMercator = false;
         markersTestMapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
         //markersTestMapInfo.setTileProvider(markersMapFactory);
@@ -258,7 +260,7 @@ public class MyMapView extends MapView {
 
     }
 
-    public void AddMappyMap()
+    public void AddMappyMapWMS()
     {
         String mapname = "Mappy";
         TileFactory mappyFactory = new TileFactory(this);
@@ -274,7 +276,7 @@ public class MyMapView extends MapView {
 
         VirtualMapInfo mappymapInfo = new VirtualMapInfo();
         mappymapInfo.name = mapname;
-        mappymapInfo.zOrder = 7;
+        mappymapInfo.zOrder = 1;
         mappymapInfo.maxLevel = 20;
         //mappymapInfo.isSphericalMercator = false;
         mappymapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;

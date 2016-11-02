@@ -70,6 +70,7 @@ public class AirportsTileWorker extends TileWorker {
 //        Long yi = Math.round(y-1);
 //
 //        Log.i("AirportsTileWorker", "Zoom: " + yi + " X: " + xi + " Y: " + yi);
+        Log.i(TAG, "OnDoWork AirportsTileWorker");
 
         HashMap<Integer, Airport> airports = getAirports(request);
 
@@ -77,7 +78,7 @@ public class AirportsTileWorker extends TileWorker {
             String mapname = Double.toString(request.bounds.min.latitude) + Double.toString(request.bounds.min.longitude) + "Airports";
             DynamicMarkerMapInfo airportMarkerMap = new DynamicMarkerMapInfo();
             airportMarkerMap.name = mapname;
-            airportMarkerMap.zOrder = 200;
+            airportMarkerMap.zOrder = 102;
             airportMarkerMap.hitTestingEnabled = true;
             airportMarkerMap.delegate = airportMarkerHit;
             //airportMarkerMap.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;

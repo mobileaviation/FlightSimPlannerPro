@@ -9,11 +9,7 @@
     android:id="@+id/baseLayout">
 
 
-    <!--<us.ba3.me.MapView-->
-        <!--android:id="@+id/mapView1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:visibility="visible" />-->
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,6 +24,12 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:weightSum="1">
+
+            <!--<us.ba3.me.MapView-->
+            <!--android:id="@+id/mapView1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:visibility="visible" />-->
 
         </LinearLayout>
 
