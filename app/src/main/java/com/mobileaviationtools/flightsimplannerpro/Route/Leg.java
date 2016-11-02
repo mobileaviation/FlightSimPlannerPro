@@ -101,10 +101,12 @@ public class Leg {
 
         //float distanceBetween = fromWaypoint.getAndroidLocation().distanceTo(toWaypoint.getAndroidLocation());
         //float courseBetween = fromWaypoint.getAndroidLocation().bearingTo(toWaypoint.getAndroidLocation());
-        //us.ba3.me.M
+        PointF m = us.ba3.me.Math.pointBetween(new PointF(Float.parseFloat(Double.toString(fromWaypoint.location.longitude)),
+                Float.parseFloat(Double.toString(fromWaypoint.location.latitude))),
+                new PointF(Float.parseFloat(Double.toString(fromWaypoint.location.longitude)),
+                        Float.parseFloat(Double.toString(fromWaypoint.location.latitude))), .5f);
 
-        //airportMarker.location = new us.ba3.me.Location(airport.latitude_deg, airport.longitude_deg);
-        //airportMarker.setImage(blueDot, false);
+        airportMarker.location = new us.ba3.me.Location(m.y, m.x);
         airportMarker.setImage(blueDot, false);
 
         airportMarker.anchorPoint = new PointF(blueDot.getWidth()/2, blueDot.getHeight()/2);
