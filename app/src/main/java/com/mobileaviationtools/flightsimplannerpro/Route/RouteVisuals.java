@@ -126,6 +126,10 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
             i++;
         }
 
+        for (Leg l:route.legs){
+            addLegMarker(l);
+        }
+
         //Create a style for the route line
         LineStyle lineStyle = new LineStyle();
         lineStyle.outlineColor = Color.DKGRAY;
@@ -259,6 +263,12 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
             
             selectedWaypoint = null;
         }
+    }
+
+    private void addLegMarker(Leg leg)
+    {
+        DynamicMarker legMarker = leg.getLegInfoMarker();
+        mapView.addDynamicMarkerToMap("markers", legMarker);
     }
 
 

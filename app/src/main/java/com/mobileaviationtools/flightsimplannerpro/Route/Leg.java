@@ -3,15 +3,21 @@ package com.mobileaviationtools.flightsimplannerpro.Route;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PointF;
 import android.location.Location;
+import android.util.Log;
 
+import com.mobileaviationtools.flightsimplannerpro.Helpers;
 import com.mobileaviationtools.flightsimplannerpro.R;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import us.ba3.me.markers.DynamicMarker;
+import us.ba3.me.markers.MarkerRotationType;
 
 /**
  * Created by Rob Verhoef on 7-7-2016.
@@ -27,6 +33,7 @@ public class Leg {
         endPlan = false;
     }
 
+    private String TAG = "Leg";
     private OnDistanceFromWaypoint onDistanceFromWaypoint = null;
 
     private Set<Distance> distancesAchived;
@@ -95,7 +102,17 @@ public class Leg {
     public DynamicMarker getLegInfoMarker()
     {
         DynamicMarker airportMarker = new DynamicMarker();
-        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluedot);
+        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_s);
+        Canvas textCanvas = new Canvas(blueDot);
+        Paint textPaint = new Paint();
+        textPaint.setColor(Color.argb(50,0,0,0));
+        textPaint.setAntiAlias(true);
+        textPaint.setTextSize(Math.round(Helpers.convertDpToPixel(14, context )));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+
+        textCanvas.drawText(Integer.toString(Math.round(toWaypoint.true_track)),
+                Math.round(Helpers.convertDpToPixel(10, context )),
+                Math.round(Helpers.convertDpToPixel(10, context )),textPaint);
 
         airportMarker.name = toWaypoint.name;
 
@@ -103,11 +120,14 @@ public class Leg {
         //float courseBetween = fromWaypoint.getAndroidLocation().bearingTo(toWaypoint.getAndroidLocation());
         PointF m = us.ba3.me.Math.pointBetween(new PointF(Float.parseFloat(Double.toString(fromWaypoint.location.longitude)),
                 Float.parseFloat(Double.toString(fromWaypoint.location.latitude))),
-                new PointF(Float.parseFloat(Double.toString(fromWaypoint.location.longitude)),
-                        Float.parseFloat(Double.toString(fromWaypoint.location.latitude))), .5f);
+                new PointF(Float.parseFloat(Double.toString(toWaypoint.location.longitude)),
+                        Float.parseFloat(Double.toString(toWaypoint.location.latitude))), .5f);
 
+        Log.i(TAG, "Set Leg Marker on LAT: " + m.y + " LON: " + m.x + " course: " +this.courseTo);
         airportMarker.location = new us.ba3.me.Location(m.y, m.x);
         airportMarker.setImage(blueDot, false);
+        airportMarker.rotationType = MarkerRotationType.kMarkerRotationTrueNorthAligned;
+        airportMarker.rotation = toWaypoint.true_track;
 
         airportMarker.anchorPoint = new PointF(blueDot.getWidth()/2, blueDot.getHeight()/2);
 
