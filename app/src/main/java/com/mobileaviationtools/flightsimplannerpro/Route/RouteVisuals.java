@@ -42,6 +42,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         this.mapView.addCachedImage("addwaypoint", addWaypointBtn, true);
         this.mapView.addCachedImage("removewaypoint", removeWaypointBtn, true);
         this.routePointHit = new RoutePointHit(this.mapView, this);
+        this.lineSegmentHit = new LineSegmentHit();
         this.editWaypointBtnHit = new EditWaypointBtnHit(this.mapView, this);
     }
 
@@ -69,6 +70,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     private Context context;
     private Route route;
     private RoutePointHit routePointHit;
+    private LineSegmentHit lineSegmentHit;
     private EditWaypointBtnHit editWaypointBtnHit;
     public Waypoint selectedWaypoint;
     public Bitmap blueDot;
@@ -106,7 +108,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         vectorMapInfo.name = lineName;
         vectorMapInfo.zOrder = 130;
         vectorMapInfo.alpha = 0.75f;
-        //vectorMapInfo.vectorMapDelegate = lineSegmentHit;
+        vectorMapInfo.vectorMapDelegate = lineSegmentHit;
         mapView.addMapUsingMapInfo(vectorMapInfo);
 
         addWaypointEditBtns();

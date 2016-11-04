@@ -214,7 +214,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="666d6fc76c3752942e7312cee4f20da7f615980f">
+        sha1="1249f6aaa7f13305e024414a894f6f99a97327c1">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2092a513a75d94a5227c68a85f26fd34469f1c85\classes.dex" />
     </item>
     <item
@@ -448,7 +448,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="97fc927af344f84d4f7cdc26252dc9844b4dd0b7">
+        sha1="ca715e53510c97b230ba744c5aa3897b5f94f55f">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_66c471a28bb7567e25099e854acdab4cfaa833e3\classes.dex" />
     </item>
     <item

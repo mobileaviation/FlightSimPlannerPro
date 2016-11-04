@@ -102,7 +102,9 @@ public class Leg {
     public DynamicMarker getLegInfoMarker()
     {
         DynamicMarker airportMarker = new DynamicMarker();
-        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_s);
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inMutable = true;
+        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_s, o);
         Canvas textCanvas = new Canvas(blueDot);
         Paint textPaint = new Paint();
         textPaint.setColor(Color.argb(50,0,0,0));

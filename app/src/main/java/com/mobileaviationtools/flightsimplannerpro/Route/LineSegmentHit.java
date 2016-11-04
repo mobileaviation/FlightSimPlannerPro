@@ -18,4 +18,5 @@ public class LineSegmentHit implements VectorMapDelegate {
     public void vertexHitDetected(String s, String s1, Location location, int i) {
         Log.i("Route", "vertexHit: " + s + " : " + s1);
     }
+
 }
