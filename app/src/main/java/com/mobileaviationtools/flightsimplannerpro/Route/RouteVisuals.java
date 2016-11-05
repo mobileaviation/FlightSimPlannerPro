@@ -88,6 +88,14 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
 
     private void setMarkerAndLinesMaps(String markerName, String lineName, Boolean setMarkerHit)
     {
+        DynamicMarkerMapInfo coarseMapInfo = new DynamicMarkerMapInfo();
+        coarseMapInfo.name = "coarse_labels";
+        coarseMapInfo.zOrder = 142;
+        coarseMapInfo.alpha = 0;
+        coarseMapInfo.hitTestingEnabled = false;
+        //if (setMarkerHit) mapInfo.delegate = routePointHit;
+        mapView.addMapUsingMapInfo(coarseMapInfo);
+
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
         mapInfo.name = markerName;
         mapInfo.zOrder = 141;
@@ -127,6 +135,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
             addMarker(w);
             i++;
         }
+
 
         for (Leg l:route.legs){
             addLegMarker(l);
@@ -270,7 +279,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     private void addLegMarker(Leg leg)
     {
         DynamicMarker legMarker = leg.getLegInfoMarker();
-        mapView.addDynamicMarkerToMap("markers", legMarker);
+        mapView.addDynamicMarkerToMap("coarse_labels", legMarker);
     }
 
 

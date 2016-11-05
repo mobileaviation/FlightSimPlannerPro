@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 		loc.altitude = 600000;
 		loc.longitude = 5.6129;
 		loc.latitude = 52.302;
-		mapView.setLocation3D(loc, 1);
+		mapView.setLocation3D(loc, 0);
 
 		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
 
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
 		setupButtons();
 
-		DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
+		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
 
 		AirportDataSource airportDataSource = new AirportDataSource(this);
 		airportDataSource.open(pid);

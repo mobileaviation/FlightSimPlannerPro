@@ -104,17 +104,27 @@ public class Leg {
         DynamicMarker airportMarker = new DynamicMarker();
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inMutable = true;
-        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_s, o);
-        Canvas textCanvas = new Canvas(blueDot);
+        blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_ss, o);
+
+        Bitmap drawBitmap = Bitmap.createBitmap(blueDot.getWidth(), blueDot.getWidth(),
+                Bitmap.Config.ARGB_8888);
+        Canvas drawCanvas = new Canvas(drawBitmap);
+
+        drawCanvas.drawBitmap(blueDot, 0, (drawBitmap.getHeight()/2)-(blueDot.getHeight()/2), null);
+
+        // arrow is 77 * 32
+        int ty = (drawBitmap.getHeight()/2) + Math.round(Helpers.convertDpToPixel(5f, context));
+
         Paint textPaint = new Paint();
-        textPaint.setColor(Color.argb(50,0,0,0));
+        textPaint.setColor(Color.argb(255,0,0,0));
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(Math.round(Helpers.convertDpToPixel(14, context )));
-        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextAlign(Paint.Align.LEFT);
 
-        textCanvas.drawText(Integer.toString(Math.round(toWaypoint.true_track)),
-                Math.round(Helpers.convertDpToPixel(10, context )),
-                Math.round(Helpers.convertDpToPixel(10, context )),textPaint);
+        String c = String.format("%1$03d", Math.round(toWaypoint.true_track));
+        drawCanvas.drawText(c,
+                Math.round(Helpers.convertDpToPixel(8, context )),
+                Math.round(Helpers.convertDpToPixel(ty, context )),textPaint);
 
         airportMarker.name = toWaypoint.name;
 
@@ -127,11 +137,11 @@ public class Leg {
 
         Log.i(TAG, "Set Leg Marker on LAT: " + m.y + " LON: " + m.x + " course: " +this.courseTo);
         airportMarker.location = new us.ba3.me.Location(m.y, m.x);
-        airportMarker.setImage(blueDot, false);
+        airportMarker.setImage(drawBitmap, false);
         airportMarker.rotationType = MarkerRotationType.kMarkerRotationTrueNorthAligned;
-        airportMarker.rotation = toWaypoint.true_track;
+        airportMarker.rotation = toWaypoint.true_track - 90;
 
-        airportMarker.anchorPoint = new PointF(blueDot.getWidth()/2, blueDot.getHeight()/2);
+        airportMarker.anchorPoint = new PointF(drawBitmap.getWidth()/2, drawBitmap.getHeight()/2);
 
         return airportMarker;
     }
