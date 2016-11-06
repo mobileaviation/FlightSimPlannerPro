@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import us.ba3.me.Location;
+import us.ba3.me.Location3D;
 import us.ba3.me.MapView;
 import us.ba3.me.VectorMapInfo;
 import us.ba3.me.markers.DynamicMarker;
@@ -149,6 +150,14 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         lineStyle.strokeWidth = Helpers.convertDpToPixel(10, this.context);;
 
         mapView.addDynamicLineToVectorMap("lines", "route", waypoints, lineStyle);
+
+
+    }
+
+    public OnRouteDrawn onRouteDrawn = null;
+    public void setOnRouteDrawn(final OnRouteDrawn r) { onRouteDrawn = r; }
+    public interface OnRouteDrawn {
+        public void RouteDrawn(Location3D location3D);
     }
 
     public void SelectWaypoint(String selectedId) {

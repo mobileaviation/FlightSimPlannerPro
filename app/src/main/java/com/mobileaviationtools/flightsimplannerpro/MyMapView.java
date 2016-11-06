@@ -112,7 +112,7 @@ public class MyMapView extends MapView {
         Log.i("onScroll", "Action arg0: " + arg0.getAction() + " arg1: "  +
                 arg1.getAction());
         Location3D location3D = this.getLocation3D();
-        Log.i("onScroll", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
+
         super.getLocationForPoint(new PointF(arg1.getX(), arg1.getY()), new LocationReceiver() {
             @Override
             public void receiveLocation (Location location) {
@@ -121,13 +121,18 @@ public class MyMapView extends MapView {
                 //MyMapView.this.get
             }
         });
+
+        if (onVisualsChanged != null) onVisualsChanged.onScrolled(location3D, this);
+
         return super.onScroll(arg0, arg1, arg2, arg3);
     }
 
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
         Location3D location3D = this.getLocation3D();
-        Log.i("onScaleEnd", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
+
+        if (onVisualsChanged != null) onVisualsChanged.onScaled(location3D, this);
+
         super.onScale(detector);
     }
 
@@ -289,5 +294,12 @@ public class MyMapView extends MapView {
     {
         String p = this.getContext().getFilesDir().getPath() + "/";
         return p;
+    }
+
+    private OnVisualsChanged onVisualsChanged = null;
+    public void setOnVisualsChanged( final OnVisualsChanged d) { onVisualsChanged = d; }
+    public interface OnVisualsChanged {
+        public void onScrolled(Location3D location3D, MyMapView myMapView);
+        public void onScaled(Location3D location3D,MyMapView myMapView);
     }
 }

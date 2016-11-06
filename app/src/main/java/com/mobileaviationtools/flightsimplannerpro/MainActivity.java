@@ -48,6 +48,7 @@ import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Info.InfoPanelFragment;
 import com.mobileaviationtools.flightsimplannerpro.LocationService.NativeLocation;
 import com.mobileaviationtools.flightsimplannerpro.LocationService.PlaneMarker;
+import com.mobileaviationtools.flightsimplannerpro.Route.Leg;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
@@ -148,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
 		loc.latitude = 52.302;
 		mapView.setLocation3D(loc, 0);
 
+		SetupMapVisualsChangedListeners();
+
 		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
 
 		for (String a : airspacedbFiles) {
@@ -200,6 +203,41 @@ public class MainActivity extends AppCompatActivity {
 
 		mapView.AddMarkersMap(markerProperties, pid);
 
+	}
+
+	private void SetupMapVisualsChangedListeners() {
+		mapView.setOnVisualsChanged(new MyMapView.OnVisualsChanged() {
+			@Override
+			public void onScrolled(Location3D location3D, MyMapView myMapView) {
+				Log.i("onScrolled", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
+			}
+
+			@Override
+			public void onScaled(Location3D location3D, MyMapView myMapView) {
+				Log.i("onScaled", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
+
+				if (MainActivity.this.route != null)
+				{
+					if (MainActivity.this.route.legs.size()>0)
+					{
+						for (Leg leg: MainActivity.this.route.legs)
+						{
+							//Log.i("onScaled", "Leg distance: " + leg.getToWaypoint().distance_leg);
+							double d = leg.getToWaypoint().distance_leg;
+							double c = d / location3D.altitude;
+							Log.i("onScaled", "Calculated: " + c);
+							if (c > 0.056f)
+							{
+								myMapView.showDynamicMarker("coarse_labels", leg.getToWaypoint().name);
+							}else
+							{
+								myMapView.hideDynamicMarker("coarse_labels", leg.getToWaypoint().name);
+							}
+						}
+					}
+				}
+			}
+		});
 	}
 
 	@Override

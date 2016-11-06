@@ -101,7 +101,7 @@ public class Leg {
 
     public DynamicMarker getLegInfoMarker()
     {
-        DynamicMarker airportMarker = new DynamicMarker();
+        DynamicMarker legMarker = new DynamicMarker();
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inMutable = true;
         blueDot = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_ss, o);
@@ -126,7 +126,7 @@ public class Leg {
                 Math.round(Helpers.convertDpToPixel(8, context )),
                 Math.round(Helpers.convertDpToPixel(ty, context )),textPaint);
 
-        airportMarker.name = toWaypoint.name;
+        legMarker.name = toWaypoint.name;
 
         //float distanceBetween = fromWaypoint.getAndroidLocation().distanceTo(toWaypoint.getAndroidLocation());
         //float courseBetween = fromWaypoint.getAndroidLocation().bearingTo(toWaypoint.getAndroidLocation());
@@ -136,14 +136,14 @@ public class Leg {
                         Float.parseFloat(Double.toString(toWaypoint.location.latitude))), .5f);
 
         Log.i(TAG, "Set Leg Marker on LAT: " + m.y + " LON: " + m.x + " course: " +this.courseTo);
-        airportMarker.location = new us.ba3.me.Location(m.y, m.x);
-        airportMarker.setImage(drawBitmap, false);
-        airportMarker.rotationType = MarkerRotationType.kMarkerRotationTrueNorthAligned;
-        airportMarker.rotation = toWaypoint.true_track - 90;
+        legMarker.location = new us.ba3.me.Location(m.y, m.x);
+        legMarker.setImage(drawBitmap, false);
+        legMarker.rotationType = MarkerRotationType.kMarkerRotationTrueNorthAligned;
+        legMarker.rotation = toWaypoint.true_track - 90;
 
-        airportMarker.anchorPoint = new PointF(drawBitmap.getWidth()/2, drawBitmap.getHeight()/2);
+        legMarker.anchorPoint = new PointF(drawBitmap.getWidth()/2, drawBitmap.getHeight()/2);
 
-        return airportMarker;
+        return legMarker;
     }
 
     public void setCurrectLocation(Location currentLocation)
