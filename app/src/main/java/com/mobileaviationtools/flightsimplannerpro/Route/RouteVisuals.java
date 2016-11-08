@@ -151,7 +151,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
 
         mapView.addDynamicLineToVectorMap("lines", "route", waypoints, lineStyle);
 
-
+        if (onRouteDrawn != null) onRouteDrawn.RouteDrawn(this.mapView.getLocation3D());
     }
 
     public OnRouteDrawn onRouteDrawn = null;

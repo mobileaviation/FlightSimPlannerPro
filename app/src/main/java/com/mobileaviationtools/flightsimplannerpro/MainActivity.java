@@ -28,6 +28,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -119,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
 		mapView = new MyMapView(getApplication());
 //		mapView1 = new MapView(this);
 		mapView.Init(null);
-		mapView.setLayoutParams(new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.MATCH_PARENT
-		));
+//		mapView.setLayoutParams(new LinearLayout.LayoutParams(
+//				LinearLayout.LayoutParams.MATCH_PARENT,
+//				LinearLayout.LayoutParams.MATCH_PARENT
+//		));
 //
 //		//Set lighting type to classic
 		mapView.setLightingType(LightingType.kLightingTypeClassic);
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 //
 		LinearLayout baseLayout = (LinearLayout) this.findViewById(R.id.mapLayout);
 		baseLayout.addView(mapView);
+		//mapView.
 
 		Log.i(TAG, "Map added...................");
 //
@@ -166,6 +168,13 @@ public class MainActivity extends AppCompatActivity {
 
 		routeVisuals = new RouteVisuals(this, mapView);
 		mapView.Init(routeVisuals);
+
+		routeVisuals.setOnRouteDrawn(new RouteVisuals.OnRouteDrawn() {
+			@Override
+			public void RouteDrawn(Location3D location3D) {
+				doOnScaled(location3D, mapView);
+			}
+		});
 
 		infoPanel = (InfoPanelFragment) getSupportFragmentManager().findFragmentById(R.id.infoPanelFragment);
 
@@ -216,28 +225,33 @@ public class MainActivity extends AppCompatActivity {
 			public void onScaled(Location3D location3D, MyMapView myMapView) {
 				Log.i("onScaled", "3D: lat:" + location3D.latitude + "  lon:" + location3D.longitude + "  alt:" + location3D.altitude);
 
-				if (MainActivity.this.route != null)
+				MainActivity.this.doOnScaled(location3D, myMapView);
+			}
+		});
+	}
+
+	private void doOnScaled(Location3D location3D, MyMapView myMapView)
+	{
+		if (this.route != null)
+		{
+			if (this.route.legs.size()>0)
+			{
+				for (Leg leg: this.route.legs)
 				{
-					if (MainActivity.this.route.legs.size()>0)
+					//Log.i("onScaled", "Leg distance: " + leg.getToWaypoint().distance_leg);
+					double d = leg.getToWaypoint().distance_leg;
+					double c = d / location3D.altitude;
+					//Log.i("onScaled", "Calculated: " + c);
+					if (c > 0.056f)
 					{
-						for (Leg leg: MainActivity.this.route.legs)
-						{
-							//Log.i("onScaled", "Leg distance: " + leg.getToWaypoint().distance_leg);
-							double d = leg.getToWaypoint().distance_leg;
-							double c = d / location3D.altitude;
-							Log.i("onScaled", "Calculated: " + c);
-							if (c > 0.056f)
-							{
-								myMapView.showDynamicMarker("coarse_labels", leg.getToWaypoint().name);
-							}else
-							{
-								myMapView.hideDynamicMarker("coarse_labels", leg.getToWaypoint().name);
-							}
-						}
+						myMapView.showDynamicMarker("coarse_labels", leg.getToWaypoint().name);
+					}else
+					{
+						myMapView.hideDynamicMarker("coarse_labels", leg.getToWaypoint().name);
 					}
 				}
 			}
-		});
+		}
 	}
 
 	@Override

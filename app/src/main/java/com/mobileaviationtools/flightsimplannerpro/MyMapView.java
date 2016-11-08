@@ -39,6 +39,8 @@ public class MyMapView extends MapView {
         placingRoutePoint = false;
         movingRoutePoint = false;
         scrolling = false;
+
+
     }
 
     private RouteVisuals routeVisuals;
