@@ -15,9 +15,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -117,8 +119,11 @@ public class MainActivity extends AppCompatActivity {
 		pid = android.os.Process.myPid();
 		Log.i(TAG, "Flight sim plannen Pro PID: " + pid);
 
-		mapView = new MyMapView(getApplication());
+		//mapView = new MyMapView(getApplication());
 //		mapView1 = new MapView(this);
+
+		//mapView = (MyMapView) this.findViewById(R.id.mapView);
+		mapView = new MyMapView(this);
 		mapView.Init(null);
 //		mapView.setLayoutParams(new LinearLayout.LayoutParams(
 //				LinearLayout.LayoutParams.MATCH_PARENT,
@@ -133,9 +138,23 @@ public class MainActivity extends AppCompatActivity {
 //
 //		mapView.setBackgroundColor(Color.BLACK);
 //
+		mapView.setZOrderOnTop(false);
 		LinearLayout baseLayout = (LinearLayout) this.findViewById(R.id.mapLayout);
 		baseLayout.addView(mapView);
-		//mapView.
+
+
+		DrawerLayout drawerLayout = (DrawerLayout)this.findViewById(R.id.drawerLayout);
+		drawerLayout.setScrimColor(Color.argb(50,0,0,0));
+
+		NavigationView navigationView = (NavigationView) this.findViewById(R.id.navigationView);
+		Menu navMenu = navigationView.getMenu();
+		navMenu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				return false;
+			}
+		});
 
 		Log.i(TAG, "Map added...................");
 //
@@ -358,6 +377,8 @@ public class MainActivity extends AppCompatActivity {
 				return true;
 			}
 		}
+
+
 		return super.onOptionsItemSelected(item);
 	}
 

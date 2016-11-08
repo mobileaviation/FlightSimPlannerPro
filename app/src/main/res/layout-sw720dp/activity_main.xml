@@ -52,7 +52,8 @@
                     android:baselineAligned="false"
                     android:layout_weight="80"
                     android:id="@+id/infoPanelLayout"
-                    android:layout_gravity="top">
+                    android:layout_gravity="top"
+                    android:layout_marginTop="1dp">
 
                     <fragment
                         android:layout_width="fill_parent"

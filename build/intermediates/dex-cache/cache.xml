@@ -21,6 +21,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_b99eac9958bb1b3b33221054fb88358c67dc31a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -214,7 +223,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="1249f6aaa7f13305e024414a894f6f99a97327c1">
+        sha1="b96cce88e843d1d6f3849a2c53a6f7c37d53b241">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2092a513a75d94a5227c68a85f26fd34469f1c85\classes.dex" />
     </item>
     <item
@@ -324,6 +333,15 @@
         revision="23.0.3"
         sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_ca4811af912b09a100a04409cc3f8a986dcad1cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_33de07ff68d659e378ba7e93640a46a319dff20e\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -448,7 +466,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ca715e53510c97b230ba744c5aa3897b5f94f55f">
+        sha1="5996e78ff003a1eff196d849a974a629efc1c560">
         <dex dex="C:\Users\Rob Verhoef.WIN7-ROBVERHOEF\Documents\GitHub\FlightSimPlannerPro\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_66c471a28bb7567e25099e854acdab4cfaa833e3\classes.dex" />
     </item>
     <item
