@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/item_ActivateFP" android:title="Activate Flightplan"/>
+    <item android:id="@+id/item_CreateFP" android:title="Create Flightplan"/>
+    <item android:id="@+id/item_ConnnectGPS" android:title="Connect to GPS"/>
     <item android:id="@+id/item_Settings" android:title="Settings"/>
     <item android:id="@+id/item_Track" android:title="Tracks"/>
     <item android:id="@+id/item_Notam" android:title="Notams"/>

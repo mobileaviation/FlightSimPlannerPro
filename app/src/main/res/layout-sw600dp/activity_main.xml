@@ -76,34 +76,6 @@
                         android:id="@+id/buttonsLayout"
                         android:layout_height="match_parent">
 
-                        <Button
-                            android:layout_width="60dp"
-                            android:id="@+id/activateRouteBtn"
-                            android:background="@drawable/flightplanactivate"
-                            android:layout_gravity="top"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="5dp"
-                            android:clickable="true"
-                            android:layout_marginLeft="20dp"
-                            android:layout_height="60dp" />
-
-                        <Button
-                            android:id="@+id/addNewRouteBtn"
-                            android:background="@drawable/flightplanbutton"
-                            android:layout_marginRight="20dp"
-                            android:layout_gravity="top"
-                            android:layout_marginTop="5dp"
-                            android:clickable="true"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp" />
-
-                        <Button
-                            android:id="@+id/connectBtn"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/disconnected"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp" />
                     </LinearLayout>
 
                 </LinearLayout>

@@ -45,6 +45,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         this.routePointHit = new RoutePointHit(this.mapView, this);
         this.lineSegmentHit = new LineSegmentHit();
         this.editWaypointBtnHit = new EditWaypointBtnHit(this.mapView, this);
+        this.coarseLabelHit = new CoarseLabelHit(this.mapView, this);
     }
 
     public void setRoute(Route route)
@@ -73,6 +74,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     private RoutePointHit routePointHit;
     private LineSegmentHit lineSegmentHit;
     private EditWaypointBtnHit editWaypointBtnHit;
+    private CoarseLabelHit coarseLabelHit;
     public Waypoint selectedWaypoint;
     public Bitmap blueDot;
     public Bitmap greenDot;
@@ -91,10 +93,10 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
     {
         DynamicMarkerMapInfo coarseMapInfo = new DynamicMarkerMapInfo();
         coarseMapInfo.name = "coarse_labels";
-        coarseMapInfo.zOrder = 142;
+        coarseMapInfo.zOrder = 140;
         coarseMapInfo.alpha = 0;
-        coarseMapInfo.hitTestingEnabled = false;
-        //if (setMarkerHit) mapInfo.delegate = routePointHit;
+        coarseMapInfo.hitTestingEnabled = setMarkerHit;
+        if (setMarkerHit) coarseMapInfo.delegate = coarseLabelHit;
         mapView.addMapUsingMapInfo(coarseMapInfo);
 
         DynamicMarkerMapInfo mapInfo = new DynamicMarkerMapInfo();
@@ -107,7 +109,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
 
         DynamicMarkerMapInfo buttonsMapInfo = new DynamicMarkerMapInfo();
         buttonsMapInfo.name = "buttons";
-        buttonsMapInfo.zOrder = 140;
+        buttonsMapInfo.zOrder = 142;
         buttonsMapInfo.alpha = 0;
         buttonsMapInfo.hitTestingEnabled = setMarkerHit;
         if (setMarkerHit) buttonsMapInfo.delegate = editWaypointBtnHit;
@@ -342,9 +344,11 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
             selectedWaypoint = null;
 
             route.UpdateWaypointsData();
+            route.ClearAndReloadLegs();
 
-            removeRouteFromMap();
-            drawRouteOnMap();
+            //removeRouteFromMap();
+            //drawRouteOnMap();
+            setRoute(this.route);
 
             mapView.hideDynamicMarker("buttons", "addWaypointBtn");
             mapView.hideDynamicMarker("buttons", "removeWaypointBtn");
@@ -362,8 +366,9 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
                 this.put(waypoint.UID, waypoint);
 
                 selectedWaypoint = waypoint;
-                removeRouteFromMap();
-                drawRouteOnMap();
+//                removeRouteFromMap();
+//                drawRouteOnMap();
+                setRoute(this.route);
 
                 mapView.hideDynamicMarker("buttons", "addWaypointBtn");
                 mapView.hideDynamicMarker("buttons", "removeWaypointBtn");

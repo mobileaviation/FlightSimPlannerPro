@@ -219,10 +219,21 @@ public class Route{
             UpdateWaypointsData();
             UpdateWaypointsDatabase();
 
+            ClearAndReloadLegs();
+
             return waypoint;
         }
         else
             return null;
+    }
+
+    public void ClearAndReloadLegs() {
+        legs.clear();
+        for (int i = 1; i<waypoints.size(); i++ )
+        {
+            Leg leg = new Leg(waypoints.get(i-1), waypoints.get(i), context);
+            legs.add(leg);
+        }
     }
 
     public void UpdateWaypointsData()

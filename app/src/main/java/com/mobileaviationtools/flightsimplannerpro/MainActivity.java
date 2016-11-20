@@ -6,42 +6,20 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.LocationSource;
-//import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.model.LatLng;
-
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
@@ -146,15 +124,9 @@ public class MainActivity extends AppCompatActivity {
 		DrawerLayout drawerLayout = (DrawerLayout)this.findViewById(R.id.drawerLayout);
 		drawerLayout.setScrimColor(Color.argb(50,0,0,0));
 
-		NavigationView navigationView = (NavigationView) this.findViewById(R.id.navigationView);
-		Menu navMenu = navigationView.getMenu();
-		navMenu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
-				Log.i(TAG, "Menu item clicked: " + item.toString());
-				return false;
-			}
-		});
+
+
+		SetupNavigationMenu();
 
 		Log.i(TAG, "Map added...................");
 //
@@ -205,8 +177,6 @@ public class MainActivity extends AppCompatActivity {
 		nativeLocation = new NativeLocation(this);
 		setupLocationListener();
 
-		setupButtons();
-
 		//DBFilesHelper.CopyNavigationDatabase(this, "userairnav.db");
 
 		AirportDataSource airportDataSource = new AirportDataSource(this);
@@ -231,6 +201,79 @@ public class MainActivity extends AppCompatActivity {
 
 		mapView.AddMarkersMap(markerProperties, pid);
 
+	}
+
+	private void SetupNavigationMenu() {
+		NavigationView navigationView = (NavigationView) this.findViewById(R.id.navigationView);
+		Menu navMenu = navigationView.getMenu();
+
+		navMenu.findItem(R.id.item_ActivateFP).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				showActivateRouteActivity();
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_ConnnectGPS).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				if (nativeLocation.connected) nativeLocation.disconnect();
+				else nativeLocation.connect();
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_CreateFP).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				showNewRouteActivity();
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_Metar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_Notam).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_Settings).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_Taf).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				return false;
+			}
+		});
+
+		navMenu.findItem(R.id.item_Track).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Log.i(TAG, "Menu item clicked: " + item.toString());
+				return false;
+			}
+		});
 	}
 
 	private void SetupMapVisualsChangedListeners() {
@@ -295,33 +338,6 @@ public class MainActivity extends AppCompatActivity {
 		return false;
 	}
 
-	private void setupButtons() {
-		Button activateRouteBtn = (Button) this.findViewById(R.id.activateRouteBtn);
-		Button addNewRouteBtn = (Button) this.findViewById(R.id.addNewRouteBtn);
-		Button connectBtn = (Button) this.findViewById(R.id.connectBtn);
-
-		activateRouteBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showActivateRouteActivity();
-			}
-		});
-
-		addNewRouteBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//testTrack();
-			}
-		});
-
-		connectBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (nativeLocation.connected) nativeLocation.disconnect();
-				else nativeLocation.connect();
-			}
-		});
-	}
 
 	private void setupLocationListener() {
 		nativeLocation.setOnConnectionChanged(new NativeLocation.OnConnectionChanged() {
@@ -329,12 +345,11 @@ public class MainActivity extends AppCompatActivity {
 			public void Connected() {
 				locationTracking = new LocationTracking(route, MainActivity.this, mapView);
 				if (planeMarker == null) planeMarker = new PlaneMarker(MainActivity.this, mapView);
-				setConnectionBtnImage(true);
 			}
 
 			@Override
 			public void Disconnected() {
-				setConnectionBtnImage(false);
+			//	setConnectionBtnImage(false);
 			}
 		});
 
@@ -423,6 +438,13 @@ public class MainActivity extends AppCompatActivity {
 		MainActivity.this.startActivityForResult(activateRouteIntent, 300);
 	}
 
+	private void showNewRouteActivity()
+	{
+		Intent startFlightplanIntent = new Intent(MainActivity.this, NewRouteActivity.class);
+		startFlightplanIntent.putExtra("key", 1);
+		MainActivity.this.startActivityForResult(startFlightplanIntent, 0);
+	}
+
 
 	private void setLocation(Location location) {
 		Log.i(TAG, "Setting new location");
@@ -441,16 +463,6 @@ public class MainActivity extends AppCompatActivity {
 		us.ba3.me.Location l = new us.ba3.me.Location(
 				location.getLatitude(), location.getLongitude());
 		planeMarker.setLocation(l, (double) bearing);
-	}
-
-
-	private void setConnectionBtnImage(Boolean connected) {
-		Button connectBtn = (Button) this.findViewById(R.id.connectBtn);
-		if (connected) {
-			connectBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.connected, null));
-		} else {
-			connectBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.disconnected, null));
-		}
 	}
 
 
