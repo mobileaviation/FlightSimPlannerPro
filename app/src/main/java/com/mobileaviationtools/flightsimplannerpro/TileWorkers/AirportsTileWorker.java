@@ -41,7 +41,7 @@ public class AirportsTileWorker extends TileWorker {
         this.mapView = mapView;
         curAirports = new HashMap<Integer, Airport>();
         this.markerProperties = markerProperties;
-        airportMarkerHit = new AirportMarkerHit();
+        airportMarkerHit = new AirportMarkerHit(context);
         Log.i(TAG, "AirportsTileWorker created for programID: " + this.PID);
     }
 

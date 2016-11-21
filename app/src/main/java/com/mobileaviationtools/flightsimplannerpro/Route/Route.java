@@ -11,6 +11,7 @@ import com.mobileaviationtools.flightsimplannerpro.Property;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.io.WKTWriter;
 import com.vividsolutions.jts.operation.buffer.BufferOp;
 
 import java.util.ArrayList;
@@ -93,6 +94,10 @@ public class Route{
         BufferOp bufOp = new BufferOp(g);
         bufOp.setEndCapStyle(BufferOp.CAP_ROUND);
         buffer = bufOp.getResultGeometry(Double.parseDouble(bufferProperty.value1));
+
+        WKTWriter wkt = new WKTWriter();
+        String B = wkt.write(buffer);
+        Log.i("RouteBuffer", B);
     }
 
     private OnDistanceFromWaypoint onDistanceFromWaypoint = null;

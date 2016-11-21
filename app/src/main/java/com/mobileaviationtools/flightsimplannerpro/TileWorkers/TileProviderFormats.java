@@ -58,6 +58,8 @@ public class TileProviderFormats {
 
     public static final String MAPPY_FORMAT = "https://map1.mappy.net/map/1.0/slab/standard/256/#Z#/#X#/#Y#";
 
+    public static final String OPENSTREET_FORMAT = "http://tile.openstreetmap.org/#Z#/#X#/#Y#.png";
+
     public static final String SKYLINES_FORMAT = "https://maps.skylines.aero/mapserver/" +
             "?service=WMS" +
             "&version=1.3.0" +

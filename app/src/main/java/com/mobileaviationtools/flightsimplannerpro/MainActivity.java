@@ -1,6 +1,7 @@
 package com.mobileaviationtools.flightsimplannerpro;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -16,6 +17,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -133,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
 		mapView.setMultithreaded(true);
 //
 		//mapView.AddMappyMap();
-		mapView.AddMappyMapWMS();
+		//mapView.AddMappyMap();
+		mapView.AddOpenstreetMap();
 
 //		// Primary location Netherlands
 		Location3D loc = new Location3D();
@@ -199,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 		Log.i(TAG, "Flightplan Count: " + routeDataSource.GetFlightplanCount());
 		routeDataSource.close();
 
-		mapView.AddMarkersMap(markerProperties, pid);
+		mapView.AddMarkersMap(markerProperties, pid, this);
 
 	}
 
@@ -239,6 +242,19 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Log.i(TAG, "Menu item clicked: " + item.toString());
+
+				final Dialog dialog = new Dialog(MainActivity.this);
+				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+				dialog.setContentView(R.layout.airport_info_window);
+				dialog.setCanceledOnTouchOutside(true);
+				dialog.setCancelable(true);
+				DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+				int dialogWidth = (int)(displayMetrics.widthPixels * 0.85);
+				int dialogHeight = (int)(displayMetrics.heightPixels * 0.85);
+				dialog.getWindow().setLayout(dialogWidth, dialogHeight);
+
+				dialog.show();
+
 				return false;
 			}
 		});

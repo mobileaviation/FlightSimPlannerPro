@@ -10,7 +10,7 @@ import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.AirportsTileWorker;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
-import com.mobileaviationtools.flightsimplannerpro.TileWorkers.WmsTileWorker;
+import com.mobileaviationtools.flightsimplannerpro.TileWorkers.ZXYTileWorker;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -30,6 +30,8 @@ import us.ba3.me.virtualmaps.VirtualMapInfo;
 public class MyMapView extends MapView {
     private String TAG = "MyMapView";
     public MyMapView(Context context) {
+
+
         super(context);
     }
 
@@ -48,6 +50,7 @@ public class MyMapView extends MapView {
     private Boolean movingRoutePoint;
     private Boolean scrolling;
     private Integer PID;
+    private Context context;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -181,21 +184,6 @@ public class MyMapView extends MapView {
         super.onLongPress(event);
     }
 
-    public void AddMappyMap()
-    {
-        this.addStreamingRasterMap("Mappy",
-        //"http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg",
-                "https://map1.mappy.net/map/1.0/slab/standard/256/{z}/{x}/{y}",
-        "",
-        "",
-        "", 		//Subdomains
-        20,			//Max Level
-        200,			//zOrder
-        3,			//Number of simultaneous downloads
-        true,		//Use cache
-        false		//No alpha
-        );
-    }
 
     public void AddSkylineAirspacesMap()
     {
@@ -213,7 +201,7 @@ public class MyMapView extends MapView {
     {
         String mapname = "FAA_sec_3857";
         TileFactory chartBundleFactory = new TileFactory(this);
-        WmsTileWorker chartBundleWorker = new WmsTileWorker(
+        ZXYTileWorker chartBundleWorker = new ZXYTileWorker(
                 TileProviderFormats.CHARTBUNDLE_XYZ_FORMAT,
                 "",
                 TileProviderFormats.chartBundleLayer.sec_3857.toString(),
@@ -235,25 +223,20 @@ public class MyMapView extends MapView {
     }
 
     private Boolean added = false;
-    public void AddMarkersMap(MarkerProperties markerProperties, Integer PID)
+    public void AddMarkersMap(MarkerProperties markerProperties, Integer PID, Context context)
     {
         this.PID = PID;
+        this.context = context;
         added = true;
-        String mapmame = "markersTest";
+        String mapname = "airportMarkerMap";
         TileFactory markersMapFactory = new TileFactory(this);
 
-//        DynamicMarkerMapInfo airportMarkerMap = new DynamicMarkerMapInfo();
-//        airportMarkerMap.name = "airportMarkerMap";
-//        airportMarkerMap.zOrder = 200;
-//        airportMarkerMap.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
-//        this.addMapUsingMapInfo(airportMarkerMap);
-
-        AirportsTileWorker markersTileWorker = new AirportsTileWorker(this, getContext(), "airportMarkerMap", markerProperties, PID);
+        AirportsTileWorker markersTileWorker = new AirportsTileWorker(this, context, mapname, markerProperties, PID);
 
         markersMapFactory.addWorker(markersTileWorker);
 
         VirtualMapInfo markersTestMapInfo = new VirtualMapInfo();
-        markersTestMapInfo.name = mapmame;
+        markersTestMapInfo.name = mapname;
         markersTestMapInfo.zOrder = 102;
         markersTestMapInfo.maxLevel = 20;
         markersTestMapInfo.alpha = 0;
@@ -267,11 +250,11 @@ public class MyMapView extends MapView {
 
     }
 
-    public void AddMappyMapWMS()
+    public void AddMappyMap()
     {
         String mapname = "Mappy";
         TileFactory mappyFactory = new TileFactory(this);
-        WmsTileWorker mappyWorker = new WmsTileWorker(
+        ZXYTileWorker mappyWorker = new ZXYTileWorker(
                 TileProviderFormats.MAPPY_FORMAT,
                 "",
                 "",
@@ -285,11 +268,32 @@ public class MyMapView extends MapView {
         mappymapInfo.name = mapname;
         mappymapInfo.zOrder = 1;
         mappymapInfo.maxLevel = 20;
-        //mappymapInfo.isSphericalMercator = false;
         mappymapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
-        //mappymapInfo.setTileProvider(mappyFactory);
         mappymapInfo.tileProvider = mappyFactory;
         this.addMapUsingMapInfo(mappymapInfo);
+    }
+
+    public void AddOpenstreetMap()
+    {
+        String mapname = "Openstreet";
+        TileFactory openstreetFactory = new TileFactory(this);
+        ZXYTileWorker openstreetWorker = new ZXYTileWorker(
+                TileProviderFormats.OPENSTREET_FORMAT,
+                "",
+                "",
+                mapname,
+                getBaseDir(),
+                getContext());
+
+        openstreetFactory.addWorker(openstreetWorker);
+
+        VirtualMapInfo openstreetMapInfo = new VirtualMapInfo();
+        openstreetMapInfo.name = mapname;
+        openstreetMapInfo.zOrder = 1;
+        openstreetMapInfo.maxLevel = 20;
+        openstreetMapInfo.mapLoadingStrategy = MapLoadingStrategy.kHighestDetailOnly;
+        openstreetMapInfo.tileProvider = openstreetFactory;
+        this.addMapUsingMapInfo(openstreetMapInfo);
     }
 
     private String getBaseDir()
