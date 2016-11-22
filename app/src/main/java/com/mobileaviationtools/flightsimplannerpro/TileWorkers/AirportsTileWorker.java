@@ -14,6 +14,7 @@ import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Helpers;
+import com.mobileaviationtools.flightsimplannerpro.InfoWindow;
 import com.mobileaviationtools.flightsimplannerpro.MyMapView;
 import com.mobileaviationtools.flightsimplannerpro.R;
 
@@ -41,7 +42,17 @@ public class AirportsTileWorker extends TileWorker {
         this.mapView = mapView;
         curAirports = new HashMap<Integer, Airport>();
         this.markerProperties = markerProperties;
-        airportMarkerHit = new AirportMarkerHit(context);
+        airportMarkerHit = new AirportMarkerHit();
+        airportMarkerHit.setOnAirportTap(new AirportMarkerHit.OnAirportTap() {
+            @Override
+            public void onTap(String Ident) {
+                Log.i(TAG, "Airport: " + Ident + " Tapped");
+                InfoWindow infoWindow = new InfoWindow(AirportsTileWorker.this.context);
+                infoWindow.ShowInfoWindow(Ident);
+            }
+        });
+
+
         Log.i(TAG, "AirportsTileWorker created for programID: " + this.PID);
     }
 

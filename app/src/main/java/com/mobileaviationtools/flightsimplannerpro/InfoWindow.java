@@ -22,9 +22,15 @@ public class InfoWindow {
     public InfoWindow(Context context)
     {
         this.context = context;
+        dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.airport_info_window);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
     }
 
     private Context context;
+    private Dialog dialog;
 
     public void ShowInfoWindow(String airportIdent)
     {
@@ -32,12 +38,6 @@ public class InfoWindow {
         airportDataSource.open(-1);
         Airport airport = airportDataSource.GetAirportByIDENT(airportIdent);
         airportDataSource.close();
-
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.airport_info_window);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
 
         if (airport != null)
         {

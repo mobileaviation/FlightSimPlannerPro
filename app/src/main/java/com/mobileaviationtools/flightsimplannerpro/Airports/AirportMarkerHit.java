@@ -13,12 +13,11 @@ import us.ba3.me.markers.DynamicMarkerMapDelegate;
  */
 
 public class AirportMarkerHit implements DynamicMarkerMapDelegate {
-    public AirportMarkerHit(Context context)
+    public AirportMarkerHit()
     {
-        this.context = context;
+
     }
 
-    private Context context;
     private String TAG = "AirportMarkerHit";
 
     @Override
@@ -28,8 +27,14 @@ public class AirportMarkerHit implements DynamicMarkerMapDelegate {
                 " location:" + screenPoint.x + "," + screenPoint.y +
                 " markerPoint:" + markerPoint.x + "," + markerPoint.y);// +
                 //" location:" + location.longitude + "," + location.latitude);
-        InfoWindow infoWindow = new InfoWindow(context);
-        infoWindow.ShowInfoWindow(markerName);
 
+        if (onAirportTap != null) onAirportTap.onTap(markerName);
+
+    }
+
+    private OnAirportTap onAirportTap;
+    public void setOnAirportTap( final OnAirportTap d) {onAirportTap = d; }
+    public interface OnAirportTap {
+        public void onTap(String Ident);
     }
 }

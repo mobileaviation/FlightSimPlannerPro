@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 	private PlaneMarker planeMarker;
 	private InfoPanelFragment infoPanel = null;
 	private Integer pid;
+	private InfoWindow infoWindow;
 
 	// ****************************************************
 	// ********* Map orders
@@ -92,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		infoWindow = new InfoWindow(this);
 
 		Log.i(TAG, "OnCreate");
 		ScreendensityInfo();
@@ -242,18 +245,8 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Log.i(TAG, "Menu item clicked: " + item.toString());
-
-				final Dialog dialog = new Dialog(MainActivity.this);
-				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-				dialog.setContentView(R.layout.airport_info_window);
-				dialog.setCanceledOnTouchOutside(true);
-				dialog.setCancelable(true);
-				DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-				int dialogWidth = (int)(displayMetrics.widthPixels * 0.85);
-				int dialogHeight = (int)(displayMetrics.heightPixels * 0.85);
-				dialog.getWindow().setLayout(dialogWidth, dialogHeight);
-
-				dialog.show();
+				
+				infoWindow.ShowInfoWindow("EHLE");
 
 				return false;
 			}

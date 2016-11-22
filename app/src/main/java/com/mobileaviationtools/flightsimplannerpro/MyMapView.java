@@ -232,7 +232,6 @@ public class MyMapView extends MapView {
         TileFactory markersMapFactory = new TileFactory(this);
 
         AirportsTileWorker markersTileWorker = new AirportsTileWorker(this, context, mapname, markerProperties, PID);
-
         markersMapFactory.addWorker(markersTileWorker);
 
         VirtualMapInfo markersTestMapInfo = new VirtualMapInfo();
