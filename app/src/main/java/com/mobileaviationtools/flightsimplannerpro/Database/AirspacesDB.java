@@ -3,6 +3,9 @@ package com.mobileaviationtools.flightsimplannerpro.Database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.vividsolutions.jts.geom.Coordinate;
 
 /**
  * Created by Rob Verhoef on 15-6-2016.
@@ -38,5 +41,17 @@ public class AirspacesDB {
         return this.database.rawQuery(sql, selectionarg);
     }
 
+    public Cursor GetAirspacesByCoordinate(Coordinate coordinate)
+    {
+        String sql = "SELECT * FROM tbl_Airspaces " +
+                " WHERE #LAT#>lat_top_left " +
+                "AND #LAT#<lat_bottom_right " +
+                "AND #LON#>lon_top_left " +
+                "AND #LON#<lot_bottom_right;";
+        sql = sql.replace("#LON#", Double.toString(coordinate.x));
+        sql = sql.replace("#LAT#", Double.toString(coordinate.y));
+        Log.i("AirspacesDB", sql);
+        return this.database.rawQuery(sql, null);
+    }
 
 }

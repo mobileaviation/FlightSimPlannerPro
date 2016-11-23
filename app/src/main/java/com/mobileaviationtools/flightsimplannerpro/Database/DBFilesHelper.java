@@ -53,16 +53,16 @@ public class DBFilesHelper {
         }
     }
 
-    public static ArrayList<String> CopyDatabases(Context context)
+    public static ArrayList<String> CopyDatabases(Context context, Boolean copy)
     {
         ArrayList<String> databases = new ArrayList<>();
         String dest = DatabasePath(context);
         try {
             String [] list = context.getAssets().list("");
             for (String f : list) {
-                if (f.contains("airspaces")) {
+                if (f.contains("airspaces.db.sqlite")) {
                     databases.add(f);
-                    CopyFromAssetsToStorage(context, f, dest + f);
+                    if (copy) CopyFromAssetsToStorage(context, f, dest + f);
                     Log.e("DatabaseFile", f+ " copied to: " + dest);
                 }
             }

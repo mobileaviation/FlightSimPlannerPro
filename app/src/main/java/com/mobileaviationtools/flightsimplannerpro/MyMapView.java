@@ -2,16 +2,20 @@ package com.mobileaviationtools.flightsimplannerpro;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.WithinAirspaceCheck;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.AirportsTileWorker;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.TileProviderFormats;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.ZXYTileWorker;
+import com.vividsolutions.jts.geom.Coordinate;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -160,6 +164,19 @@ public class MyMapView extends MapView {
                     placingRoutePoint = true;
                     movingRoutePoint = false;
                 }
+
+                super.getLocationForPoint(new PointF(event.getX(), event.getY()), new LocationReceiver() {
+                    @Override
+                    public void receiveLocation(Location location) {
+                        Log.w("onLongPress", "lon:" + location.longitude + " lat:" + location.latitude);
+                        Coordinate c = new Coordinate(location.longitude, location.latitude);
+                        Airspaces airspaces = new Airspaces(MyMapView.this.context);
+                        WithinAirspaceCheck check = new WithinAirspaceCheck(MyMapView.this.context, airspaces, c);
+                        check.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                    }
+                });
+
                 break;
             }
         }

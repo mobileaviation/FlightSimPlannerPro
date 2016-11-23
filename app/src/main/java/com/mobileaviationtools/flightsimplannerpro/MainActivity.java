@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 		SetupMapVisualsChangedListeners();
 		SetupMapIconsClickedListeners();
 
-		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
+		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext(), true);
 
 		for (String a : airspacedbFiles) {
 			LoadAirspacesAsync loadAirspacesAsync = new LoadAirspacesAsync();
