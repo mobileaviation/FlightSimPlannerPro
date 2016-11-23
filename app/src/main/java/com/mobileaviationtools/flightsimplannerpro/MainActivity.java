@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.MailTo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -22,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.LocationSource;
+import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
 		infoWindow = new InfoWindow(this);
 
+
 		Log.i(TAG, "OnCreate");
 		ScreendensityInfo();
 
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 		mapView.setLocation3D(loc, 0);
 
 		SetupMapVisualsChangedListeners();
+		SetupMapIconsClickedListeners();
 
 		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext());
 
@@ -209,6 +213,21 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+	private void SetupMapIconsClickedListeners() {
+		mapView.setOnAirportTap(new AirportMarkerHit.OnAirportTap() {
+			@Override
+			public void onTap(final String Ident) {
+				MainActivity.this.runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						infoWindow.ShowInfoWindow(Ident);
+					}
+				});
+			}
+		});
+	}
+
+
 	private void SetupNavigationMenu() {
 		NavigationView navigationView = (NavigationView) this.findViewById(R.id.navigationView);
 		Menu navMenu = navigationView.getMenu();
@@ -245,9 +264,6 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Log.i(TAG, "Menu item clicked: " + item.toString());
-				
-				infoWindow.ShowInfoWindow("EHLE");
-
 				return false;
 			}
 		});

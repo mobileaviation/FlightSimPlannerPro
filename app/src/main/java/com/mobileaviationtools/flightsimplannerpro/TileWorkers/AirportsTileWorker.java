@@ -15,6 +15,7 @@ import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Helpers;
 import com.mobileaviationtools.flightsimplannerpro.InfoWindow;
+import com.mobileaviationtools.flightsimplannerpro.MainActivity;
 import com.mobileaviationtools.flightsimplannerpro.MyMapView;
 import com.mobileaviationtools.flightsimplannerpro.R;
 
@@ -33,7 +34,7 @@ import us.ba3.me.virtualmaps.TileWorker;
  * Created by Rob Verhoef on 25-8-2016.
  */
 public class AirportsTileWorker extends TileWorker {
-    public AirportsTileWorker(MyMapView mapView, Context context, String airportMapName, MarkerProperties markerProperties, Integer PID) {
+    public AirportsTileWorker(MyMapView mapView, final Context context, String airportMapName, MarkerProperties markerProperties, Integer PID) {
         super();
 
         this.PID = PID;
@@ -47,8 +48,7 @@ public class AirportsTileWorker extends TileWorker {
             @Override
             public void onTap(String Ident) {
                 Log.i(TAG, "Airport: " + Ident + " Tapped");
-                InfoWindow infoWindow = new InfoWindow(AirportsTileWorker.this.context);
-                infoWindow.ShowInfoWindow(Ident);
+                if (onAirportTap != null) onAirportTap.onTap(Ident);
             }
         });
 
@@ -56,6 +56,8 @@ public class AirportsTileWorker extends TileWorker {
         Log.i(TAG, "AirportsTileWorker created for programID: " + this.PID);
     }
 
+    private AirportMarkerHit.OnAirportTap onAirportTap;
+    public void SetOnAirportTap(final AirportMarkerHit.OnAirportTap d) { onAirportTap = d; }
     private Context context;
     private MyMapView mapView;
     private String airportMapName;

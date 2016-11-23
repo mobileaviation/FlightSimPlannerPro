@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
+import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.AirportsTileWorker;
@@ -232,6 +233,13 @@ public class MyMapView extends MapView {
         TileFactory markersMapFactory = new TileFactory(this);
 
         AirportsTileWorker markersTileWorker = new AirportsTileWorker(this, context, mapname, markerProperties, PID);
+        markersTileWorker.SetOnAirportTap(new AirportMarkerHit.OnAirportTap() {
+            @Override
+            public void onTap(String Ident) {
+                Log.i(TAG, "Airport: " + Ident + " Tapped");
+                if (onAirportTap != null) onAirportTap.onTap(Ident);
+            }
+        });
         markersMapFactory.addWorker(markersTileWorker);
 
         VirtualMapInfo markersTestMapInfo = new VirtualMapInfo();
@@ -307,4 +315,7 @@ public class MyMapView extends MapView {
         public void onScrolled(Location3D location3D, MyMapView myMapView);
         public void onScaled(Location3D location3D,MyMapView myMapView);
     }
+
+    private AirportMarkerHit.OnAirportTap onAirportTap = null;
+    public void setOnAirportTap(final AirportMarkerHit.OnAirportTap d) { onAirportTap = d; }
 }
