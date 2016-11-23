@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 		infoPanel = (InfoPanelFragment) getSupportFragmentManager().findFragmentById(R.id.infoPanelFragment);
 
 		mapView.setMaximumZoom(2000000);
-		mapView.setMinimumZoom(20000);
+		mapView.setMinimumZoom(12000);
 
 
 
