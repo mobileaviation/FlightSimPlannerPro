@@ -38,6 +38,7 @@ import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.Test.TrackTest;
+import com.mobileaviationtools.flightsimplannerpro.TileWorkers.Offline.Downloader;
 import com.mobileaviationtools.flightsimplannerpro.Track.LocationTracking;
 
 import java.util.ArrayList;
@@ -437,6 +438,7 @@ public class MainActivity extends AppCompatActivity {
 						// User clicked OK button
 						dialog.dismiss();
 						LoadRoute(route_id);
+						DownloadRouteTiles();
 					}
 				});
 
@@ -449,6 +451,24 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 	}
+
+	public void DownloadRouteTiles()
+	{
+		if (route.buffer != null)
+		{
+			String p = this.getFilesDir().getPath() + "/";
+			Downloader d = new Downloader(this, route.buffer, p, "", "Openstreet");
+			d.SetOnDownloadProgress(new Downloader.OnDownloadProgress() {
+				@Override
+				public void OnProgress(Integer progress) {
+					Log.i(TAG, "Download Progress: " + progress);
+				}
+			});
+			d.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		}
+	}
+
+	///data/data/com.mobileaviationtools.flightsimplannerpro/files//Openstreet/Openstreet-13-4243-2697.png
 
 	public void LoadRoute(Integer id) {
 		if (route == null)
