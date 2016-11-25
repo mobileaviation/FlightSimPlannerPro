@@ -44,8 +44,8 @@ public class AirspacesDB {
     public Cursor GetAirspacesByCoordinate(Coordinate coordinate)
     {
         String sql = "SELECT * FROM tbl_Airspaces " +
-                " WHERE #LAT#>lat_top_left " +
-                "AND #LAT#<lat_bottom_right " +
+                " WHERE #LAT#<lat_top_left " +
+                "AND #LAT#>lat_bottom_right " +
                 "AND #LON#>lon_top_left " +
                 "AND #LON#<lot_bottom_right;";
         sql = sql.replace("#LON#", Double.toString(coordinate.x));
