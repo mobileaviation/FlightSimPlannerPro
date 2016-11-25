@@ -16,20 +16,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.LocationSource;
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
-import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
-import com.mobileaviationtools.flightsimplannerpro.Database.DBFilesHelper;
-import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
-import com.mobileaviationtools.flightsimplannerpro.Database.PropertiesDataSource;
-import com.mobileaviationtools.flightsimplannerpro.Database.RouteDataSource;
+import com.mobileaviationtools.flightsimplannerpro.Database.*;
 import com.mobileaviationtools.flightsimplannerpro.Info.InfoPanelFragment;
 import com.mobileaviationtools.flightsimplannerpro.LocationService.NativeLocation;
 import com.mobileaviationtools.flightsimplannerpro.LocationService.PlaneMarker;
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 	private InfoPanelFragment infoPanel = null;
 	private Integer pid;
 	private InfoWindow infoWindow;
+	private DrawerLayout drawerLayoutMenu;
 
 	// ****************************************************
 	// ********* Map orders
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		infoWindow = new InfoWindow(this);
-
+		drawerLayoutMenu = (DrawerLayout)this.findViewById(R.id.drawerLayout);
 
 		Log.i(TAG, "OnCreate");
 		ScreendensityInfo();
@@ -328,9 +329,9 @@ public class MainActivity extends AppCompatActivity {
 				{
 					//Log.i("onScaled", "Leg distance: " + leg.getToWaypoint().distance_leg);
 					double d = leg.getToWaypoint().distance_leg;
-					double c = d / location3D.altitude;
-					//Log.i("onScaled", "Calculated: " + c);
-					if (c > 0.056f)
+					double c = (d / location3D.altitude) / (10 / Helpers.convertPixelsToDp(10, this));
+					Log.i("onScaled", "Calculated: " + c + " desity: " + Helpers.convertPixelsToDp(10, this));
+					if (c > 0.035f)
 					{
 						myMapView.showDynamicMarker("coarse_labels", leg.getToWaypoint().name);
 					}else
@@ -431,21 +432,24 @@ public class MainActivity extends AppCompatActivity {
 			final Integer route_id = data.getIntExtra("id", 0);
 
 			if (requestCode == 300) {
+				drawerLayoutMenu.closeDrawer(Gravity.LEFT);
 
-				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// User clicked OK button
-						dialog.dismiss();
+				final Dialog closePlanDialog = new Dialog(MainActivity.this);
+				closePlanDialog.setContentView(R.layout.after_activate_route);
+				closePlanDialog.setTitle("Activate route!");
+				Button closeButton = (Button) closePlanDialog.findViewById(R.id.after_activate_ok_button);
+				final CheckBox downloadTiles = (CheckBox) closePlanDialog.findViewById(R.id.download_tiles_checkbox);
+
+				closeButton.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						closePlanDialog.dismiss();
 						LoadRoute(route_id);
-						DownloadRouteTiles();
+						if (downloadTiles.isChecked())
+							DownloadRouteTiles();
 					}
 				});
 
-				builder.setMessage("To activate this route push the 'TakeOff' button!");
-				builder.setTitle("Activate route!");
-
-				AlertDialog closePlanDialog = builder.create();
 				closePlanDialog.show();
 
 			}

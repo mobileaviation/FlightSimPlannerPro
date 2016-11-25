@@ -87,6 +87,7 @@ public class RouteVisuals extends HashMap<Integer, Waypoint> {
         mapView.removeMap("markers", true);
         mapView.removeMap("lines", true);
         mapView.removeMap("buttons", true);
+        mapView.removeMap("coarse_labels", true);
     }
 
     private void setMarkerAndLinesMaps(String markerName, String lineName, Boolean setMarkerHit)

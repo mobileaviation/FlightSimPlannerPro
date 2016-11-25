@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class WithinAirspaceCheck extends AsyncTask {
 
-    public WithinAirspaceCheck(Context context, Airspaces airpaces, Coordinate checkPoint)
+    public WithinAirspaceCheck(Context context, Coordinate checkPoint)
     {
         this.context = context;
-        foundAirspaces = airpaces;
+        foundAirspaces = new Airspaces(this.context);
         GeometryFactory factory = new GeometryFactory();
         point = factory.createPoint(checkPoint);
     }
@@ -36,18 +36,44 @@ public class WithinAirspaceCheck extends AsyncTask {
 
         ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(context.getApplicationContext(), false);
 
+        Airspaces as = new Airspaces(context);
+
         for (String a : airspacedbFiles) {
             Log.i(TAG, "read from db: " + a);
             AirspacesDB airspacesDB = new AirspacesDB(context);
             airspacesDB.Open(a);
-            foundAirspaces.readFromDatabase(airspacesDB.GetAirspacesByCoordinate(point.getCoordinate()));
+            as.readFromDatabase(airspacesDB.GetAirspacesByCoordinate(point.getCoordinate()));
         }
 
-        for (Airspace airspace : foundAirspaces)
+        for (Airspace airspace : as)
         {
-            if (airspace.getGeometry().contains(point)) Log.i(TAG, "Found: " + airspace.Name);
+            if (airspace.getGeometry().contains(point)) {
+                foundAirspaces.add(airspace);
+                publishProgress(airspace);
+            }
         }
 
         return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Object[] values) {
+        Airspace airspace = (Airspace)values[0];
+        if (onFoundAirspace != null) onFoundAirspace.OnFoundAirspace(airspace);
+        super.onProgressUpdate(values);
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        if (onFoundAirspace != null) onFoundAirspace.OnFoundAllAirspaces(foundAirspaces);
+        super.onPostExecute(o);
+    }
+
+    private OnFoundAirspace onFoundAirspace;
+    public void SetOnFoundAirspace(OnFoundAirspace d) { onFoundAirspace = d; }
+    public interface OnFoundAirspace
+    {
+        public void OnFoundAirspace(Airspace airspace);
+        public void OnFoundAllAirspaces(Airspaces airspaces);
     }
 }

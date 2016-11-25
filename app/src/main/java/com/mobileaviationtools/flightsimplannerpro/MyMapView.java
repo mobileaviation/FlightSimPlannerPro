@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspace;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.WithinAirspaceCheck;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
@@ -170,8 +171,19 @@ public class MyMapView extends MapView {
                     public void receiveLocation(Location location) {
                         Log.w("onLongPress", "lon:" + location.longitude + " lat:" + location.latitude);
                         Coordinate c = new Coordinate(location.longitude, location.latitude);
-                        Airspaces airspaces = new Airspaces(MyMapView.this.context);
-                        WithinAirspaceCheck check = new WithinAirspaceCheck(MyMapView.this.context, airspaces, c);
+                        WithinAirspaceCheck check = new WithinAirspaceCheck(MyMapView.this.context, c);
+                        check.SetOnFoundAirspace(new WithinAirspaceCheck.OnFoundAirspace() {
+                            @Override
+                            public void OnFoundAirspace(Airspace airspace) {
+                                Log.i(TAG, "Found: " + airspace.Name);
+                            }
+
+                            @Override
+                            public void OnFoundAllAirspaces(Airspaces airspaces) {
+                                Log.i(TAG, "Total airspaces : " + airspaces.size());
+                            }
+                        });
+
                         check.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                     }
