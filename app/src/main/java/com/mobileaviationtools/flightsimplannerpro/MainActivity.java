@@ -1,14 +1,11 @@
 package com.mobileaviationtools.flightsimplannerpro;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Location;
-import android.net.MailTo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -20,15 +17,19 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.LocationSource;
+import com.mobileaviationtools.flightsimplannerpro.Airports.AirportInfoWindow;
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspace;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.Airspaces;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.AirspacesInfoWindow;
 import com.mobileaviationtools.flightsimplannerpro.Airspaces.LoadAirspacesAsync;
+import com.mobileaviationtools.flightsimplannerpro.Airspaces.WithinAirspaceCheck;
 import com.mobileaviationtools.flightsimplannerpro.Database.*;
 import com.mobileaviationtools.flightsimplannerpro.Info.InfoPanelFragment;
 import com.mobileaviationtools.flightsimplannerpro.LocationService.NativeLocation;
@@ -40,6 +41,8 @@ import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
 import com.mobileaviationtools.flightsimplannerpro.Test.TrackTest;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.Offline.Downloader;
 import com.mobileaviationtools.flightsimplannerpro.Track.LocationTracking;
+import com.mobileaviationtools.flightsimplannerpro.Weather.WeatherURL;
+import com.mobileaviationtools.flightsimplannerpro.Weather.WeatherWebService;
 
 import java.util.ArrayList;
 
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 	private PlaneMarker planeMarker;
 	private InfoPanelFragment infoPanel = null;
 	private Integer pid;
-	private InfoWindow infoWindow;
+	private AirportInfoWindow airportInfoWindow;
 	private DrawerLayout drawerLayoutMenu;
 
 	// ****************************************************
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		infoWindow = new InfoWindow(this);
+		airportInfoWindow = new AirportInfoWindow(this);
 		drawerLayoutMenu = (DrawerLayout)this.findViewById(R.id.drawerLayout);
 
 		Log.i(TAG, "OnCreate");
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
 		SetupMapVisualsChangedListeners();
 		SetupMapIconsClickedListeners();
+		SetupMapAirspacesListeners();
 
 		ArrayList<String> airspacedbFiles = DBFilesHelper.CopyDatabases(this.getApplicationContext(), true);
 
@@ -215,6 +219,21 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+	private void SetupMapAirspacesListeners() {
+		mapView.SetOnFoundAirspaces(new WithinAirspaceCheck.OnFoundAirspace() {
+			@Override
+			public void OnFoundAirspace(Airspace airspace) {
+
+			}
+
+			@Override
+			public void OnFoundAllAirspaces(Airspaces airspaces) {
+				AirspacesInfoWindow airspacesWindow = new AirspacesInfoWindow(MainActivity.this);
+				airspacesWindow.ShowAirspacesInfoWindow(airspaces);
+			}
+		});
+	}
+
 	private void SetupMapIconsClickedListeners() {
 		mapView.setOnAirportTap(new AirportMarkerHit.OnAirportTap() {
 			@Override
@@ -222,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
 				MainActivity.this.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
-						infoWindow.ShowInfoWindow(Ident);
+						airportInfoWindow.ShowAirportInfoWindow(Ident);
 					}
 				});
 			}
@@ -266,6 +285,21 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Log.i(TAG, "Menu item clicked: " + item.toString());
+
+				WeatherURL weatherURL = new WeatherURL();
+				String url = weatherURL.getUrlByRoute(WeatherURL.datasource.metars, route);
+				Log.i(TAG, url);
+
+				WeatherWebService weatherWebService = new WeatherWebService(url);
+				weatherWebService.SetOnWeatherLoaded(new WeatherWebService.OnWeatherLoaded() {
+					@Override
+					public void OnWeatherXMLString(String xml) {
+						Log.i(TAG, xml);
+					}
+				});
+
+				weatherWebService.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
 				return false;
 			}
 		});

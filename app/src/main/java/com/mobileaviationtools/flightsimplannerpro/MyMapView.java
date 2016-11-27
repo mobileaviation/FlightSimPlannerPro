@@ -57,6 +57,9 @@ public class MyMapView extends MapView {
     private Boolean scrolling;
     private Integer PID;
     private Context context;
+    private WithinAirspaceCheck.OnFoundAirspace onFoundAirspace;
+    public void SetOnFoundAirspaces(WithinAirspaceCheck.OnFoundAirspace o) {onFoundAirspace = o;}
+
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -169,22 +172,29 @@ public class MyMapView extends MapView {
                 super.getLocationForPoint(new PointF(event.getX(), event.getY()), new LocationReceiver() {
                     @Override
                     public void receiveLocation(Location location) {
-                        Log.w("onLongPress", "lon:" + location.longitude + " lat:" + location.latitude);
-                        Coordinate c = new Coordinate(location.longitude, location.latitude);
-                        WithinAirspaceCheck check = new WithinAirspaceCheck(MyMapView.this.context, c);
-                        check.SetOnFoundAirspace(new WithinAirspaceCheck.OnFoundAirspace() {
-                            @Override
-                            public void OnFoundAirspace(Airspace airspace) {
-                                Log.i(TAG, "Found: " + airspace.Name);
-                            }
+                        if (!movingRoutePoint) {
+                            Log.w("onLongPress", "lon:" + location.longitude + " lat:" + location.latitude);
+                            Coordinate c = new Coordinate(location.longitude, location.latitude);
+                            WithinAirspaceCheck check = new WithinAirspaceCheck(MyMapView.this.context, c);
+                            check.SetOnFoundAirspace(new WithinAirspaceCheck.OnFoundAirspace() {
+                                @Override
+                                public void OnFoundAirspace(Airspace airspace) {
+                                    Log.i(TAG, "Found: " + airspace.Name);
+                                    if (onFoundAirspace != null)
+                                        onFoundAirspace.OnFoundAirspace(airspace);
+                                }
 
-                            @Override
-                            public void OnFoundAllAirspaces(Airspaces airspaces) {
-                                Log.i(TAG, "Total airspaces : " + airspaces.size());
-                            }
-                        });
+                                @Override
+                                public void OnFoundAllAirspaces(Airspaces airspaces) {
+                                    Log.i(TAG, "Total airspaces : " + airspaces.size());
+                                    if (onFoundAirspace != null)
+                                        onFoundAirspace.OnFoundAllAirspaces(airspaces);
+                                }
+                            });
 
-                        check.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                            check.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        }
 
                     }
                 });

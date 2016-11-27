@@ -2,9 +2,6 @@ package com.mobileaviationtools.flightsimplannerpro.TileWorkers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.PointF;
-import android.support.annotation.IntegerRes;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -13,19 +10,13 @@ import com.mobileaviationtools.flightsimplannerpro.Airports.Airport;
 import com.mobileaviationtools.flightsimplannerpro.Airports.AirportMarkerHit;
 import com.mobileaviationtools.flightsimplannerpro.Database.AirportDataSource;
 import com.mobileaviationtools.flightsimplannerpro.Database.MarkerProperties;
-import com.mobileaviationtools.flightsimplannerpro.Helpers;
-import com.mobileaviationtools.flightsimplannerpro.InfoWindow;
-import com.mobileaviationtools.flightsimplannerpro.MainActivity;
 import com.mobileaviationtools.flightsimplannerpro.MyMapView;
-import com.mobileaviationtools.flightsimplannerpro.R;
 
 import java.util.HashMap;
 
 import us.ba3.me.Location;
-import us.ba3.me.MapLoadingStrategy;
 import us.ba3.me.markers.DynamicMarker;
 import us.ba3.me.markers.DynamicMarkerMapInfo;
-import us.ba3.me.virtualmaps.InternetTileProvider;
 import us.ba3.me.virtualmaps.TileProviderRequest;
 import us.ba3.me.virtualmaps.TileProviderResponse;
 import us.ba3.me.virtualmaps.TileWorker;

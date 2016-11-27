@@ -71,4 +71,21 @@ public class Airspaces extends ArrayList<Airspace>  {
             }
         }
     }
+
+    public String getAirpspacesInfoString()
+    {
+        String info;
+
+        info = "Airspaces Information................\n";
+
+        for (Airspace airspace : this)
+        {
+            info = info + "Name:" + airspace.Name + " Class:" +
+                    airspace.Category.toString() +
+                    "  From:" + airspace.AltLimit_Bottom.toString() + "" + airspace.AltLimit_Bottom_Unit.toString() +
+                    "  To:" + airspace.AltLimit_Top.toString() + "" + airspace.AltLimit_Top_Unit.toString() + "\n";
+        }
+
+        return info;
+    }
 }

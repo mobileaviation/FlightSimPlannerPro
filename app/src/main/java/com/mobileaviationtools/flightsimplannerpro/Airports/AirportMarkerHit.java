@@ -1,10 +1,7 @@
 package com.mobileaviationtools.flightsimplannerpro.Airports;
 
-import android.content.Context;
 import android.graphics.PointF;
 import android.util.Log;
-
-import com.mobileaviationtools.flightsimplannerpro.InfoWindow;
 
 import us.ba3.me.markers.DynamicMarkerMapDelegate;
 
