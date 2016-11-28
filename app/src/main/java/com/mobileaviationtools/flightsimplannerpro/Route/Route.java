@@ -333,6 +333,7 @@ public class Route{
         routeDataSource.clearTimes(this, true);
         routeDataSource.close();
 
+        legs.clear();
         for (int i = 1; i<waypoints.size(); i++ )
         {
             Leg leg = new Leg(waypoints.get(i-1), waypoints.get(i), context);
