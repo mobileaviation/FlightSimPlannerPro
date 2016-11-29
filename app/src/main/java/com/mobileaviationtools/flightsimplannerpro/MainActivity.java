@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -38,6 +39,7 @@ import com.mobileaviationtools.flightsimplannerpro.Route.Leg;
 import com.mobileaviationtools.flightsimplannerpro.Route.Route;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteActivateActivity;
 import com.mobileaviationtools.flightsimplannerpro.Route.RouteVisuals;
+import com.mobileaviationtools.flightsimplannerpro.Route.Waypoint;
 import com.mobileaviationtools.flightsimplannerpro.Test.TrackTest;
 import com.mobileaviationtools.flightsimplannerpro.TileWorkers.Offline.Downloader;
 import com.mobileaviationtools.flightsimplannerpro.Track.LocationTracking;
@@ -308,6 +310,13 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Log.i(TAG, "Menu item clicked: " + item.toString());
+				route.UpdateWaypointsData();
+
+				for (Waypoint waypoint: route.waypoints)
+				{
+					Bitmap bitmap = waypoint.GetIcon(100, MainActivity.this);
+				}
+
 				return false;
 			}
 		});
