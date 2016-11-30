@@ -76,8 +76,12 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
 //                Bitmap.Config.ARGB_8888);
 
         BitmapFactory.Options op = new BitmapFactory.Options();
-        op.inMutable = false;
-        Bitmap groundcourseBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_m, op);
+        op.inMutable = true;
+        Bitmap courseBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_square, op);
+
+        // bitmap is 100 * 100
+        // arrow = 77 * 32 centered on bitmap
+        // text start 50 -
 
         Paint paint = new Paint();
         paint.setColor(Color.GRAY);
@@ -86,13 +90,12 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
         Paint textPaint = new Paint();
         textPaint.setColor(Color.BLACK);
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(15);
+        textPaint.setTextSize(25);
         textPaint.setFakeBoldText(true);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
-        Canvas groundcourseCanvas = new Canvas(groundcourseBitmap);
-//        groundcourseCanvas.drawLine(100, 100, 100 - ground_speed, 100, paint);
-        groundcourseCanvas.drawText(Integer.toString(Math.round(compass_heading)), 10, 10, textPaint);
+        Canvas aircourseCanvas = new Canvas(courseBitmap);
+        aircourseCanvas.drawText(Integer.toString(Math.round(compass_heading)), 60, 60, textPaint);
 //
 //
 //        Canvas aircourseCanvas = new Canvas(aircourseBitmap);
@@ -106,14 +109,14 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
 
 
 
-//        Bitmap headingBitmap = Bitmap.createBitmap(200, 200,
-//                Bitmap.Config.ARGB_8888);
-//        Canvas headingCanvas = new Canvas(headingBitmap);
+        Bitmap headingBitmap = Bitmap.createBitmap(100, 100,
+                Bitmap.Config.ARGB_8888);
+        Canvas headingCanvas = new Canvas(headingBitmap);
 //        headingCanvas.drawColor(Color.BLUE, PorterDuff.Mode.ADD);
-//        headingCanvas.save(Canvas.MATRIX_SAVE_FLAG);
-//        headingCanvas.rotate(true_track+90,100,100);
-//        headingCanvas.drawBitmap(groundcourseBitmap, 0, 0, null);
-//        headingCanvas.restore();
+        headingCanvas.save(Canvas.MATRIX_SAVE_FLAG);
+        headingCanvas.rotate(true_track+90, 50 , 50);
+        headingCanvas.drawBitmap(courseBitmap, 0, 0, null);
+        headingCanvas.restore();
 //        headingCanvas.save(Canvas.MATRIX_SAVE_FLAG);
 //        headingCanvas.rotate(compass_heading+90,100,100);
 //        headingCanvas.drawBitmap(aircourseBitmap, 0, 0, null);
@@ -123,7 +126,7 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
 //        headingCanvas.drawBitmap(winddirectionBitmap, 0, 0, null);
 //        headingCanvas.restore();
 
-        return groundcourseBitmap;
+        return headingBitmap;
     }
 
     @Override
