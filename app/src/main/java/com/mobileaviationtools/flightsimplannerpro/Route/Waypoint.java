@@ -65,9 +65,11 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
     public Integer wind_speed;
     public float wind_direction;
     public WaypointType waypointType;
+    public Context context;
 
     public Bitmap GetIcon(Integer airspeed, Context context)
     {
+        this.context = context;
 //        Bitmap groundcourseBitmap = Bitmap.createBitmap(200, 200,
 //                Bitmap.Config.ARGB_8888);
 //        Bitmap aircourseBitmap = Bitmap.createBitmap(200, 200,
@@ -78,6 +80,12 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
         BitmapFactory.Options op = new BitmapFactory.Options();
         op.inMutable = true;
         Bitmap courseBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.direction_marker_square, op);
+        Bitmap windBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.wind20, op);
+        Bitmap wind1Bitmap = Bitmap.createBitmap(windBitmap.getWidth(), windBitmap.getWidth(),
+                Bitmap.Config.ARGB_8888);
+        Canvas wind1Canvas = new Canvas(wind1Bitmap);
+        wind1Canvas.drawBitmap(windBitmap, 0, (wind1Bitmap.getHeight()/2) - (windBitmap.getHeight()/2), null);
+
 
         // bitmap is 100 * 100
         // arrow = 77 * 32 centered on bitmap
@@ -85,17 +93,20 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
 
         Paint paint = new Paint();
         paint.setColor(Color.GRAY);
-        paint.setStrokeWidth(2f);
+        paint.setStrokeWidth(dp(2f));
 
         Paint textPaint = new Paint();
         textPaint.setColor(Color.BLACK);
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(25);
+        textPaint.setTextSize(dp(25f));
         textPaint.setFakeBoldText(true);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
         Canvas aircourseCanvas = new Canvas(courseBitmap);
-        aircourseCanvas.drawText(Integer.toString(Math.round(compass_heading)), 60, 60, textPaint);
+        aircourseCanvas.drawText(Integer.toString(Math.round(compass_heading)), dp(60f), dp(60f), textPaint);
+
+        textPaint.setTextSize(dp(20f));
+        wind1Canvas.drawText(Integer.toString(Math.round(wind_speed)), dp(30f), dp(32f), textPaint);
 //
 //
 //        Canvas aircourseCanvas = new Canvas(aircourseBitmap);
@@ -109,14 +120,25 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
 
 
 
-        Bitmap headingBitmap = Bitmap.createBitmap(100, 100,
+        Bitmap headingBitmap = Bitmap.createBitmap(Math.round(dp(100f)), Math.round(dp(100f)),
                 Bitmap.Config.ARGB_8888);
         Canvas headingCanvas = new Canvas(headingBitmap);
 //        headingCanvas.drawColor(Color.BLUE, PorterDuff.Mode.ADD);
         headingCanvas.save(Canvas.MATRIX_SAVE_FLAG);
-        headingCanvas.rotate(true_track+90, 50 , 50);
+        headingCanvas.rotate(true_track+90, dp(50f) , dp(50f));
         headingCanvas.drawBitmap(courseBitmap, 0, 0, null);
         headingCanvas.restore();
+
+        Bitmap windRotateBitmap = Bitmap.createBitmap(wind1Bitmap.getWidth(), wind1Bitmap.getWidth(),
+                Bitmap.Config.ARGB_8888);
+        Canvas windCanvas = new Canvas(windRotateBitmap);
+        windCanvas.save(Canvas.MATRIX_SAVE_FLAG);
+        windCanvas.rotate(wind_direction+90+180, windRotateBitmap.getWidth()/2, windRotateBitmap.getHeight()/2);
+        windCanvas.drawBitmap(wind1Bitmap, 0, 0, null);
+        windCanvas.restore();
+
+        headingCanvas.drawBitmap(windRotateBitmap, 0, 0, null);
+
 //        headingCanvas.save(Canvas.MATRIX_SAVE_FLAG);
 //        headingCanvas.rotate(compass_heading+90,100,100);
 //        headingCanvas.drawBitmap(aircourseBitmap, 0, 0, null);
@@ -133,5 +155,10 @@ public class Waypoint  implements Comparable<Waypoint>, Serializable {
     public int compareTo(Waypoint waypoint) {
         Integer s = waypoint.order;
         return this.order - s;
+    }
+
+    private Float dp(Float px)
+    {
+        return context.getResources().getDisplayMetrics().density * px;
     }
 }

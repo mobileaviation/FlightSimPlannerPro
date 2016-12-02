@@ -124,7 +124,9 @@ public class Leg {
         String c = String.format("%1$03d", Math.round(toWaypoint.true_track));
         drawCanvas.drawText(c,
                 Math.round(Helpers.convertDpToPixel(8, context )),
-                Math.round(Helpers.convertDpToPixel(ty, context )),textPaint);
+                ty
+                //Math.round(Helpers.convertDpToPixel(ty, context ))
+                ,textPaint);
 
         legMarker.name = toWaypoint.name;
 
